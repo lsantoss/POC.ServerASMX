@@ -3,6 +3,7 @@ using ServerASMX.Domain.Clients.Entities;
 using ServerASMX.Domain.Clients.Interfaces.Repositories;
 using ServerASMX.Domain.Clients.Queries.Results;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ServerASMX.Infra.Data.Repositories
 {
@@ -16,32 +17,32 @@ namespace ServerASMX.Infra.Data.Repositories
 
         }
 
-        public long Insert(Client client)
+        public Task<long> Insert(Client client)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(Client client)
+        public Task Update(Client client)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Delete(long id)
+        public Task Delete(long id)
         {
             throw new System.NotImplementedException();
         }
 
-        public ClientQueryResult Get(long id)
+        public Task<ClientQueryResult> Get(long id)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<ClientQueryResult> List()
+        public Task<List<ClientQueryResult>> List()
         {
             throw new System.NotImplementedException();
         }
 
-        public bool CheckId(long id)
+        public Task<bool> CheckId(long id)
         {
             throw new System.NotImplementedException();
         }

@@ -1,9 +1,10 @@
-﻿using ServerASMX.Domain.Clients.Enums;
+﻿using Flunt.Notifications;
+using ServerASMX.Domain.Clients.Enums;
 using System;
 
 namespace ServerASMX.Domain.Clients.Entities
 {
-    public class Client
+    public class Client : Notifiable
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
