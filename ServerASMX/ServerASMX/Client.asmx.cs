@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+﻿using ServerASMX.Domain.Clients.Commands.Input;
+using ServerASMX.Domain.Clients.Handlers;
+using ServerASMX.Domain.Clients.Interfaces.Handlers;
+using ServerASMX.Domain.Core.Commands.Interfaces;
+using System.ComponentModel;
 using System.Web.Services;
 
 namespace ServerASMX
@@ -8,10 +12,17 @@ namespace ServerASMX
     [ToolboxItem(false)]
     public class Client : WebService
     {
-        [WebMethod]
-        public string HelloWorld()
+        private readonly IClientHandler _handler;
+
+        public Client()
         {
-            return "Olá, Mundo";
+            _handler = new ClientHandler();
+        }
+
+        [WebMethod]
+        public object AddClient(ClientAddCommand client)
+        {
+            return null;
         }
     }
 }

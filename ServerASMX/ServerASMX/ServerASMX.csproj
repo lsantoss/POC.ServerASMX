@@ -93,6 +93,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServerASMX.Domain.Core\ServerASMX.Domain.Core.csproj">
+      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
+      <Name>ServerASMX.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerASMX.Domain\ServerASMX.Domain.csproj">
+      <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
+      <Name>ServerASMX.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\Commands\Input\ClientAddCommand.cs" />
+    <Compile Include="Clients\Commands\Input\ClientDeleteCommand.cs" />
     <Compile Include="Clients\Commands\Input\ClientUpdateCommand.cs" />
     <Compile Include="Clients\Commands\Output\ClientCommandResult.cs" />
     <Compile Include="Clients\Entities\Client.cs" />
     <Compile Include="Clients\Enums\EGender.cs" />
+    <Compile Include="Clients\Handlers\ClientHandler.cs" />
     <Compile Include="Clients\Interfaces\Handlers\IClientHandler.cs" />
     <Compile Include="Clients\Interfaces\Repositories\IClientRepository.cs" />
     <Compile Include="Clients\Queries\Results\ClientQueryResult.cs" />
