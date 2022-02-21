@@ -70,12 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client.asmx" />
+    <Content Include="ClientService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.asmx.cs">
-      <DependentUpon>Client.asmx</DependentUpon>
+    <Compile Include="ClientService.asmx.cs">
+      <DependentUpon>ClientService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +101,10 @@
     <ProjectReference Include="..\ServerASMX.Domain\ServerASMX.Domain.csproj">
       <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
       <Name>ServerASMX.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerASMX.Infra.Data\ServerASMX.Infra.Data.csproj">
+      <Project>{CF6473D4-008D-4B3C-8357-18E7570F5B67}</Project>
+      <Name>ServerASMX.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
