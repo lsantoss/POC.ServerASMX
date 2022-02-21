@@ -1,4 +1,5 @@
 ﻿using Flunt.Notifications;
+using ServerASMX.Domain.Customers.Commands.Output;
 using ServerASMX.Domain.Customers.Enums;
 using System;
 
@@ -18,6 +19,18 @@ namespace ServerASMX.Domain.Customers.Entities
         public Customer(string name, DateTime birth, EGender gender, decimal cashBalance)
         {
             SetId(0);
+            SetName(name);
+            SetBirth(birth);
+            SetGender(gender);
+            SetCashBalance(cashBalance);
+            SetActive(true);
+            SetCreationDate(DateTime.Now);
+            SetChangeDate(null);
+        }
+
+        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance)
+        {
+            SetId(id);
             SetName(name);
             SetBirth(birth);
             SetGender(gender);
@@ -92,6 +105,8 @@ namespace ServerASMX.Domain.Customers.Entities
             SetActive(false);
             SetChangeDate(DateTime.Now);
         }
+
+        public CustomerCommandOutput MapToCustomerCommandOutput() => new CustomerCommandOutput(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
 
         private void SetActive(bool active) => Active = active;
         private void SetCreationDate(DateTime creationDate) => CreationDate = creationDate;

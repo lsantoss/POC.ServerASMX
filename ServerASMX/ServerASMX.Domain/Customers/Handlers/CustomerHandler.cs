@@ -18,48 +18,46 @@ namespace ServerASMX.Domain.Customers.Handlers
 
         public async Task<CommandResult> Handler(CustomerAddCommand command)
         {
-            //if (command == null)
-            //    return new CommandResult(StatusCodes.Status400BadRequest, "Parâmentros inválidos", "Parâmetros de entrada", "Parâmetros de entrada estão nulos");
+            if (command == null)
+                return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            //if (!command.ValidarCommand())
-            //    return new CommandResult(StatusCodes.Status422UnprocessableEntity, "Parâmentros inválidos", command.Notificacoes);
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
 
-            //var empresa = EmpresaHelper.GerarEntidade(command);
+            var customer = command.MapToCustomer();
 
-            //if (empresa.Invalido)
-            //    return new CommandResult(StatusCodes.Status422UnprocessableEntity, "Inconsistência(s) no(s) dado(s)", empresa.Notificacoes);
+            if (customer.Invalid)
+                return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            //var id = _repository.Salvar(empresa);
-            //empresa.DefinirId(id);
-            //var dadosRetorno = EmpresaHelper.GerarDadosRetornoInsert(empresa);
-            //return new CommandResult(StatusCodes.Status201Created, "Empresa gravada com sucesso!", dadosRetorno);
+            var id = await _repository.Insert(customer);
+            customer.SetId(id);
 
-            return null;
+            var outputData = customer.MapToCustomerCommandOutput();
+
+            return new CommandResult("Company recorded successfully!", outputData);
         }
 
         public async Task<CommandResult> Handler(CustomerUpdateCommand command)
         {
-            //if (command == null)
-            //    return new CommandResult(StatusCodes.Status400BadRequest, "Parâmetros de entrada", "Parâmetros de entrada", "Parâmetros de entrada estão nulos");
+            if (command == null)
+                return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            //command.Id = id;
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
 
-            //if (!command.ValidarCommand())
-            //    return new CommandResult(StatusCodes.Status422UnprocessableEntity, "Parâmentros inválidos", command.Notificacoes);
+            var customer = command.MapToCustomer();
 
-            //var empresa = EmpresaHelper.GerarEntidade(command);
+            if (customer.Invalid)
+                return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            //if (empresa.Invalido)
-            //    return new CommandResult(StatusCodes.Status422UnprocessableEntity, "Inconsistência(s) no(s) dado(s)", empresa.Notificacoes);
+            if (!await _repository.CheckId(customer.Id))
+                return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
-            //if (!_repository.CheckId(empresa.Id))
-            //    return new CommandResult(StatusCodes.Status422UnprocessableEntity, "Inconsistência(s) no(s) dado(s)", "Id", "Id inválido. Este id não está cadastrado!");
+            await _repository.Update(customer);
 
-            //_repository.Atualizar(empresa);
-            //var dadosRetorno = EmpresaHelper.GerarDadosRetornoUpdate(empresa);
-            //return new CommandResult(StatusCodes.Status200OK, "Empresa atualizada com sucesso!", dadosRetorno);
+            var outputData = customer.MapToCustomerCommandOutput();
 
-            return null;
+            return new CommandResult("Customer successfully updated!", outputData);
         }
 
         public async Task<CommandResult> Handler(CustomerDeleteCommand command)
@@ -69,7 +67,7 @@ namespace ServerASMX.Domain.Customers.Handlers
 
             await _repository.Delete(command.Id);
 
-            return new CommandResult("Customer successfully deleted!", "");
+            return new CommandResult("Customer successfully deleted!", $"Customer with Id {command.Id} has been deleted");
         }
     }
 }

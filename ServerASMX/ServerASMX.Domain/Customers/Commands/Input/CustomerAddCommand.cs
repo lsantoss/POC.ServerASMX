@@ -2,6 +2,7 @@
 using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Domain.Core.Commands.Interfaces;
 using System;
+using ServerASMX.Domain.Customers.Entities;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
@@ -30,5 +31,7 @@ namespace ServerASMX.Domain.Customers.Commands.Input
 
             return Valid;
         }
+
+        public Customer MapToCustomer() => new Customer(Name, Birth, Gender, CashBalance);
     }
 }
