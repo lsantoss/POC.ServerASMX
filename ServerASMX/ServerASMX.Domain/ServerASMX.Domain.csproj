@@ -48,18 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\Commands\Input\ClientAddCommand.cs" />
-    <Compile Include="Clients\Commands\Input\ClientDeleteCommand.cs" />
-    <Compile Include="Clients\Commands\Input\ClientUpdateCommand.cs" />
-    <Compile Include="Clients\Commands\Output\ClientCommandResult.cs" />
-    <Compile Include="Clients\Entities\Client.cs" />
-    <Compile Include="Clients\Enums\EGender.cs" />
-    <Compile Include="Clients\Handlers\ClientHandler.cs" />
-    <Compile Include="Clients\Interfaces\Handlers\IClientHandler.cs" />
-    <Compile Include="Clients\Interfaces\Repositories\IClientRepository.cs" />
-    <Compile Include="Clients\Queries\Results\ClientQueryResult.cs" />
-    <Compile Include="Clients\Repositories\ClientRepository.cs" />
-    <Compile Include="Clients\Repositories\Queries\ClientQueries.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerAddCommand.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerDeleteCommand.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerUpdateCommand.cs" />
+    <Compile Include="Customers\Commands\Output\CustomerCommandResult.cs" />
+    <Compile Include="Customers\Entities\Customer.cs" />
+    <Compile Include="Customers\Enums\EGender.cs" />
+    <Compile Include="Customers\Handlers\CustomerHandler.cs" />
+    <Compile Include="Customers\Interfaces\Handlers\ICustomerHandler.cs" />
+    <Compile Include="Customers\Interfaces\Repositories\ICustomerRepository.cs" />
+    <Compile Include="Customers\Queries\Results\CustomerQueryResult.cs" />
+    <Compile Include="Customers\Repositories\CustomerRepository.cs" />
+    <Compile Include="Customers\Repositories\Queries\CustomerQueries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

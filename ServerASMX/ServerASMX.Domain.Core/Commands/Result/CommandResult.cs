@@ -11,8 +11,6 @@ namespace ServerASMX.Domain.Core.Commands.Result
         public object Data { get; set; }
         public IReadOnlyCollection<Notification> Errors { get; set; }
 
-        public CommandResult() { }
-
         public CommandResult(string message, object data)
         {
             Success = true;

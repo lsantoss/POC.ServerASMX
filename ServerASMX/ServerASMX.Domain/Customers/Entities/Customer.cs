@@ -1,10 +1,10 @@
 ﻿using Flunt.Notifications;
-using ServerASMX.Domain.Clients.Enums;
+using ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace ServerASMX.Domain.Clients.Entities
+namespace ServerASMX.Domain.Customers.Entities
 {
-    public class Client : Notifiable
+    public class Customer : Notifiable
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -15,7 +15,7 @@ namespace ServerASMX.Domain.Clients.Entities
         public DateTime CreationDate { get; private set; }
         public DateTime? ChangeDate { get; private set; }
 
-        public Client(string name, DateTime birth, EGender gender, decimal cashBalance)
+        public Customer(string name, DateTime birth, EGender gender, decimal cashBalance)
         {
             SetId(0);
             SetName(name);
@@ -27,7 +27,7 @@ namespace ServerASMX.Domain.Clients.Entities
             SetChangeDate(null);
         }
 
-        public Client(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
+        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
         {
             SetId(id);
             SetName(name);

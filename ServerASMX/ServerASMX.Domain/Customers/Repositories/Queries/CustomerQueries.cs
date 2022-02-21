@@ -1,6 +1,6 @@
-﻿namespace ServerASMX.Domain.Clients.Repositories.Queries
+﻿namespace ServerASMX.Domain.Customers.Repositories.Queries
 {
-    public static class ClientQueries
+    public static class CustomerQueries
     {
         public static string Insert { get; } = @"INSERT INTO Client 
                                                     (Id,

@@ -1,8 +1,8 @@
 ﻿using Dapper;
-using ServerASMX.Domain.Clients.Entities;
-using ServerASMX.Domain.Clients.Interfaces.Repositories;
-using ServerASMX.Domain.Clients.Queries.Results;
-using ServerASMX.Domain.Clients.Repositories.Queries;
+using ServerASMX.Domain.Customers.Entities;
+using ServerASMX.Domain.Customers.Interfaces.Repositories;
+using ServerASMX.Domain.Customers.Queries.Results;
+using ServerASMX.Domain.Customers.Repositories.Queries;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,20 +10,20 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServerASMX.Domain.Clients.Repositories
+namespace ServerASMX.Domain.Customers.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly string _connectionString;
         private readonly DynamicParameters _parameters;
 
-        public ClientRepository()
+        public CustomerRepository()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
             _parameters = new DynamicParameters();
         }
 
-        public async Task<long> Insert(Client client)
+        public async Task<long> Insert(Customer client)
         {
             _parameters.Add("Name", client.Name, DbType.String);
             _parameters.Add("Birth", client.Birth, DbType.DateTime);
@@ -35,11 +35,11 @@ namespace ServerASMX.Domain.Clients.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<long>(ClientQueries.Insert, _parameters);
+                return await connection.ExecuteScalarAsync<long>(CustomerQueries.Insert, _parameters);
             }
         }
 
-        public async Task Update(Client client)
+        public async Task Update(Customer client)
         {
             _parameters.Add("Id", client.Id, DbType.Int64);
             _parameters.Add("Name", client.Name, DbType.String);
@@ -52,7 +52,7 @@ namespace ServerASMX.Domain.Clients.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _ = await connection.ExecuteAsync(ClientQueries.Update, _parameters);
+                _ = await connection.ExecuteAsync(CustomerQueries.Update, _parameters);
             }
         }
 
@@ -62,26 +62,26 @@ namespace ServerASMX.Domain.Clients.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _ = await connection.ExecuteAsync(ClientQueries.Delete, _parameters);
+                _ = await connection.ExecuteAsync(CustomerQueries.Delete, _parameters);
             }
         }
 
-        public async Task<ClientQueryResult> Get(long id)
+        public async Task<CustomerQueryResult> Get(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result =  await connection.QueryAsync<ClientQueryResult>(ClientQueries.Get, _parameters);
+                var result = await connection.QueryAsync<CustomerQueryResult>(CustomerQueries.Get, _parameters);
                 return result.FirstOrDefault();
             }
         }
 
-        public async Task<List<ClientQueryResult>> List()
+        public async Task<List<CustomerQueryResult>> List()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = await connection.QueryAsync<ClientQueryResult>(ClientQueries.List, _parameters);
+                var result = await connection.QueryAsync<CustomerQueryResult>(CustomerQueries.List, _parameters);
                 return result.ToList();
             }
         }
@@ -92,7 +92,7 @@ namespace ServerASMX.Domain.Clients.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = await connection.QueryAsync<bool>(ClientQueries.CheckId, _parameters);
+                var result = await connection.QueryAsync<bool>(CustomerQueries.CheckId, _parameters);
                 return result.FirstOrDefault();
             }
         }

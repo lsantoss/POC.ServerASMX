@@ -1,9 +1,9 @@
-﻿using ServerASMX.Domain.Clients.Enums;
+﻿using ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace ServerASMX.Domain.Clients.Commands.Output
+namespace ServerASMX.Domain.Customers.Commands.Output
 {
-    public class ClientCommandResult
+    public class CustomerCommandResult
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -15,7 +15,7 @@ namespace ServerASMX.Domain.Clients.Commands.Output
         public DateTime CreationDate { get; private set; }
         public DateTime? ChangeDate { get; private set; }
 
-        public ClientCommandResult(long id, string name, DateTime birth, int age, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
+        public CustomerCommandResult(long id, string name, DateTime birth, int age, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
         {
             Id = id;
             Name = name;

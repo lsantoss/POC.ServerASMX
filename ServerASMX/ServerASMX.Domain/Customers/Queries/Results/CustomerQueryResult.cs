@@ -1,9 +1,9 @@
-﻿using ServerASMX.Domain.Clients.Enums;
+﻿using ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace ServerASMX.Domain.Clients.Queries.Results
+namespace ServerASMX.Domain.Customers.Queries.Results
 {
-    public class ClientQueryResult
+    public class CustomerQueryResult
     {
         public long Id { get; set; }
         public string Name { get; set; }

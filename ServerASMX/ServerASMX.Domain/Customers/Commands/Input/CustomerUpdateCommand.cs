@@ -1,11 +1,11 @@
 ﻿using Flunt.Notifications;
-using ServerASMX.Domain.Clients.Enums;
+using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Domain.Core.Commands.Interfaces;
 using System;
 
-namespace ServerASMX.Domain.Clients.Commands.Input
+namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class ClientUpdateCommand : Notifiable, IStandardCommand
+    public class CustomerUpdateCommand : Notifiable, IStandardCommand
     {
         public long Id { get; set; }
         public string Name { get; set; }

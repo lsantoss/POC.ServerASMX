@@ -1,4 +1,4 @@
-﻿namespace ServerASMX.Domain.Clients.Enums
+﻿namespace ServerASMX.Domain.Customers.Enums
 {
     public enum EGender
     {
