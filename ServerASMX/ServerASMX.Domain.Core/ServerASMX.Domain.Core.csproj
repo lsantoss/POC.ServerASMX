@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Interfaces\ICommandResult.cs" />
     <Compile Include="Commands\Interfaces\IStandardCommand.cs" />
     <Compile Include="Commands\Result\CommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

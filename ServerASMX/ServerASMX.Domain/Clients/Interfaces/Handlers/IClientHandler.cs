@@ -1,12 +1,12 @@
 ﻿using ServerASMX.Domain.Clients.Commands.Input;
-using ServerASMX.Domain.Core.Commands.Interfaces;
+using ServerASMX.Domain.Core.Commands.Result;
 
 namespace ServerASMX.Domain.Clients.Interfaces.Handlers
 {
     public interface IClientHandler
     {
-        ICommandResult Handler(ClientAddCommand command);
-        ICommandResult Handler(ClientUpdateCommand command);
-        ICommandResult Handler(ClientDeleteCommand command);
+        CommandResult Handler(ClientAddCommand command);
+        CommandResult Handler(ClientUpdateCommand command);
+        CommandResult Handler(ClientDeleteCommand command);
     }
 }

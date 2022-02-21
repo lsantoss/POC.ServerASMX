@@ -2,7 +2,7 @@
 using ServerASMX.Domain.Clients.Interfaces.Handlers;
 using ServerASMX.Domain.Clients.Interfaces.Repositories;
 using ServerASMX.Domain.Clients.Repositories;
-using ServerASMX.Domain.Core.Commands.Interfaces;
+using ServerASMX.Domain.Core.Commands.Result;
 using System;
 
 namespace ServerASMX.Domain.Clients.Handlers
@@ -16,17 +16,17 @@ namespace ServerASMX.Domain.Clients.Handlers
             _repository = new ClientRepository();
         }
 
-        public ICommandResult Handler(ClientAddCommand command)
+        public CommandResult Handler(ClientAddCommand command)
         {
             throw new NotImplementedException();
         }
 
-        public ICommandResult Handler(ClientUpdateCommand command)
+        public CommandResult Handler(ClientUpdateCommand command)
         {
             throw new NotImplementedException();
         }
 
-        public ICommandResult Handler(ClientDeleteCommand command)
+        public CommandResult Handler(ClientDeleteCommand command)
         {
             throw new NotImplementedException();
         }
