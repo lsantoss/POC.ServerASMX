@@ -1,7 +1,7 @@
 ﻿using ServerASMX.Domain.Clients.Handlers;
 using ServerASMX.Domain.Clients.Interfaces.Handlers;
 using ServerASMX.Domain.Clients.Interfaces.Repositories;
-using ServerASMX.Infra.Data.Repositories;
+using ServerASMX.Domain.Clients.Repositories;
 using System.ComponentModel;
 using System.Web.Services;
 

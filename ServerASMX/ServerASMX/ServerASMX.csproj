@@ -102,10 +102,6 @@
       <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
       <Name>ServerASMX.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServerASMX.Infra.Data\ServerASMX.Infra.Data.csproj">
-      <Project>{CF6473D4-008D-4B3C-8357-18E7570F5B67}</Project>
-      <Name>ServerASMX.Infra.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

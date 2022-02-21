@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Flunt, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flunt.1.0.5\lib\netstandard2.0\Flunt.dll</HintPath>
     </Reference>
@@ -54,6 +57,8 @@
     <Compile Include="Clients\Interfaces\Handlers\IClientHandler.cs" />
     <Compile Include="Clients\Interfaces\Repositories\IClientRepository.cs" />
     <Compile Include="Clients\Queries\Results\ClientQueryResult.cs" />
+    <Compile Include="Clients\Repositories\ClientRepository.cs" />
+    <Compile Include="Clients\Repositories\Queries\ClientQueries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
