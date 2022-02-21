@@ -5,14 +5,16 @@ namespace ServerASMX.Domain.Customers.Commands.Output
 {
     public class CustomerCommandOutput
     {
-        public long Id { get; private set; }
-        public string Name { get; private set; }
-        public DateTime Birth { get; private set; }
-        public EGender Gender { get; private set; }
-        public decimal CashBalance { get; private set; }
-        public bool Active { get; private set; }
-        public DateTime CreationDate { get; private set; }
-        public DateTime? ChangeDate { get; private set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Birth { get; set; }
+        public EGender Gender { get; set; }
+        public decimal CashBalance { get; set; }
+        public bool Active { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime? ChangeDate { get; set; }
+
+        public CustomerCommandOutput() { }
 
         public CustomerCommandOutput(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
         {

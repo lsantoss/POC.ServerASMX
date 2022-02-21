@@ -3,8 +3,7 @@
     public static class CustomerQueries
     {
         public static string Insert { get; } = @"INSERT INTO Customer 
-                                                    (Id,
-                                                     Name,
+                                                    (Name,
                                                      Birth,
                                                      Gender,
                                                      CashBalance,
@@ -12,8 +11,7 @@
                                                      CreationDate,
                                                      ChangeDate) 
                                                  VALUES 
-                                                    (@Id,
-                                                     @Name,
+                                                    (@Name,
                                                      @Birth,
                                                      @Gender,
                                                      @CashBalance,

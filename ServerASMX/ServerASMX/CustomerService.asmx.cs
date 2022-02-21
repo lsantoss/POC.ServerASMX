@@ -1,4 +1,6 @@
-﻿using ServerASMX.Domain.Customers.Handlers;
+﻿using ServerASMX.Domain.Core.Commands.Result;
+using ServerASMX.Domain.Customers.Commands.Input;
+using ServerASMX.Domain.Customers.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
 using ServerASMX.Domain.Customers.Queries.Results;
@@ -21,6 +23,12 @@ namespace ServerASMX
         {
             _handler = new CustomerHandler();
             _repository = new CustomerRepository();
+        }
+
+        [WebMethod]
+        public CommandResult AddCustomer(CustomerAddCommand command)
+        {
+            return _handler.Handle(command);
         }
 
         [WebMethod]

@@ -1,11 +1,11 @@
-﻿using Flunt.Notifications;
+﻿using ServerASMX.Domain.Core.Notifications;
 using ServerASMX.Domain.Customers.Commands.Output;
 using ServerASMX.Domain.Customers.Enums;
 using System;
 
 namespace ServerASMX.Domain.Customers.Entities
 {
-    public class Customer : Notifiable
+    public class Customer : Notifier
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -18,7 +18,7 @@ namespace ServerASMX.Domain.Customers.Entities
 
         public Customer(string name, DateTime birth, EGender gender, decimal cashBalance)
         {
-            SetId(0);
+            Id = 0;
             SetName(name);
             SetBirth(birth);
             SetGender(gender);

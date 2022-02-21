@@ -15,13 +15,15 @@ namespace ServerASMX.Domain.Customers.Handlers
             _repository = new CustomerRepository();
         }
 
-        public CommandResult Handler(CustomerAddCommand command)
+        public CommandResult Handle(CustomerAddCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            if (!command.IsValid())
-                return new CommandResult("Invalid parameters", command.Notifications);
+            var commndValidations = command.IsValid();
+
+            if (commndValidations.Invalid)
+                return new CommandResult("Invalid parameters", commndValidations.Notifications);
 
             var customer = command.MapToCustomer();
 
@@ -36,7 +38,7 @@ namespace ServerASMX.Domain.Customers.Handlers
             return new CommandResult("Company recorded successfully!", outputData);
         }
 
-        public CommandResult Handler(CustomerUpdateCommand command)
+        public CommandResult Handle(CustomerUpdateCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -59,7 +61,7 @@ namespace ServerASMX.Domain.Customers.Handlers
             return new CommandResult("Customer successfully updated!", outputData);
         }
 
-        public CommandResult Handler(CustomerDeleteCommand command)
+        public CommandResult Handle(CustomerDeleteCommand command)
         {
             if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");

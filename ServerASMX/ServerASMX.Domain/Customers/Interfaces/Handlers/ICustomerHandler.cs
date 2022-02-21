@@ -5,8 +5,8 @@ namespace ServerASMX.Domain.Customers.Interfaces.Handlers
 {
     public interface ICustomerHandler
     {
-        CommandResult Handler(CustomerAddCommand command);
-        CommandResult Handler(CustomerUpdateCommand command);
-        CommandResult Handler(CustomerDeleteCommand command);
+        CommandResult Handle(CustomerAddCommand command);
+        CommandResult Handle(CustomerUpdateCommand command);
+        CommandResult Handle(CustomerDeleteCommand command);
     }
 }

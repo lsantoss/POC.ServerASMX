@@ -1,9 +1,9 @@
-﻿using Flunt.Notifications;
-using ServerASMX.Domain.Core.Commands.Interfaces;
+﻿using ServerASMX.Domain.Core.Commands.Interfaces;
+using ServerASMX.Domain.Core.Notifications;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class CustomerDeleteCommand : Notifiable, IStandardCommand
+    public class CustomerDeleteCommand : Notifier, IStandardCommand
     {
         public long Id { get; set; }
 

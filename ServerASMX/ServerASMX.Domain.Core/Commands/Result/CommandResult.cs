@@ -1,4 +1,4 @@
-﻿using Flunt.Notifications;
+﻿using ServerASMX.Domain.Core.Notifications;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,9 @@ namespace ServerASMX.Domain.Core.Commands.Result
         public bool Success { get; set; }
         public string Message { get; set; }
         public object Data { get; set; }
-        public IReadOnlyCollection<Notification> Errors { get; set; }
+        public List<Notification> Errors { get; set; }
+
+        public CommandResult() { }
 
         public CommandResult(string message, object data)
         {
