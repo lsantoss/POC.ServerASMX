@@ -1,7 +1,9 @@
 ﻿using ServerASMX.Domain.Customers.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
+using ServerASMX.Domain.Customers.Queries.Results;
 using ServerASMX.Domain.Customers.Repositories;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
 
@@ -22,9 +24,15 @@ namespace ServerASMX
         }
 
         [WebMethod]
-        public string HelloWorld()
+        public List<CustomerQueryResult> List()
         {
-            return "Olá, Mundo";
+            return _repository.List();
+        }
+
+        [WebMethod]
+        public CustomerQueryResult Get(long id)
+        {
+            return _repository.Get(id);
         }
     }
 }

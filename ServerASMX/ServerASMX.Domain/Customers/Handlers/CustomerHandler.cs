@@ -1,9 +1,8 @@
-﻿using ServerASMX.Domain.Customers.Repositories;
-using ServerASMX.Domain.Core.Commands.Result;
+﻿using ServerASMX.Domain.Core.Commands.Result;
 using ServerASMX.Domain.Customers.Commands.Input;
 using ServerASMX.Domain.Customers.Interfaces.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
-using System.Threading.Tasks;
+using ServerASMX.Domain.Customers.Repositories;
 
 namespace ServerASMX.Domain.Customers.Handlers
 {
@@ -16,7 +15,7 @@ namespace ServerASMX.Domain.Customers.Handlers
             _repository = new CustomerRepository();
         }
 
-        public async Task<CommandResult> Handler(CustomerAddCommand command)
+        public CommandResult Handler(CustomerAddCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -29,7 +28,7 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            var id = await _repository.Insert(customer);
+            var id = _repository.Insert(customer);
             customer.SetId(id);
 
             var outputData = customer.MapToCustomerCommandOutput();
@@ -37,7 +36,7 @@ namespace ServerASMX.Domain.Customers.Handlers
             return new CommandResult("Company recorded successfully!", outputData);
         }
 
-        public async Task<CommandResult> Handler(CustomerUpdateCommand command)
+        public CommandResult Handler(CustomerUpdateCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -50,22 +49,22 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            if (!await _repository.CheckId(customer.Id))
+            if (!_repository.CheckId(customer.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
-            await _repository.Update(customer);
+            _repository.Update(customer);
 
             var outputData = customer.MapToCustomerCommandOutput();
 
             return new CommandResult("Customer successfully updated!", outputData);
         }
 
-        public async Task<CommandResult> Handler(CustomerDeleteCommand command)
+        public CommandResult Handler(CustomerDeleteCommand command)
         {
-            if (!await _repository.CheckId(command.Id))
+            if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
-            await _repository.Delete(command.Id);
+            _repository.Delete(command.Id);
 
             return new CommandResult("Customer successfully deleted!", $"Customer with Id {command.Id} has been deleted");
         }

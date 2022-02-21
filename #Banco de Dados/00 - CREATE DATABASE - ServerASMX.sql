@@ -1,0 +1,6 @@
+USE [master] 
+
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'ServerASMX')
+BEGIN
+	CREATE DATABASE ServerASMX
+END

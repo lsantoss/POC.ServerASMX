@@ -1,14 +1,15 @@
 ﻿using Dapper;
 using ServerASMX.Domain.Customers.Entities;
+using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
 using ServerASMX.Domain.Customers.Queries.Results;
 using ServerASMX.Domain.Customers.Repositories.Queries;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ServerASMX.Domain.Customers.Repositories
 {
@@ -19,11 +20,11 @@ namespace ServerASMX.Domain.Customers.Repositories
 
         public CustomerRepository()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
+            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString.ToString();
             _parameters = new DynamicParameters();
         }
 
-        public async Task<long> Insert(Customer client)
+        public long Insert(Customer client)
         {
             _parameters.Add("Name", client.Name, DbType.String);
             _parameters.Add("Birth", client.Birth, DbType.DateTime);
@@ -35,11 +36,11 @@ namespace ServerASMX.Domain.Customers.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<long>(CustomerQueries.Insert, _parameters);
+                return connection.ExecuteScalar<long>(CustomerQueries.Insert, _parameters);
             }
         }
 
-        public async Task Update(Customer client)
+        public void Update(Customer client)
         {
             _parameters.Add("Id", client.Id, DbType.Int64);
             _parameters.Add("Name", client.Name, DbType.String);
@@ -52,48 +53,45 @@ namespace ServerASMX.Domain.Customers.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _ = await connection.ExecuteAsync(CustomerQueries.Update, _parameters);
+                _ = connection.Execute(CustomerQueries.Update, _parameters);
             }
         }
 
-        public async Task Delete(long id)
+        public void Delete(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _ = await connection.ExecuteAsync(CustomerQueries.Delete, _parameters);
+                _ = connection.Execute(CustomerQueries.Delete, _parameters);
             }
         }
 
-        public async Task<CustomerQueryResult> Get(long id)
+        public CustomerQueryResult Get(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = await connection.QueryAsync<CustomerQueryResult>(CustomerQueries.Get, _parameters);
-                return result.FirstOrDefault();
+                return connection.Query<CustomerQueryResult>(CustomerQueries.Get, _parameters).FirstOrDefault();
             }
         }
 
-        public async Task<List<CustomerQueryResult>> List()
+        public List<CustomerQueryResult> List()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = await connection.QueryAsync<CustomerQueryResult>(CustomerQueries.List, _parameters);
-                return result.ToList();
+                return connection.Query<CustomerQueryResult>(CustomerQueries.List, _parameters).ToList();
             }
         }
 
-        public async Task<bool> CheckId(long id)
+        public bool CheckId(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = await connection.QueryAsync<bool>(CustomerQueries.CheckId, _parameters);
-                return result.FirstOrDefault();
+                return connection.Query<bool>(CustomerQueries.CheckId, _parameters).FirstOrDefault();
             }
         }
     }
