@@ -29,41 +29,23 @@ namespace ServerASMX
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandOutput))]
-        public CommandResult Add(CustomerAddCommand command)
-        {
-            return _handler.Handle(command);
-        }
+        public CommandResult Add(CustomerAddCommand command) => _handler.Handle(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandOutput))]
-        public CommandResult Update(CustomerUpdateCommand command)
-        {
-            return _handler.Handle(command);
-        }
+        public CommandResult Update(CustomerUpdateCommand command) => _handler.Handle(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandOutput))]
-        public CommandResult ChangeActivityState(CustomerActivityStateCommand command)
-        {
-            return _handler.Handle(command);
-        }
+        public CommandResult ChangeActivityState(CustomerActivityStateCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public CommandResult Delete(CustomerDeleteCommand command)
-        {
-            return _handler.Handle(command);
-        }
+        public CommandResult Delete(CustomerDeleteCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public List<CustomerQueryResult> List()
-        {
-            return _repository.List();
-        }
+        public List<CustomerQueryResult> List() => _repository.List();
 
         [WebMethod]
-        public CustomerQueryResult Get(long id)
-        {
-            return _repository.Get(id);
-        }
+        public CustomerQueryResult Get(long id) => _repository.Get(id);
     }
 }
