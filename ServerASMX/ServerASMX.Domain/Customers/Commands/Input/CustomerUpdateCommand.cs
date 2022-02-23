@@ -1,12 +1,11 @@
 ﻿using ServerASMX.Domain.Core.Commands.Interfaces;
 using ServerASMX.Domain.Core.Notifications;
-using ServerASMX.Domain.Customers.Entities;
 using ServerASMX.Domain.Customers.Enums;
 using System;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class CustomerUpdateCommand : IStandardCommand
+    public class CustomerUpdateCommand : Notifier, IStandardCommand
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -14,30 +13,28 @@ namespace ServerASMX.Domain.Customers.Commands.Input
         public EGender Gender { get; set; }
         public decimal CashBalance { get; set; }
 
-        public Notifier IsValid()
+        public bool IsValid()
         {
-            var notifier = new Notifier();
-
             if (Id <= 0)
-                notifier.AddNotification("Id", "Id must be greater than zero");
+                AddNotification("Id", "Id must be greater than zero");
 
             if (string.IsNullOrWhiteSpace(Name))
-                notifier.AddNotification("Name", "Name is a required field");
+                AddNotification("Name", "Name is a required field");
             else if (Name.Length > 100)
-                notifier.AddNotification("Name", $"Name must contain a maximum of 100 characters");
+                AddNotification("Name", $"Name must contain a maximum of 100 characters");
 
             if (Birth == DateTime.MinValue)
-                notifier.AddNotification("Birth", "Birth must contain a valid date");
+                AddNotification("Birth", "Birth must contain a valid date");
             else if (Birth > DateTime.Now)
-                notifier.AddNotification("Birth", "Birth must be less than the current date");
+                AddNotification("Birth", "Birth must be less than the current date");
 
             if (!Enum.IsDefined(typeof(EGender), Gender))
-                notifier.AddNotification("Gender", "Invalid entered gender");
+                AddNotification("Gender", "Invalid entered gender");
 
             if (CashBalance < 0)
-                notifier.AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
+                AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
 
-            return notifier;
+            return Valid;
         }
     }
 }

@@ -6,34 +6,32 @@ using System;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class CustomerAddCommand : IStandardCommand
+    public class CustomerAddCommand : Notifier, IStandardCommand
     {
         public string Name { get; set; }
         public DateTime Birth { get; set; }
         public EGender Gender { get; set; }
         public decimal CashBalance { get; set; }
 
-        public Notifier IsValid()
+        public bool IsValid()
         {
-            var notifier = new Notifier();
-
             if (string.IsNullOrWhiteSpace(Name))
-                notifier.AddNotification("Name", "Name is a required field");
+                AddNotification("Name", "Name is a required field");
             else if (Name.Length > 100)
-                notifier.AddNotification("Name", $"Name must contain a maximum of 100 characters");
+                AddNotification("Name", $"Name must contain a maximum of 100 characters");
 
             if (Birth == DateTime.MinValue)
-                notifier.AddNotification("Birth", "Birth must contain a valid date");
+                AddNotification("Birth", "Birth must contain a valid date");
             else if (Birth > DateTime.Now)
-                notifier.AddNotification("Birth", "Birth must be less than the current date");
+                AddNotification("Birth", "Birth must be less than the current date");
 
             if (!Enum.IsDefined(typeof(EGender), Gender))
-                notifier.AddNotification("Gender", "Invalid entered gender");
+                AddNotification("Gender", "Invalid entered gender");
 
             if (CashBalance < 0)
-                notifier.AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
+                AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
 
-            return notifier;
+            return Valid;
         }
 
         public Customer MapToCustomer() => new Customer(Name, Birth, Gender, CashBalance);

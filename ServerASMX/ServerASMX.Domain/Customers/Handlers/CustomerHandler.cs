@@ -22,10 +22,8 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            var commndValidations = command.IsValid();
-
-            if (commndValidations.Invalid)
-                return new CommandResult("Invalid parameters", commndValidations.Notifications);
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
 
             var customer = command.MapToCustomer();
 
@@ -45,10 +43,8 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            var commndValidations = command.IsValid();
-
-            if (commndValidations.Invalid)
-                return new CommandResult("Invalid parameters", commndValidations.Notifications);
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
 
             var customerQR = _repository.Get(command.Id);
 

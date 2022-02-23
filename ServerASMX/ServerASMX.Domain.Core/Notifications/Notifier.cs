@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace ServerASMX.Domain.Core.Notifications
 {
     public class Notifier
     {
+        [XmlIgnoreAttribute]
         public bool Valid { get; private set; }
+
+        [XmlIgnoreAttribute]
         public bool Invalid { get; private set; }
 
+        [XmlIgnoreAttribute]
         public IReadOnlyCollection<Notification> Notifications => _notifications.ToList();
         private readonly IList<Notification> _notifications;
 
