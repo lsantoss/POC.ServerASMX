@@ -8,7 +8,7 @@ namespace ServerASMX.Domain.Core.Notifications
         public bool Valid { get; private set; }
         public bool Invalid { get; private set; }
 
-        public List<Notification> Notifications => _notifications.ToList();
+        public IReadOnlyCollection<Notification> Notifications => _notifications.ToList();
         private readonly IList<Notification> _notifications;
 
         public Notifier()
