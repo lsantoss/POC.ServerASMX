@@ -14,7 +14,5 @@ namespace ServerASMX.Domain.Customers.Queries.Results
         public bool Active { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? ChangeDate { get; set; }
-
-        public Customer MapToCustomer() => new Customer(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
     }
 }
