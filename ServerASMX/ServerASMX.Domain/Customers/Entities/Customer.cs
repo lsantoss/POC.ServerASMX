@@ -28,19 +28,7 @@ namespace ServerASMX.Domain.Customers.Entities
             SetChangeDate(null);
         }
 
-        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance)
-        {
-            SetId(id);
-            SetName(name);
-            SetBirth(birth);
-            SetGender(gender);
-            SetCashBalance(cashBalance);
-            SetActive(true);
-            SetCreationDate(DateTime.Now);
-            SetChangeDate(null);
-        }
-
-        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
+        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
         {
             SetId(id);
             SetName(name);

@@ -1,8 +1,10 @@
 ﻿using ServerASMX.Domain.Core.Commands.Result;
 using ServerASMX.Domain.Customers.Commands.Input;
+using ServerASMX.Domain.Customers.Entities;
 using ServerASMX.Domain.Customers.Interfaces.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
 using ServerASMX.Domain.Customers.Repositories;
+using System;
 
 namespace ServerASMX.Domain.Customers.Handlers
 {
@@ -48,13 +50,15 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (commndValidations.Invalid)
                 return new CommandResult("Invalid parameters", commndValidations.Notifications);
 
-            var customer = command.MapToCustomer();
+            var customerQR = _repository.Get(command.Id);
+
+            if (customerQR == null)
+                return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
+
+            var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, customerQR.Active, customerQR.CreationDate, DateTime.Now);
 
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
-
-            if (!_repository.CheckId(customer.Id))
-                return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
             _repository.Update(customer);
 

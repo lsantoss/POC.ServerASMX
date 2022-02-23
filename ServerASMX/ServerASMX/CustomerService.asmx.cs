@@ -35,6 +35,13 @@ namespace ServerASMX
         }
 
         [WebMethod]
+        [XmlInclude(typeof(CustomerCommandOutput))]
+        public CommandResult Update(CustomerUpdateCommand command)
+        {
+            return _handler.Handle(command);
+        }
+
+        [WebMethod]
         public CommandResult Delete(CustomerDeleteCommand command)
         {
             return _handler.Handle(command);

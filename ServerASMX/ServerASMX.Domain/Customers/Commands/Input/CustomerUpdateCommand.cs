@@ -39,7 +39,5 @@ namespace ServerASMX.Domain.Customers.Commands.Input
 
             return notifier;
         }
-
-        public Customer MapToCustomer() => new Customer(Id, Name, Birth, Gender, CashBalance);
     }
 }
