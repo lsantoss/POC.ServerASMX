@@ -1,5 +1,4 @@
-﻿using ServerASMX.Domain.Customers.Entities;
-using ServerASMX.Domain.Customers.Enums;
+﻿using ServerASMX.Domain.Customers.Enums;
 using System;
 
 namespace ServerASMX.Domain.Customers.Queries.Results

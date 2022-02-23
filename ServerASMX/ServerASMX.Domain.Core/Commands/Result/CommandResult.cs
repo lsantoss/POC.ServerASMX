@@ -6,10 +6,10 @@ namespace ServerASMX.Domain.Core.Commands.Result
 {
     public class CommandResult
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public object Data { get; set; }
-        public List<Notification> Errors { get; set; }
+        public bool Success { get; private set; }
+        public string Message { get; private set; }
+        public object Data { get; private set; }
+        public List<Notification> Errors { get; private set; }
 
         public CommandResult() { }
 

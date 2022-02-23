@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using ServerASMX.Domain.Customers.Entities;
-using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
 using ServerASMX.Domain.Customers.Queries.Results;
 using ServerASMX.Domain.Customers.Repositories.Queries;
