@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customers\Commands\Input\CustomerActivityStateCommand.cs" />
     <Compile Include="Customers\Commands\Input\CustomerAddCommand.cs" />
     <Compile Include="Customers\Commands\Input\CustomerDeleteCommand.cs" />
     <Compile Include="Customers\Commands\Input\CustomerUpdateCommand.cs" />

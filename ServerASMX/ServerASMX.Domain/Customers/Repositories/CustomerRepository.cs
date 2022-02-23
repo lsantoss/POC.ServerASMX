@@ -67,6 +67,18 @@ namespace ServerASMX.Domain.Customers.Repositories
             }
         }
 
+        public void ChangeActivityState(long id, bool active)
+        {
+            _parameters.Add("Id", id, DbType.Int64);
+            _parameters.Add("Active", active, DbType.Boolean);
+            _parameters.Add("ChangeDate", DateTime.Now, DbType.DateTime);
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                _ = connection.Execute(CustomerQueries.ChangeActivityState, _parameters);
+            }
+        }
+
         public CustomerQueryResult Get(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);

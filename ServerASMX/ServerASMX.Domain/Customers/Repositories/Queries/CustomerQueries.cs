@@ -32,6 +32,11 @@
 
         public static string Delete { get; } = @"DELETE FROM Customer WHERE Id = @Id";
 
+        public static string ChangeActivityState { get; } = @"UPDATE Customer SET
+                                                                Active = @Active,
+                                                                ChangeDate = @ChangeDate 
+                                                              WHERE Id = @Id";
+
         public static string Get { get; } = @"SELECT 
                                                 Id AS Id,
                                                 Name AS Name,

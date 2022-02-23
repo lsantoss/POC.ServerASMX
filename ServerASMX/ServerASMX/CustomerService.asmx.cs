@@ -42,6 +42,13 @@ namespace ServerASMX
         }
 
         [WebMethod]
+        [XmlInclude(typeof(CustomerCommandOutput))]
+        public CommandResult ChangeActivityState(CustomerActivityStateCommand command)
+        {
+            return _handler.Handle(command);
+        }
+
+        [WebMethod]
         public CommandResult Delete(CustomerDeleteCommand command)
         {
             return _handler.Handle(command);

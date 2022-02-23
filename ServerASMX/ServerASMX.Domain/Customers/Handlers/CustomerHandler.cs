@@ -67,6 +67,16 @@ namespace ServerASMX.Domain.Customers.Handlers
             return new CommandResult("Customer successfully updated!", outputData);
         }
 
+        public CommandResult Handle(CustomerActivityStateCommand command)
+        {
+            if (!_repository.CheckId(command.Id))
+                return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
+
+            _repository.ChangeActivityState(command.Id, command.Active);
+
+            return new CommandResult("Customer successfully updated!");
+        }
+
         public CommandResult Handle(CustomerDeleteCommand command)
         {
             if (!_repository.CheckId(command.Id))

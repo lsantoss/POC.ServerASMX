@@ -7,6 +7,7 @@ namespace ServerASMX.Domain.Customers.Interfaces.Handlers
     {
         CommandResult Handle(CustomerAddCommand command);
         CommandResult Handle(CustomerUpdateCommand command);
+        CommandResult Handle(CustomerActivityStateCommand command);
         CommandResult Handle(CustomerDeleteCommand command);
     }
 }

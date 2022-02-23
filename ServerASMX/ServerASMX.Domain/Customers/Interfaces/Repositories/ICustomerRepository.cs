@@ -9,6 +9,7 @@ namespace ServerASMX.Domain.Customers.Interfaces.Repositories
         long Insert(Customer client);
         void Update(Customer client);
         void Delete(long id);
+        void ChangeActivityState(long id, bool active);
 
         CustomerQueryResult Get(long id);
         List<CustomerQueryResult> List();
