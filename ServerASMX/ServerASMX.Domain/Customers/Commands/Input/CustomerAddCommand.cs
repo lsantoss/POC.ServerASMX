@@ -6,7 +6,7 @@ using System;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class CustomerAddCommand
+    public class CustomerAddCommand : IStandardCommand
     {
         public string Name { get; set; }
         public DateTime Birth { get; set; }
@@ -22,8 +22,10 @@ namespace ServerASMX.Domain.Customers.Commands.Input
             else if (Name.Length > 100)
                 notifier.AddNotification("Name", $"Name must contain a maximum of 100 characters");
 
-            if (Birth > DateTime.Now)
-                notifier.AddNotification("Birth", "Birthday must be less than the current date");
+            if (Birth == DateTime.MinValue)
+                notifier.AddNotification("Birth", "Birth must contain a valid date");
+            else if (Birth > DateTime.Now)
+                notifier.AddNotification("Birth", "Birth must be less than the current date");
 
             if (!Enum.IsDefined(typeof(EGender), Gender))
                 notifier.AddNotification("Gender", "Invalid entered gender");

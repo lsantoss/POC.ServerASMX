@@ -43,8 +43,10 @@ namespace ServerASMX.Domain.Customers.Handlers
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
 
-            if (!command.IsValid())
-                return new CommandResult("Invalid parameters", command.Notifications);
+            var commndValidations = command.IsValid();
+
+            if (commndValidations.Invalid)
+                return new CommandResult("Invalid parameters", commndValidations.Notifications);
 
             var customer = command.MapToCustomer();
 
@@ -68,7 +70,7 @@ namespace ServerASMX.Domain.Customers.Handlers
 
             _repository.Delete(command.Id);
 
-            return new CommandResult("Customer successfully deleted!", $"Customer with Id {command.Id} has been deleted");
+            return new CommandResult("Customer successfully deleted!");
         }
     }
 }

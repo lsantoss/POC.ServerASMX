@@ -3,16 +3,18 @@ using ServerASMX.Domain.Core.Notifications;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
-    public class CustomerDeleteCommand : Notifier, IStandardCommand
+    public class CustomerDeleteCommand : IStandardCommand
     {
         public long Id { get; set; }
 
-        public bool IsValid()
+        public Notifier IsValid()
         {
-            if (Id <= 0)
-                AddNotification("Id", "Id must be greater than zero");
+            var notifier = new Notifier();
 
-            return Valid;
+            if (Id <= 0)
+                notifier.AddNotification("Id", "Id must be greater than zero");
+
+            return notifier;
         }
     }
 }

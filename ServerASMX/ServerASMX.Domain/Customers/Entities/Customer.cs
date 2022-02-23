@@ -74,8 +74,10 @@ namespace ServerASMX.Domain.Customers.Entities
         {
             Birth = birth;
 
-            if (Birth > DateTime.Now)
-                AddNotification("Birth", "Birthday must be less than the current date");
+            if (Birth == DateTime.MinValue)
+                AddNotification("Birth", "Birth must contain a valid date");
+            else if (Birth > DateTime.Now)
+                AddNotification("Birth", "Birth must be less than the current date");
         }
 
         public void SetGender(EGender gender)

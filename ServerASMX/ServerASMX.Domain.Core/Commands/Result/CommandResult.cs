@@ -13,7 +13,7 @@ namespace ServerASMX.Domain.Core.Commands.Result
 
         public CommandResult() { }
 
-        public CommandResult(string message, object data)
+        public CommandResult(string message, object data = null)
         {
             Success = true;
             Message = message;

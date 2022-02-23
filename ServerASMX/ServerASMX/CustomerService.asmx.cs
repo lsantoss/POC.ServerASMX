@@ -1,5 +1,6 @@
 ﻿using ServerASMX.Domain.Core.Commands.Result;
 using ServerASMX.Domain.Customers.Commands.Input;
+using ServerASMX.Domain.Customers.Commands.Output;
 using ServerASMX.Domain.Customers.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Handlers;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
@@ -8,6 +9,7 @@ using ServerASMX.Domain.Customers.Repositories;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
+using System.Xml.Serialization;
 
 namespace ServerASMX
 {
@@ -26,7 +28,14 @@ namespace ServerASMX
         }
 
         [WebMethod]
-        public CommandResult AddCustomer(CustomerAddCommand command)
+        [XmlInclude(typeof(CustomerCommandOutput))]
+        public CommandResult Add(CustomerAddCommand command)
+        {
+            return _handler.Handle(command);
+        }
+
+        [WebMethod]
+        public CommandResult Delete(CustomerDeleteCommand command)
         {
             return _handler.Handle(command);
         }
