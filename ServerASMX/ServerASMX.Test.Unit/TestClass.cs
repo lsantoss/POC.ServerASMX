@@ -2,7 +2,7 @@
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Extensions;
 
-namespace ServerASMX.Test.Base
+namespace ServerASMX.Test.Unit
 {
     public class TestClass : DatabaseTest
     {
@@ -11,7 +11,7 @@ namespace ServerASMX.Test.Base
         [Test]
         public void Teste1()
         {
-            var teste = base.MocksTest;
+            var teste = MocksTest;
 
             var obj = new
             {
