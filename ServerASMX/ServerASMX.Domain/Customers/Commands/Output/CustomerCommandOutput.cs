@@ -16,7 +16,7 @@ namespace ServerASMX.Domain.Customers.Commands.Output
 
         public CustomerCommandOutput() { }
 
-        public CustomerCommandOutput(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
+        public CustomerCommandOutput(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
         {
             Id = id;
             Name = name;

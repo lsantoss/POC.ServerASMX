@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Test", "2 - Test", "{AB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Base", "ServerASMX.Test.Base\ServerASMX.Test.Base.csproj", "{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Unit", "ServerASMX.Test.Unit\ServerASMX.Test.Unit.csproj", "{067F3D08-306C-4B9A-8414-245B05463549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Unit.Domain", "ServerASMX.Test.Unit.Domain\ServerASMX.Test.Unit.Domain.csproj", "{067F3D08-306C-4B9A-8414-245B05463549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

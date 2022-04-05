@@ -191,6 +191,7 @@
     <Compile Include="Base\BaseTest.cs" />
     <Compile Include="Base\DatabaseTest.cs" />
     <Compile Include="Constants\ConnectionStrings.cs" />
+    <Compile Include="Constants\StringsWithPredefinedSizes.cs" />
     <Compile Include="Extensions\JsonFormatter.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerAddCommandMock.cs" />

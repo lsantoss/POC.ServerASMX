@@ -28,7 +28,7 @@ namespace ServerASMX.Domain.Customers.Entities
             SetChangeDate(null);
         }
 
-        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate)
+        public Customer(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
         {
             SetId(id);
             SetName(name);
@@ -82,18 +82,6 @@ namespace ServerASMX.Domain.Customers.Entities
 
             if (CashBalance < 0)
                 AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
-        }
-
-        public void Activate()
-        {
-            SetActive(true);
-            SetChangeDate(DateTime.Now);
-        }
-
-        public void Block()
-        {
-            SetActive(false);
-            SetChangeDate(DateTime.Now);
         }
 
         public CustomerCommandOutput MapToCustomerCommandOutput() => new CustomerCommandOutput(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);

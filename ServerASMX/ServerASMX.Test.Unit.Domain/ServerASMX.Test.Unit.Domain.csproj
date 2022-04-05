@@ -48,17 +48,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customers\Commands\Input\CustomerActivityStateCommandTest.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerAddCommandTest.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerDeleteCommandTest.cs" />
+    <Compile Include="Customers\Commands\Input\CustomerUpdateCommandTest.cs" />
+    <Compile Include="Customers\Commands\Output\CustomerCommandOutputTest.cs" />
+    <Compile Include="Customers\Entities\CustomerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ServerASMX.Domain.Core\ServerASMX.Domain.Core.csproj">
+      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
+      <Name>ServerASMX.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerASMX.Domain\ServerASMX.Domain.csproj">
+      <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
+      <Name>ServerASMX.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServerASMX.Test.Base\ServerASMX.Test.Base.csproj">
       <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>
       <Name>ServerASMX.Test.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customers\Handlers\" />
+    <Folder Include="Customers\Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
