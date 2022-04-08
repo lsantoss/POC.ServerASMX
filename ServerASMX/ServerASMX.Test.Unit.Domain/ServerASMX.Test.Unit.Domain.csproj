@@ -9,8 +9,8 @@
     <ProjectGuid>{067F3D08-306C-4B9A-8414-245B05463549}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServerASMX.Test.Unit</RootNamespace>
-    <AssemblyName>ServerASMX.Test.Unit</AssemblyName>
+    <RootNamespace>ServerASMX.Test.Unit.Domain</RootNamespace>
+    <AssemblyName>ServerASMX.Test.Unit.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -54,6 +54,8 @@
     <Compile Include="Customers\Commands\Input\CustomerUpdateCommandTest.cs" />
     <Compile Include="Customers\Commands\Output\CustomerCommandOutputTest.cs" />
     <Compile Include="Customers\Entities\CustomerTest.cs" />
+    <Compile Include="Customers\Handlers\CustomerHandlerTest.cs" />
+    <Compile Include="Customers\Repositories\CustomerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,10 +75,7 @@
       <Name>ServerASMX.Test.Base</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Customers\Handlers\" />
-    <Folder Include="Customers\Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

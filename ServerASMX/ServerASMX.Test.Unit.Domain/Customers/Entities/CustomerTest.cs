@@ -5,7 +5,7 @@ using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.Extensions;
 using System;
 
-namespace ServerASMX.Test.Unit.Customers.Entities
+namespace ServerASMX.Test.Unit.Domain.Customers.Entities
 {
     internal class CustomerTest : BaseTest
     {

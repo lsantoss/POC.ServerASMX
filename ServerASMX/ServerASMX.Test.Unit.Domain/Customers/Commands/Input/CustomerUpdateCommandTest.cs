@@ -4,7 +4,7 @@ using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.Extensions;
 using System;
 
-namespace ServerASMX.Test.Unit.Customers.Commands.Input
+namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
 {
     internal class CustomerUpdateCommandTest : BaseTest
     {

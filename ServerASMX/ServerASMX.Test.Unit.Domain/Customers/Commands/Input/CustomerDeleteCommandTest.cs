@@ -2,7 +2,7 @@
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Extensions;
 
-namespace ServerASMX.Test.Unit.Customers.Commands.Input
+namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
 {
     internal class CustomerDeleteCommandTest : BaseTest
     {

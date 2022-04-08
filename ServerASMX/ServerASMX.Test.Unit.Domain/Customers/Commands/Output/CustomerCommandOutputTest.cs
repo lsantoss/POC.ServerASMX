@@ -3,7 +3,7 @@ using ServerASMX.Domain.Customers.Commands.Output;
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Extensions;
 
-namespace ServerASMX.Test.Unit.Customers.Commands.Output
+namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Output
 {
     internal class CustomerCommandOutputTest : BaseTest
     {
