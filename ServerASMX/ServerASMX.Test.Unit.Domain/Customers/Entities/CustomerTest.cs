@@ -35,16 +35,16 @@ namespace ServerASMX.Test.Unit.Customers.Entities
 
             TestContext.WriteLine(entity.Format());
 
-            Assert.True(valid);
+            Assert.IsTrue(valid);
             Assert.AreEqual(0, notifications);
             Assert.AreEqual(0, entity.Id);
             Assert.AreEqual(command.Name, entity.Name);
             Assert.AreEqual(command.Birth, entity.Birth);
             Assert.AreEqual(command.Gender, entity.Gender);
             Assert.AreEqual(command.CashBalance, entity.CashBalance);
-            Assert.AreEqual(true, entity.Active);
+            Assert.IsTrue(entity.Active);
             Assert.AreEqual(DateTime.Now.Date, entity.CreationDate.Date);
-            Assert.AreEqual(null, entity.ChangeDate);
+            Assert.IsNull(entity.ChangeDate);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace ServerASMX.Test.Unit.Customers.Entities
             Assert.AreEqual(command.Birth, entity.Birth);
             Assert.AreEqual(command.Gender, entity.Gender);
             Assert.AreEqual(command.CashBalance, entity.CashBalance);
-            Assert.AreEqual(true, entity.Active);
+            Assert.IsTrue(entity.Active);
             Assert.AreEqual(DateTime.Now.Date, entity.CreationDate.Date);
             Assert.AreEqual(DateTime.Now.AddDays(1).Date, entity.ChangeDate.Value.Date);
         }
@@ -91,9 +91,9 @@ namespace ServerASMX.Test.Unit.Customers.Entities
             Assert.AreEqual(command.Birth, entity.Birth);
             Assert.AreEqual(command.Gender, entity.Gender);
             Assert.AreEqual(command.CashBalance, entity.CashBalance);
-            Assert.AreEqual(true, entity.Active);
+            Assert.IsTrue(entity.Active);
             Assert.AreEqual(DateTime.Now.Date, entity.CreationDate.Date);
-            Assert.AreEqual(null, entity.ChangeDate);
+            Assert.IsNull(entity.ChangeDate);
         }
 
         [Test]

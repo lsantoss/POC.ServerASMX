@@ -114,9 +114,9 @@ namespace ServerASMX.Test.Unit.Customers.Commands.Input
             Assert.AreEqual(command.Birth, mapResult.Birth);
             Assert.AreEqual(command.Gender, mapResult.Gender);
             Assert.AreEqual(command.CashBalance, mapResult.CashBalance);
-            Assert.AreEqual(true, mapResult.Active);
+            Assert.IsTrue(mapResult.Active);
             Assert.AreEqual(DateTime.Now.Date, mapResult.CreationDate.Date);
-            Assert.AreEqual(null, mapResult.ChangeDate);
+            Assert.IsNull(mapResult.ChangeDate);
         }
     }
 }

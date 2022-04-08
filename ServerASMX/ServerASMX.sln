@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Base", "Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Unit.Domain", "ServerASMX.Test.Unit.Domain\ServerASMX.Test.Unit.Domain.csproj", "{067F3D08-306C-4B9A-8414-245B05463549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerASMX.Test.Unit.Domain.Core", "ServerASMX.Test.Unit.Domain.Core\ServerASMX.Test.Unit.Domain.Core.csproj", "{E1F594E8-21E2-4E04-989F-75EDA6969545}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{067F3D08-306C-4B9A-8414-245B05463549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{067F3D08-306C-4B9A-8414-245B05463549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067F3D08-306C-4B9A-8414-245B05463549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD} = {149245DC-D0A2-4239-80F5-2FC788ADE054}
 		{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524} = {AB63A2EB-A041-4716-A787-2385E5068DA7}
 		{067F3D08-306C-4B9A-8414-245B05463549} = {AB63A2EB-A041-4716-A787-2385E5068DA7}
+		{E1F594E8-21E2-4E04-989F-75EDA6969545} = {AB63A2EB-A041-4716-A787-2385E5068DA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4138501-CCAD-42DA-BD86-D0400319E48A}
