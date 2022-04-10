@@ -11,6 +11,8 @@ namespace ServerASMX.Test.Base.Base
     [TestFixture]
     public class DatabaseTest : BaseTest
     {
+        public DatabaseTest() => MocksTest = new MocksTest();
+
         [OneTimeSetUp]
         protected override void OneTimeSetUp()
         {

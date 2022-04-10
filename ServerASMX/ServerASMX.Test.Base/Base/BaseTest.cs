@@ -8,10 +8,7 @@ namespace ServerASMX.Test.Base.Base
     {
         protected MocksTest MocksTest { get; set; }
 
-        public BaseTest()
-        {
-            MocksTest = new MocksTest();
-        }
+        public BaseTest() => MocksTest = new MocksTest();
 
         [OneTimeSetUp]
         protected virtual void OneTimeSetUp() => MocksTest = new MocksTest();
