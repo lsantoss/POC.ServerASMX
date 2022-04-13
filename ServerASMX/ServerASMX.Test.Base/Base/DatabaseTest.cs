@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using NUnit.Framework;
-using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.Mocks;
 using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 
@@ -11,57 +11,57 @@ namespace ServerASMX.Test.Base.Base
     [TestFixture]
     public class DatabaseTest : BaseTest
     {
+        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString.ToString();
+        private static readonly string _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
+
+        private static readonly string _scriptCreateDatabasePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateDatabase .sql";
+        private static readonly string _scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTables.sql";
+        private static readonly string _scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTables.sql";
+
         public DatabaseTest() => MocksTest = new MocksTest();
 
         [OneTimeSetUp]
-        protected override void OneTimeSetUp()
-        {
-            MocksTest = new MocksTest();
-            PrepareDatabase();
-        }
+        protected override void OneTimeSetUp() => InitializeData();
 
         [OneTimeTearDown]
-        protected override void OneTimeTearDown()
-        {
-            MocksTest = null;
-            DestroyDatabase();
-        }
+        protected override void OneTimeTearDown() => ClearData();
 
         [SetUp]
-        protected override void SetUp()
+        protected override void SetUp() => InitializeData();
+
+        [TearDown]
+        protected override void TearDown() => ClearData();
+
+        private void InitializeData()
         {
             MocksTest = new MocksTest();
             PrepareDatabase();
         }
 
-        [TearDown]
-        protected override void TearDown()
+        private void ClearData()
         {
             MocksTest = null;
             DestroyDatabase();
         }
 
-        protected void PrepareDatabase()
+        private void PrepareDatabase()
         {
             try
             {
-                var scriptCreateDatabasePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateDatabase .sql";
-                var scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTables.sql";
-
-                using (var streamReader = new StreamReader(scriptCreateDatabasePath))
+                using (var streamReader = new StreamReader(_scriptCreateDatabasePath))
                 {
-                    using (var connection = new SqlConnection(ConnectionStrings.DataBase))
+                    using (var connection = new SqlConnection(_connectionStringReal))
                     {
                         connection.Execute(streamReader.ReadToEnd());
                     }
                 }
 
-                using (var streamReader = new StreamReader(scriptCreateTablesPath))
+                using (var streamReader = new StreamReader(_scriptCreateTablesPath))
                 {
                     var scripts = streamReader.ReadToEnd().Split(
                         new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    using (var connection = new SqlConnection(ConnectionStrings.DataBaseTest))
+                    using (var connection = new SqlConnection(_connectionString))
                     {
                         foreach (var script in scripts)
                             connection.Execute(script);
@@ -74,15 +74,13 @@ namespace ServerASMX.Test.Base.Base
             }
         }
 
-        protected void DestroyDatabase()
+        private void DestroyDatabase()
         {
             try
             {
-                var scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTables.sql";
-
-                using (var streamReader = new StreamReader(scriptDropTablesPath))
+                using (var streamReader = new StreamReader(_scriptDropTablesPath))
                 {
-                    using (var connection = new SqlConnection(ConnectionStrings.DataBaseTest))
+                    using (var connection = new SqlConnection(_connectionString))
                     {
                         connection.Execute(streamReader.ReadToEnd());
                     }
