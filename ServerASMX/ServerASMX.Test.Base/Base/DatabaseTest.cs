@@ -18,7 +18,7 @@ namespace ServerASMX.Test.Base.Base
         private static readonly string _scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTables.sql";
         private static readonly string _scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTables.sql";
 
-        public DatabaseTest() => MocksTest = new MocksTest();
+        public DatabaseTest() : base() { }
 
         [OneTimeSetUp]
         protected override void OneTimeSetUp() => InitializeData();
