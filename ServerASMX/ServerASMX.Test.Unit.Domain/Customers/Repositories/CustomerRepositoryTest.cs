@@ -1,8 +1,12 @@
 ﻿using NUnit.Framework;
+using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Domain.Customers.Interfaces.Repositories;
 using ServerASMX.Domain.Customers.Repositories;
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Extensions;
+using System;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
 {
@@ -13,7 +17,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         public CustomerRepositoryTest() => _repository = new CustomerRepository();
 
         [Test]
-        public void Insert()
+        public void Insert_Success()
         {
             var customer = MocksTest.Customer1;
 
@@ -31,6 +35,35 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
             Assert.IsTrue(result.Active);
             Assert.AreEqual(customer.CreationDate.Date, result.CreationDate.Date);
             Assert.IsNull(result.ChangeDate);
+        }
+
+        [Test]
+        [TestCase(null)]
+        public void Insert_Invalid_Name_Exception(string name)
+        {
+            var customer = MocksTest.Customer1;
+            customer.SetName(name);
+
+            Assert.Throws<SqlException>(() => _repository.Insert(customer));
+        }
+
+        [Test]
+        public void Insert_Invalid_Birth_Exception()
+        {
+            var customer = MocksTest.Customer1;
+            customer.SetBirth(DateTime.MinValue);
+
+            Assert.Throws<SqlTypeException>(() => _repository.Insert(customer));
+        }
+
+        [Test]
+        [TestCase(-1)]
+        public void Insert_Invalid_Gender_Exception(EGender gender)
+        {
+            var customer = MocksTest.Customer1;
+            customer.SetGender(gender);
+
+            Assert.Throws<SqlException>(() => _repository.Insert(customer));
         }
     }
 }

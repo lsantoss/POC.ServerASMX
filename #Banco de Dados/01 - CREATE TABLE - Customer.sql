@@ -6,7 +6,7 @@ BEGIN
         [Id] [bigint] IDENTITY(1,1) NOT NULL,
         [Name] [nvarchar](100) NOT NULL,
         [Birth] [smalldatetime] NOT NULL,
-        [Gender] [int] NOT NULL,
+        [Gender] [tinyint] NOT NULL,
         [CashBalance] [decimal](18, 2) NOT NULL,
         [Active] [tinyint] NOT NULL,
         [CreationDate] [smalldatetime] NOT NULL,

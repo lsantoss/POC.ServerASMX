@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.Extensions;
@@ -88,10 +89,11 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         }
 
         [Test]
-        public void IsValid_Invalid_Gender()
+        [TestCase(-1)]
+        public void IsValid_Invalid_Gender(EGender gender)
         {
             var command = MocksTest.CustomerUpdateCommand;
-            command.Gender = 0;
+            command.Gender = gender;
 
             var valid = command.IsValid();
             var notifications = command.Notifications.Count;

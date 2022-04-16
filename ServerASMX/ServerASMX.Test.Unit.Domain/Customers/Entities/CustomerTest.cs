@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using ServerASMX.Domain.Customers.Entities;
+using ServerASMX.Domain.Customers.Enums;
 using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.Extensions;
@@ -162,10 +163,11 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         }
 
         [Test]
-        public void SetGender_Invalid()
+        [TestCase(-1)]
+        public void SetGender_Invalid(EGender gender)
         {
             var customer = MocksTest.Customer1;
-            customer.SetGender(0);
+            customer.SetGender(gender);
 
             var valid = customer.Valid;
             var notifications = customer.Notifications.Count;
