@@ -35,7 +35,7 @@ namespace ServerASMX.Domain.Customers.Handlers
 
             var outputData = customer.MapToCustomerCommandOutput();
 
-            return new CommandResult("customer successfully inserted!", outputData);
+            return new CommandResult("Customer successfully inserted!", outputData);
         }
 
         public CommandResult Handle(CustomerUpdateCommand command)
