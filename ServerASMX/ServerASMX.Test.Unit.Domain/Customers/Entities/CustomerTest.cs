@@ -13,15 +13,12 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void IsValid_Valid()
         {
-            var customer = MocksTest.Customer1;
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
+            var customer = MocksTest.Customer;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.True(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.True(customer.Valid);
+            Assert.AreEqual(0, customer.Notifications.Count);
         }
 
         [Test]
@@ -31,13 +28,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
 
             var customer = new Customer(command.Name, command.Birth, command.Gender, command.CashBalance);
 
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
-
             TestContext.WriteLine(customer.Format());
 
-            Assert.IsTrue(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.IsTrue(customer.Valid);
+            Assert.AreEqual(0, customer.Notifications.Count);
             Assert.AreEqual(0, customer.Id);
             Assert.AreEqual(command.Name, customer.Name);
             Assert.AreEqual(command.Birth, customer.Birth);
@@ -56,13 +50,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
             var customer = new Customer(command.Id, command.Name, command.Birth, 
                 command.Gender, command.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
 
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
-
             TestContext.WriteLine(customer.Format());
 
-            Assert.True(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.True(customer.Valid);
+            Assert.AreEqual(0, customer.Notifications.Count);
             Assert.AreEqual(command.Id, customer.Id);
             Assert.AreEqual(command.Name, customer.Name);
             Assert.AreEqual(command.Birth, customer.Birth);
@@ -80,13 +71,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
 
             var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, true, DateTime.Now);
 
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
-
             TestContext.WriteLine(customer.Format());
 
-            Assert.True(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.True(customer.Valid);
+            Assert.AreEqual(0, customer.Notifications.Count);
             Assert.AreEqual(command.Id, customer.Id);
             Assert.AreEqual(command.Name, customer.Name);
             Assert.AreEqual(command.Birth, customer.Birth);
@@ -102,16 +90,13 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(-1)]
         public void SetId_Invalid(long id)
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetId(id);
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
@@ -120,84 +105,69 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void SetName_Invalid(string name)
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetName(name);
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
         public void SetBirth_Invalid_DateTimeMin()
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetBirth(DateTime.MinValue);
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
         public void SetBirth_Invalid_FutureDate()
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetBirth(DateTime.Now.AddDays(1));
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
         [TestCase(-1)]
         public void SetGender_Invalid(EGender gender)
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetGender(gender);
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
         [TestCase(-1)]
         public void SetCashBalance_Invalid(decimal cashBalance)
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             customer.SetCashBalance(cashBalance);
-
-            var valid = customer.Valid;
-            var notifications = customer.Notifications.Count;
 
             TestContext.WriteLine(customer.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(customer.Valid);
+            Assert.AreNotEqual(0, customer.Notifications.Count);
         }
 
         [Test]
         public void MapToCustomerCommandOutput_Success()
         {
-            var customer = MocksTest.Customer1;
+            var customer = MocksTest.Customer;
             var commandOutput = customer.MapToCustomerCommandOutput();
 
             TestContext.WriteLine(commandOutput.Format());

@@ -10,10 +10,9 @@ namespace ServerASMX.Test.Unit.Domain.Core.Commands.Result
     internal class CommandResultTest : BaseTest
     {
         [Test]
-        public void Construtor1_Success_1()
+        [TestCase("Message")]
+        public void Construtor1_Success_1(string message)
         {
-            var message = "Message";
-
             var commandResult = new CommandResult(message);
 
             TestContext.WriteLine(commandResult.Format());
@@ -25,11 +24,9 @@ namespace ServerASMX.Test.Unit.Domain.Core.Commands.Result
         }
 
         [Test]
-        public void Construtor1_Success_2()
+        [TestCase("Message", "Data")]
+        public void Construtor1_Success_2(string message, string data)
         {
-            var message = "Message";
-            var data = "Data";
-
             var commandResult = new CommandResult(message, data);
 
             TestContext.WriteLine(commandResult.Format());
@@ -41,13 +38,10 @@ namespace ServerASMX.Test.Unit.Domain.Core.Commands.Result
         }
 
         [Test]
-        public void Construtor2_Success()
+        [TestCase("Message", "NotificationProperty", "NotificationMessage")]
+        public void Construtor2_Success(string message, string notificationProperty, string notificationMessage)
         {
-            var message = "Message";
-            var errors = new List<Notification>
-            {
-                new Notification("NotificationProperty", "NotificationMessage")
-            };
+            var errors = new List<Notification> { new Notification(notificationProperty, notificationMessage) };
 
             var commandResult = new CommandResult(message, errors);
 
@@ -61,12 +55,9 @@ namespace ServerASMX.Test.Unit.Domain.Core.Commands.Result
         }
 
         [Test]
-        public void Construtor3_Success()
+        [TestCase("Message", "NotificationProperty", "NotificationMessage")]
+        public void Construtor3_Success(string message, string notificationProperty, string notificationMessage)
         {
-            var message = "Message";
-            var notificationProperty = "NotificationProperty";
-            var notificationMessage = "NotificationMessage";
-
             var commandResult = new CommandResult(message, notificationProperty, notificationMessage);
 
             TestContext.WriteLine(commandResult.Format());

@@ -8,11 +8,9 @@ namespace ServerASMX.Test.Unit.Domain.Core.Notifications
     internal class NotificationTest : BaseTest
     {
         [Test]
-        public void Construtor_Success()
+        [TestCase("Property", "Message")]
+        public void Construtor_Success(string property, string message)
         {
-            var property = "Property";
-            var message = "Message";
-
             var notification = new Notification(property, message);
 
             TestContext.WriteLine(notification.Format());

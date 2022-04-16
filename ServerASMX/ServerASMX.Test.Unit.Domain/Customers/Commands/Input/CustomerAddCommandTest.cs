@@ -14,13 +14,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         {
             var command = MocksTest.CustomerAddCommand;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.True(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.True(command.IsValid());
+            Assert.AreEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -32,13 +29,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerAddCommand;
             command.Name = name;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -47,13 +41,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -62,13 +53,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -78,13 +66,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerAddCommand;
             command.Gender = gender;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -94,13 +79,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
 
         [Test]

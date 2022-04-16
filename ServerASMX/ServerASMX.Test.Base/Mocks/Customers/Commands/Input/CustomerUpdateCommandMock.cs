@@ -9,10 +9,10 @@ namespace ServerASMX.Test.Base.Mocks.Customers.Commands.Input
         public static CustomerUpdateCommand GetCustomerUpdateCommand() => new CustomerUpdateCommand()
         {
             Id = 1,
-            Name = "Lucas Santos",
-            Birth = new DateTime(1995, 7, 14),
+            Name = "Lucas S.",
+            Birth = new DateTime(1996, 3, 10),
             Gender = EGender.Male,
-            CashBalance = 1500.75m
+            CashBalance = 2200.33m
         };
     }
 }

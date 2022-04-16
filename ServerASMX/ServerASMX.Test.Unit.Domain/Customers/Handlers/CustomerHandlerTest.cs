@@ -16,13 +16,8 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
     internal class CustomerHandlerTest : DatabaseTest
     {
         private readonly ICustomerHandler _handler;
-        private readonly ICustomerRepository _repository;
 
-        public CustomerHandlerTest()
-        {
-            _handler = new CustomerHandler();
-            _repository = new CustomerRepository();
-        }
+        public CustomerHandlerTest() => _handler = new CustomerHandler();
 
         [Test]
         public void Handle_Add_Success()
@@ -170,6 +165,32 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
             Assert.AreEqual("Invalid parameters", commandResult.Message);
             Assert.AreNotEqual(0, commandResult.Errors.Count);
             Assert.Null(commandResult.Data);
+        }
+
+        [Test]
+        public void Handle_Update_Success()
+        {
+            _handler.Handle(MocksTest.CustomerAddCommand);
+
+            var command = MocksTest.CustomerUpdateCommand;
+
+            var commandResult = _handler.Handle(command);
+
+            var result = (CustomerCommandOutput)commandResult.Data;
+
+            TestContext.WriteLine(commandResult.Format());
+
+            Assert.True(commandResult.Success);
+            Assert.AreEqual("Customer successfully updated!", commandResult.Message);
+            Assert.AreEqual(0, commandResult.Errors.Count);
+            Assert.AreEqual(1, result.Id);
+            Assert.AreEqual(command.Name, result.Name);
+            Assert.AreEqual(command.Birth, result.Birth);
+            Assert.AreEqual(command.Gender, result.Gender);
+            Assert.AreEqual(command.CashBalance, result.CashBalance);
+            Assert.IsTrue(result.Active);
+            Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
+            Assert.AreEqual(DateTime.Now.Date, result.ChangeDate.Value.Date);
         }
     }
 }

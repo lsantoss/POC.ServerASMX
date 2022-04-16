@@ -7,9 +7,8 @@ namespace ServerASMX.Test.Base.Mocks
 {
     public class MocksTest
     {
-        public Customer Customer1 { get; }
-        public Customer Customer2 { get; }
-        public Customer Customer3 { get; }
+        public Customer Customer { get; }
+        public Customer CustomerEdited { get; }
         public CustomerAddCommand CustomerAddCommand { get; }
         public CustomerUpdateCommand CustomerUpdateCommand { get; }
         public CustomerDeleteCommand CustomerDeleteCommand { get; }
@@ -17,9 +16,8 @@ namespace ServerASMX.Test.Base.Mocks
 
         public MocksTest()
         {
-            Customer1 = CustomerMock.GetCustomer1();
-            Customer2 = CustomerMock.GetCustomer2();
-            Customer3 = CustomerMock.GetCustomer3();
+            Customer = CustomerMock.GetCustomer();
+            CustomerEdited = CustomerMock.GetCustomerEdited();
             CustomerAddCommand = CustomerAddCommandMock.GetCustomerAddCommand();
             CustomerUpdateCommand = CustomerUpdateCommandMock.GetCustomerUpdateCommand();
             CustomerDeleteCommand = CustomerDeleteCommandMock.GetCustomerDeleteCommand();

@@ -11,13 +11,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         {
             var command = MocksTest.CustomerDeleteCommand;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.True(valid);
-            Assert.AreEqual(0, notifications);
+            Assert.True(command.IsValid());
+            Assert.AreEqual(0, command.Notifications.Count);
         }
 
         [Test]
@@ -28,13 +25,10 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
             var command = MocksTest.CustomerDeleteCommand;
             command.Id = id;
 
-            var valid = command.IsValid();
-            var notifications = command.Notifications.Count;
-
             TestContext.WriteLine(command.Format());
 
-            Assert.False(valid);
-            Assert.AreNotEqual(0, notifications);
+            Assert.False(command.IsValid());
+            Assert.AreNotEqual(0, command.Notifications.Count);
         }
     }
 }

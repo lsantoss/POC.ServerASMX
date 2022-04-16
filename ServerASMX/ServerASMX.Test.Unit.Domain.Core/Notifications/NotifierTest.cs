@@ -20,11 +20,9 @@ namespace ServerASMX.Test.Unit.Domain.Core.Notifications
         }
 
         [Test]
-        public void AddNotification_Success()
+        [TestCase("NotificationProperty", "NotificationMessage")]
+        public void AddNotification_Success(string property, string message)
         {
-            var property = "NotificationProperty";
-            var message = "NotificationMessage";
-
             var notifier = new Notifier();
             notifier.AddNotification(property, message);
 
