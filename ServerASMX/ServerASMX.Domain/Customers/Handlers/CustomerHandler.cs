@@ -65,6 +65,12 @@ namespace ServerASMX.Domain.Customers.Handlers
 
         public CommandResult Handle(CustomerActivityStateCommand command)
         {
+            if (command == null)
+                return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
+
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
+
             if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
@@ -75,6 +81,12 @@ namespace ServerASMX.Domain.Customers.Handlers
 
         public CommandResult Handle(CustomerDeleteCommand command)
         {
+            if (command == null)
+                return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
+
+            if (!command.IsValid())
+                return new CommandResult("Invalid parameters", command.Notifications);
+
             if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
