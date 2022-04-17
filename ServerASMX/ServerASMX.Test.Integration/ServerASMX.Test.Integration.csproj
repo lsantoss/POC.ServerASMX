@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{067F3D08-306C-4B9A-8414-245B05463549}</ProjectGuid>
+    <ProjectGuid>{5CE22451-358E-423F-9E03-538A48A8F9F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServerASMX.Test.Unit.Domain</RootNamespace>
-    <AssemblyName>ServerASMX.Test.Unit.Domain</AssemblyName>
+    <RootNamespace>ServerASMX.Test.Integration</RootNamespace>
+    <AssemblyName>ServerASMX.Test.Integration</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,6 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,35 +50,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers\Commands\Input\CustomerActivityStateCommandTest.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerAddCommandTest.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerDeleteCommandTest.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerUpdateCommandTest.cs" />
-    <Compile Include="Customers\Commands\Output\CustomerCommandOutputTest.cs" />
-    <Compile Include="Customers\Entities\CustomerTest.cs" />
-    <Compile Include="Customers\Handlers\CustomerHandlerTest.cs" />
-    <Compile Include="Customers\Repositories\CustomerRepositoryTest.cs" />
+    <Compile Include="Connected Services\CustomerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Customers\Services\CustomerServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Connected Services\CustomerService\CustomerService.wsdl" />
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.AddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.ChangeActivityStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.CommandResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.CustomerQueryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.ListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServerASMX.Domain.Core\ServerASMX.Domain.Core.csproj">
-      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
-      <Name>ServerASMX.Domain.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServerASMX.Domain\ServerASMX.Domain.csproj">
-      <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
-      <Name>ServerASMX.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServerASMX.Test.Base\ServerASMX.Test.Base.csproj">
-      <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>
-      <Name>ServerASMX.Test.Base</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CustomerService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CustomerService\CustomerService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CustomerService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CustomerService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CustomerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
