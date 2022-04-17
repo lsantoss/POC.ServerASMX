@@ -43,9 +43,9 @@ namespace ServerASMX
         public CommandResult Delete(CustomerDeleteCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public List<CustomerQueryResult> List() => _repository.List();
+        public CustomerQueryResult Get(long id) => _repository.Get(id);
 
         [WebMethod]
-        public CustomerQueryResult Get(long id) => _repository.Get(id);
+        public List<CustomerQueryResult> List() => _repository.List();
     }
 }
