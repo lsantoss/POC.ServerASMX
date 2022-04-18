@@ -11,7 +11,7 @@ namespace ServerASMX.Test.Base.Base
     [TestFixture]
     public class DatabaseUnitTest : BaseUnitTest
     {
-        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString.ToString();
+        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
         private static readonly string _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
 
         private static readonly string _scriptCreateDatabasePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateDatabase .sql";

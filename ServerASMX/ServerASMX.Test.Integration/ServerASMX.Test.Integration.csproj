@@ -51,63 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\CustomerService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Customers\Services\CustomerServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Connected Services\CustomerService\CustomerService.wsdl" />
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.AddResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.ChangeActivityStateResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.CommandResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.CustomerQueryResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.DeleteResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.GetResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.ListResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustomerService\ServerASMX.Test.Integration.CustomerService.UpdateResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CustomerService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustomerService\CustomerService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustomerService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustomerService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustomerService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServerASMX.Test.Base\ServerASMX.Test.Base.csproj">

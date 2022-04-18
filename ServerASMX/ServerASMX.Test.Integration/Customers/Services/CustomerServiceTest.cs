@@ -1,57 +1,30 @@
 ﻿using NUnit.Framework;
+using ServerASMX.Test.Base.Base;
 using ServerASMX.Test.Base.Constants;
+using ServerASMX.Test.Base.CustomerService;
 using ServerASMX.Test.Base.Extensions;
-using ServerASMX.Test.Integration.CustomerService;
 using System;
 using System.Configuration;
 using System.Threading.Tasks;
 
 namespace ServerASMX.Test.Integration.Customers.Services
 {
-    internal class CustomerServiceTest
+    internal class CustomerServiceTest : BaseIntegrationTest
     {
         private readonly CustomerServiceSoapClient _customerServiceSoapClient;
 
         public CustomerServiceTest()
         {
-            var endpointConfigurationName = ConfigurationManager.AppSettings["EndpointConfigurationName"];
+            var endpointConfigurationName = ConfigurationManager.AppSettings["CustomerServiceSoap"];
             _customerServiceSoapClient = new CustomerServiceSoapClient(endpointConfigurationName);
         }
-
-        private CustomerAddCommand CustomerAddCommand => new CustomerAddCommand()
-        {
-            Name = "Lucas Santos",
-            Birth = new DateTime(1995, 7, 14),
-            Gender = EGender.Male,
-            CashBalance = 1500.75m
-        };
-
-        private CustomerUpdateCommand CustomerUpdateCommand => new CustomerUpdateCommand()
-        {
-            Id = 0,
-            Name = "Lucas S.",
-            Birth = new DateTime(1996, 3, 10),
-            Gender = EGender.Male,
-            CashBalance = 2200.33m
-        };
-
-        private CustomerActivityStateCommand CustomerActivityStateCommand => new CustomerActivityStateCommand()
-        {
-            Id = 0,
-            Active = false
-        };
-
-        private CustomerDeleteCommand CustomerDeleteCommand => new CustomerDeleteCommand()
-        {
-            Id = 0
-        };
 
         [Test]
         public async Task Add_Success()
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
@@ -76,7 +49,6 @@ namespace ServerASMX.Test.Integration.Customers.Services
             {
                 Assert.Inconclusive(e.Message);
             }
-
         }
 
         [Test]
@@ -144,7 +116,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
                 command.Name = name;
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -169,7 +141,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
                 command.Birth = DateTime.MinValue;
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -194,7 +166,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
                 command.Birth = DateTime.Now.AddDays(1);
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -220,7 +192,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
                 command.CashBalance = cashBalance;
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -245,10 +217,10 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(CustomerAddCommand);
+                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
                 var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
 
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Id = idAdd;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -309,7 +281,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Id = id;
                 command.Name = name;
                 command.Birth = DateTime.MinValue;
@@ -339,7 +311,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -366,7 +338,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -394,7 +366,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Name = name;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -419,7 +391,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Birth = DateTime.MinValue;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -444,7 +416,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.Birth = DateTime.Now.AddDays(1);
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -470,7 +442,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerUpdateCommand;
+                var command = MocksIntegrationTest.CustomerUpdateCommand;
                 command.CashBalance = cashBalance;
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -495,10 +467,10 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(CustomerAddCommand);
+                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
                 var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
 
-                var command = CustomerActivityStateCommand;
+                var command = MocksIntegrationTest.CustomerActivityStateCommand;
                 command.Id = idAdd;
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -548,7 +520,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerActivityStateCommand;
+                var command = MocksIntegrationTest.CustomerActivityStateCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -575,7 +547,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerActivityStateCommand;
+                var command = MocksIntegrationTest.CustomerActivityStateCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -600,10 +572,10 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(CustomerAddCommand);
+                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
                 var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
 
-                var command = CustomerDeleteCommand;
+                var command = MocksIntegrationTest.CustomerDeleteCommand;
                 command.Id = idAdd;
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
@@ -653,7 +625,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerDeleteCommand;
+                var command = MocksIntegrationTest.CustomerDeleteCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
@@ -680,7 +652,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerDeleteCommand;
+                var command = MocksIntegrationTest.CustomerDeleteCommand;
                 command.Id = id;
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
@@ -705,9 +677,9 @@ namespace ServerASMX.Test.Integration.Customers.Services
         {
             try
             {
-                var command = CustomerAddCommand;
+                var command = MocksIntegrationTest.CustomerAddCommand;
 
-                var responseAdd = await _customerServiceSoapClient.AddAsync(CustomerAddCommand);
+                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
                 var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
 
                 var response = await _customerServiceSoapClient.GetAsync(idAdd);
@@ -764,7 +736,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
 
                 TestContext.WriteLine(result.Format());
 
-                Assert.Pass();
+                Assert.IsNotNull(result);
             }
             catch (Exception e)
             {
