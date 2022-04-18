@@ -5,7 +5,7 @@ using ServerASMX.Test.Base.Extensions;
 
 namespace ServerASMX.Test.Unit.Domain.Core.Notifications
 {
-    internal class NotificationTest : BaseTest
+    internal class NotificationTest : BaseUnitTest
     {
         [Test]
         [TestCase("Property", "Message")]

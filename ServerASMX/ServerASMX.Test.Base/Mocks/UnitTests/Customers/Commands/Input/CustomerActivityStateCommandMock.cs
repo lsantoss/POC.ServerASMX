@@ -1,6 +1,6 @@
 ﻿using ServerASMX.Domain.Customers.Commands.Input;
 
-namespace ServerASMX.Test.Base.Mocks.Customers.Commands.Input
+namespace ServerASMX.Test.Base.Mocks.UnitTests.Customers.Commands.Input
 {
     public static class CustomerActivityStateCommandMock
     {

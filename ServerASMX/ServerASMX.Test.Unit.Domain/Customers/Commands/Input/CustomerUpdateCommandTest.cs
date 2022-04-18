@@ -7,12 +7,12 @@ using System;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
 {
-    internal class CustomerUpdateCommandTest : BaseTest
+    internal class CustomerUpdateCommandTest : BaseUnitTest
     {
         [Test]
         public void IsValid_Valid()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             TestContext.WriteLine(command.Format());
 
@@ -25,7 +25,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Id = id;
 
             TestContext.WriteLine(command.Format());
@@ -40,7 +40,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void IsValid_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Name = name;
 
             TestContext.WriteLine(command.Format());
@@ -52,7 +52,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
             TestContext.WriteLine(command.Format());
@@ -64,7 +64,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             TestContext.WriteLine(command.Format());
@@ -77,7 +77,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Gender = gender;
 
             TestContext.WriteLine(command.Format());
@@ -90,7 +90,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
             TestContext.WriteLine(command.Format());

@@ -9,7 +9,7 @@ using System;
 
 namespace ServerASMX.Test.Unit.Customers.Services
 {
-    internal class CustomerServiceTest : DatabaseTest
+    internal class CustomerServiceTest : DatabaseUnitTest
     {
         private readonly CustomerService _customerService;
 
@@ -18,7 +18,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Add_Success()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             var commandResult = _customerService.Add(command);
 
@@ -84,7 +84,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Add_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Name = name;
 
             var commandResult = _customerService.Add(command);
@@ -100,7 +100,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Add_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _customerService.Add(command);
@@ -116,7 +116,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Add_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _customerService.Add(command);
@@ -133,7 +133,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Gender = gender;
 
             var commandResult = _customerService.Add(command);
@@ -150,7 +150,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _customerService.Add(command);
@@ -166,9 +166,9 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Update_Success()
         {
-            _customerService.Add(MocksTest.CustomerAddCommand);
+            _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var commandResult = _customerService.Update(command);
 
@@ -232,7 +232,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Update_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var commandResult = _customerService.Update(command);
 
@@ -249,7 +249,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Id = id;
 
             var commandResult = _customerService.Update(command);
@@ -268,7 +268,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Update_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Name = name;
 
             var commandResult = _customerService.Update(command);
@@ -284,7 +284,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Update_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _customerService.Update(command);
@@ -300,7 +300,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Update_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _customerService.Update(command);
@@ -317,7 +317,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Gender = gender;
 
             var commandResult = _customerService.Update(command);
@@ -334,7 +334,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _customerService.Update(command);
@@ -350,9 +350,9 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Activity_State_Success()
         {
-            _customerService.Add(MocksTest.CustomerAddCommand);
+            _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
 
             var commandResult = _customerService.ChangeActivityState(command);
 
@@ -382,7 +382,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Activity_State_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
 
             var commandResult = _customerService.ChangeActivityState(command);
 
@@ -399,7 +399,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Activity_State_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
             command.Id = id;
 
             var commandResult = _customerService.ChangeActivityState(command);
@@ -415,9 +415,9 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Delete_Success()
         {
-            _customerService.Add(MocksTest.CustomerAddCommand);
+            _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
 
             var commandResult = _customerService.Delete(command);
 
@@ -447,7 +447,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Delete_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
 
             var commandResult = _customerService.Delete(command);
 
@@ -464,7 +464,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [TestCase(-1)]
         public void Delete_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
             command.Id = id;
 
             var commandResult = _customerService.Delete(command);
@@ -480,7 +480,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void Get_Registred_Id_Success()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             _customerService.Add(command);
 
@@ -514,7 +514,7 @@ namespace ServerASMX.Test.Unit.Customers.Services
         [Test]
         public void List_Registred_Ids_Success()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             _customerService.Add(command);
 

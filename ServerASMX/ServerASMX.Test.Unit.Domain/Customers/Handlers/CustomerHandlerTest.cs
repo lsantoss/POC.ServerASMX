@@ -11,7 +11,7 @@ using System;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
 {
-    internal class CustomerHandlerTest : DatabaseTest
+    internal class CustomerHandlerTest : DatabaseUnitTest
     {
         private readonly ICustomerHandler _handler;
 
@@ -20,7 +20,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Add_Success()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -86,7 +86,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Handle_Add_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Name = name;
 
             var commandResult = _handler.Handle(command);
@@ -102,7 +102,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Add_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _handler.Handle(command);
@@ -118,7 +118,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Add_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _handler.Handle(command);
@@ -135,7 +135,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Add_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Gender = gender;
 
             var commandResult = _handler.Handle(command);
@@ -152,7 +152,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Add_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _handler.Handle(command);
@@ -168,9 +168,9 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Update_Success()
         {
-            _handler.Handle(MocksTest.CustomerAddCommand);
+            _handler.Handle(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -234,7 +234,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -251,7 +251,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);
@@ -270,7 +270,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Handle_Update_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Name = name;
 
             var commandResult = _handler.Handle(command);
@@ -286,7 +286,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _handler.Handle(command);
@@ -302,7 +302,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _handler.Handle(command);
@@ -319,7 +319,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.Gender = gender;
 
             var commandResult = _handler.Handle(command);
@@ -336,7 +336,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _handler.Handle(command);
@@ -352,9 +352,9 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Activity_State_Success()
         {
-            _handler.Handle(MocksTest.CustomerAddCommand);
+            _handler.Handle(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -384,7 +384,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Activity_State_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -401,7 +401,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Activity_State_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerActivityStateCommand;
+            var command = MocksUnitTest.CustomerActivityStateCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);
@@ -417,9 +417,9 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Delete_Success()
         {
-            _handler.Handle(MocksTest.CustomerAddCommand);
+            _handler.Handle(MocksUnitTest.CustomerAddCommand);
 
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -449,7 +449,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [Test]
         public void Handle_Delete_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -466,7 +466,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Delete_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);

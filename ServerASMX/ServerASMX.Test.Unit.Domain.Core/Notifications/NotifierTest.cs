@@ -5,7 +5,7 @@ using ServerASMX.Test.Base.Extensions;
 
 namespace ServerASMX.Test.Unit.Domain.Core.Notifications
 {
-    internal class NotifierTest : BaseTest
+    internal class NotifierTest : BaseUnitTest
     {
         [Test]
         public void Construtor_Success()

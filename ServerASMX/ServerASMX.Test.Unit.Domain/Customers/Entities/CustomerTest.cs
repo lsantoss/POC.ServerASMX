@@ -8,12 +8,12 @@ using System;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Entities
 {
-    internal class CustomerTest : BaseTest
+    internal class CustomerTest : BaseUnitTest
     {
         [Test]
         public void IsValid_Valid()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             TestContext.WriteLine(customer.Format());
 
@@ -24,7 +24,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void Constructor_Success_1()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             var customer = new Customer(command.Name, command.Birth, command.Gender, command.CashBalance);
 
@@ -45,7 +45,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void Constructor_Success_2()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var customer = new Customer(command.Id, command.Name, command.Birth, 
                 command.Gender, command.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
@@ -67,7 +67,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void Constructor_Success_3()
         {
-            var command = MocksTest.CustomerUpdateCommand;
+            var command = MocksUnitTest.CustomerUpdateCommand;
 
             var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, true, DateTime.Now);
 
@@ -90,7 +90,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(-1)]
         public void SetId_Invalid(long id)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetId(id);
 
             TestContext.WriteLine(customer.Format());
@@ -105,7 +105,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void SetName_Invalid(string name)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetName(name);
 
             TestContext.WriteLine(customer.Format());
@@ -117,7 +117,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void SetBirth_Invalid_DateTimeMin()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetBirth(DateTime.MinValue);
 
             TestContext.WriteLine(customer.Format());
@@ -129,7 +129,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void SetBirth_Invalid_FutureDate()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetBirth(DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.Format());
@@ -142,7 +142,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(-1)]
         public void SetGender_Invalid(EGender gender)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetGender(gender);
 
             TestContext.WriteLine(customer.Format());
@@ -155,7 +155,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [TestCase(-1)]
         public void SetCashBalance_Invalid(decimal cashBalance)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetCashBalance(cashBalance);
 
             TestContext.WriteLine(customer.Format());
@@ -167,7 +167,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Entities
         [Test]
         public void MapToCustomerCommandOutput_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             var commandOutput = customer.MapToCustomerCommandOutput();
 
             TestContext.WriteLine(commandOutput.Format());

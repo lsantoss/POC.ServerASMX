@@ -1,11 +1,11 @@
 ﻿using ServerASMX.Domain.Customers.Commands.Input;
 using ServerASMX.Domain.Customers.Entities;
-using ServerASMX.Test.Base.Mocks.Customers.Commands.Input;
-using ServerASMX.Test.Base.Mocks.Customers.Entities;
+using ServerASMX.Test.Base.Mocks.UnitTests.Customers.Commands.Input;
+using ServerASMX.Test.Base.Mocks.UnitTests.Customers.Entities;
 
-namespace ServerASMX.Test.Base.Mocks
+namespace ServerASMX.Test.Base.Mocks.UnitTests
 {
-    public class MocksTest
+    public class MocksUnitTest
     {
         public Customer Customer { get; }
         public Customer CustomerEdited { get; }
@@ -14,7 +14,7 @@ namespace ServerASMX.Test.Base.Mocks
         public CustomerDeleteCommand CustomerDeleteCommand { get; }
         public CustomerActivityStateCommand CustomerActivityStateCommand { get; }
 
-        public MocksTest()
+        public MocksUnitTest()
         {
             Customer = CustomerMock.GetCustomer();
             CustomerEdited = CustomerMock.GetCustomerEdited();

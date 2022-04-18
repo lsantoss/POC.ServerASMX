@@ -189,16 +189,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BaseTest.cs" />
-    <Compile Include="Base\DatabaseTest.cs" />
+    <Compile Include="Base\BaseUnitTest.cs" />
+    <Compile Include="Base\DatabaseUnitTest.cs" />
     <Compile Include="Constants\StringsWithPredefinedSizes.cs" />
     <Compile Include="Extensions\JsonFormatter.cs" />
-    <Compile Include="Mocks\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
-    <Compile Include="Mocks\Customers\Commands\Input\CustomerAddCommandMock.cs" />
-    <Compile Include="Mocks\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
-    <Compile Include="Mocks\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
-    <Compile Include="Mocks\Customers\Entities\CustomerMock.cs" />
-    <Compile Include="Mocks\MocksTest.cs" />
+    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
+    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerAddCommandMock.cs" />
+    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
+    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
+    <Compile Include="Mocks\UnitTests\Customers\Entities\CustomerMock.cs" />
+    <Compile Include="Mocks\UnitTests\MocksUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

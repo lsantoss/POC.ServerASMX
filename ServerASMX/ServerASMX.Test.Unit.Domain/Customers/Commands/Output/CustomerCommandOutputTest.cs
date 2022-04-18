@@ -5,12 +5,12 @@ using ServerASMX.Test.Base.Extensions;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Output
 {
-    internal class CustomerCommandOutputTest : BaseTest
+    internal class CustomerCommandOutputTest : BaseUnitTest
     {
         [Test]
         public void Constructor_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             var commandOutput = new CustomerCommandOutput(customer.Id, customer.Name, customer.Birth,
                 customer.Gender, customer.CashBalance, customer.Active, customer.CreationDate, customer.ChangeDate);

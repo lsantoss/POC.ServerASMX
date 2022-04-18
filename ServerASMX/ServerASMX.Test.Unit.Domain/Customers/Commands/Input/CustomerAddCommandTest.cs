@@ -7,12 +7,12 @@ using System;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
 {
-    internal class CustomerAddCommandTest : BaseTest
+    internal class CustomerAddCommandTest : BaseUnitTest
     {
         [Test]
         public void IsValid_Valid()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
 
             TestContext.WriteLine(command.Format());
 
@@ -26,7 +26,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void IsValid_Invalid_Name(string name)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Name = name;
 
             TestContext.WriteLine(command.Format());
@@ -38,7 +38,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
             TestContext.WriteLine(command.Format());
@@ -50,7 +50,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_FutureDate()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             TestContext.WriteLine(command.Format());
@@ -63,7 +63,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Gender(EGender gender)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.Gender = gender;
 
             TestContext.WriteLine(command.Format());
@@ -76,7 +76,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
             TestContext.WriteLine(command.Format());
@@ -88,7 +88,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [Test]
         public void MapToCustomer_Success()
         {
-            var command = MocksTest.CustomerAddCommand;
+            var command = MocksUnitTest.CustomerAddCommand;
             var mapResult = command.MapToCustomer();
 
             TestContext.WriteLine(mapResult.Format());

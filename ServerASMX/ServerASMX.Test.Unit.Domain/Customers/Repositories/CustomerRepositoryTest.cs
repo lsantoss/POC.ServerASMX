@@ -10,7 +10,7 @@ using System.Data.SqlTypes;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
 {
-    internal class CustomerRepositoryTest : DatabaseTest
+    internal class CustomerRepositoryTest : DatabaseUnitTest
     {
         private readonly ICustomerRepository _repository;
 
@@ -19,7 +19,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Insert_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -41,7 +41,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [TestCase(null)]
         public void Insert_Invalid_Name_Exception(string name)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetName(name);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
@@ -50,7 +50,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Insert_Invalid_Birth_Exception()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetBirth(DateTime.MinValue);
 
             Assert.Throws<SqlTypeException>(() => _repository.Insert(customer));
@@ -60,7 +60,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [TestCase(-1)]
         public void Insert_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
             customer.SetGender(gender);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
@@ -69,9 +69,9 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Update_Success()
         {
-            _repository.Insert(MocksTest.Customer);
+            _repository.Insert(MocksUnitTest.Customer);
 
-            var customer = MocksTest.CustomerEdited;
+            var customer = MocksUnitTest.CustomerEdited;
 
             _repository.Update(customer);
 
@@ -93,7 +93,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [TestCase(null)]
         public void Update_Invalid_Name_Exception(string name)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -105,7 +105,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Update_Invalid_Birth_Exception()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -118,7 +118,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [TestCase(-1)]
         public void Update_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -130,7 +130,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Delete_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -148,7 +148,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [TestCase(false)]
         public void ChangeActivityState_Success(bool active)
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -171,7 +171,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void Get_Registred_Id_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -205,7 +205,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void List_Registred_Ids_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 
@@ -237,7 +237,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         public void CheckId_Registred_Id_Success()
         {
-            var customer = MocksTest.Customer;
+            var customer = MocksUnitTest.Customer;
 
             _repository.Insert(customer);
 

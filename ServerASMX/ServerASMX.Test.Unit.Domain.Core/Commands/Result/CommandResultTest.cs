@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ServerASMX.Test.Unit.Domain.Core.Commands.Result
 {
-    internal class CommandResultTest : BaseTest
+    internal class CommandResultTest : BaseUnitTest
     {
         [Test]
         [TestCase("Message")]

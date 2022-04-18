@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using NUnit.Framework;
-using ServerASMX.Test.Base.Mocks;
+using ServerASMX.Test.Base.Mocks.UnitTests;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -9,7 +9,7 @@ using System.IO;
 namespace ServerASMX.Test.Base.Base
 {
     [TestFixture]
-    public class DatabaseTest : BaseTest
+    public class DatabaseUnitTest : BaseUnitTest
     {
         private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString.ToString();
         private static readonly string _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
@@ -18,7 +18,7 @@ namespace ServerASMX.Test.Base.Base
         private static readonly string _scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTables.sql";
         private static readonly string _scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTables.sql";
 
-        public DatabaseTest() : base() { }
+        public DatabaseUnitTest() : base() { }
 
         [OneTimeSetUp]
         protected override void OneTimeSetUp() => InitializeData();
@@ -34,13 +34,13 @@ namespace ServerASMX.Test.Base.Base
 
         private void InitializeData()
         {
-            MocksTest = new MocksTest();
+            MocksUnitTest = new MocksUnitTest();
             PrepareDatabase();
         }
 
         private void ClearData()
         {
-            MocksTest = null;
+            MocksUnitTest = null;
             DestroyDatabase();
         }
 

@@ -2,7 +2,7 @@
 using ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace ServerASMX.Test.Base.Mocks.Customers.Entities
+namespace ServerASMX.Test.Base.Mocks.UnitTests.Customers.Entities
 {
     public static class CustomerMock
     {

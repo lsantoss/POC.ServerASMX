@@ -4,12 +4,12 @@ using ServerASMX.Test.Base.Extensions;
 
 namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
 {
-    internal class CustomerDeleteCommandTest : BaseTest
+    internal class CustomerDeleteCommandTest : BaseUnitTest
     {
         [Test]
         public void IsValid_Valid()
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
 
             TestContext.WriteLine(command.Format());
 
@@ -22,7 +22,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MocksTest.CustomerDeleteCommand;
+            var command = MocksUnitTest.CustomerDeleteCommand;
             command.Id = id;
 
             TestContext.WriteLine(command.Format());
