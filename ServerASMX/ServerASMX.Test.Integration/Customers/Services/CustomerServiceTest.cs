@@ -4,7 +4,6 @@ using ServerASMX.Test.Base.Constants;
 using ServerASMX.Test.Base.CustomerService;
 using ServerASMX.Test.Base.Extensions;
 using System;
-using System.Configuration;
 using System.Threading.Tasks;
 
 namespace ServerASMX.Test.Integration.Customers.Services
@@ -13,11 +12,7 @@ namespace ServerASMX.Test.Integration.Customers.Services
     {
         private readonly CustomerServiceSoapClient _customerServiceSoapClient;
 
-        public CustomerServiceTest()
-        {
-            var endpointConfigurationName = ConfigurationManager.AppSettings["CustomerServiceSoap"];
-            _customerServiceSoapClient = new CustomerServiceSoapClient(endpointConfigurationName);
-        }
+        public CustomerServiceTest() => _customerServiceSoapClient = new CustomerServiceSoapClient("CustomerServiceSoap");
 
         [Test]
         public async Task Add_Success()
