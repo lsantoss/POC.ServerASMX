@@ -19,7 +19,7 @@ namespace ServerASMX.Domain.Customers.Repositories
 
         public CustomerRepository()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString.ToString();
+            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
             _parameters = new DynamicParameters();
         }
 

@@ -192,7 +192,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        [TestCase(1)]
+        [TestCase(long.MaxValue)]
         public void Get_Not_Registred_Id_Success(long id)
         {
             var result = _repository.Get(id);
@@ -251,7 +251,7 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Repositories
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        [TestCase(1)]
+        [TestCase(long.MaxValue)]
         public void CheckId_Not_Registred_Id_Success(long id)
         {
             var result = _repository.CheckId(id);

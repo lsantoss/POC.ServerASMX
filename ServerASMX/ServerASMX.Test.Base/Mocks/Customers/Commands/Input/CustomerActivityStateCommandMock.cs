@@ -7,7 +7,7 @@ namespace ServerASMX.Test.Base.Mocks.Customers.Commands.Input
         public static CustomerActivityStateCommand GetCustomerActivityStateCommand() => new CustomerActivityStateCommand()
         {
             Id = 1,
-            Active = true
+            Active = false
         };
     }
 }

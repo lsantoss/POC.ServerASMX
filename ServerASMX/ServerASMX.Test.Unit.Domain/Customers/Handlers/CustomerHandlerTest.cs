@@ -207,6 +207,31 @@ namespace ServerASMX.Test.Unit.Domain.Customers.Handlers
         }
 
         [Test]
+        [TestCase(-1, null, -1, -1)]
+        [TestCase(-1, "", -1, -1)]
+        [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
+        public void Handle_Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
+        {
+            var command = new CustomerUpdateCommand
+            {
+                Id = id,
+                Name = name,
+                Birth = DateTime.MinValue,
+                Gender = gender,
+                CashBalance = cashBalance
+            };
+
+            var commandResult = _handler.Handle(command);
+
+            TestContext.WriteLine(commandResult.Format());
+
+            Assert.False(commandResult.Success);
+            Assert.AreEqual("Invalid parameters", commandResult.Message);
+            Assert.AreNotEqual(0, commandResult.Errors.Count);
+            Assert.Null(commandResult.Data);
+        }
+
+        [Test]
         public void Handle_Update_Invalid_Not_Resgistred_Id()
         {
             var command = MocksTest.CustomerUpdateCommand;
