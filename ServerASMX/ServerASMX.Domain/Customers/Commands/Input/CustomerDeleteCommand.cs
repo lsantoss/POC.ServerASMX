@@ -1,5 +1,6 @@
 ﻿using ServerASMX.Domain.Core.Commands.Interfaces;
 using ServerASMX.Domain.Core.Notifications;
+using ServerASMX.Domain.Customers.Validations;
 
 namespace ServerASMX.Domain.Customers.Commands.Input
 {
@@ -9,9 +10,7 @@ namespace ServerASMX.Domain.Customers.Commands.Input
 
         public bool IsValid()
         {
-            if (Id <= 0)
-                AddNotification("Id", "Id must be greater than zero");
-
+            AddNotification(new CustomerValidation().ValidateCommand(this));
             return Valid;
         }
     }

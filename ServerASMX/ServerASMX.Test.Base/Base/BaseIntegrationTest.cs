@@ -6,7 +6,6 @@ namespace ServerASMX.Test.Base.Base
     [TestFixture]
     public class BaseIntegrationTest
     {
-
         protected MocksIntegrationTest MocksIntegrationTest { get; set; }
 
         public BaseIntegrationTest() => MocksIntegrationTest = new MocksIntegrationTest();

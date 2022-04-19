@@ -56,6 +56,7 @@
     <Compile Include="Customers\Entities\CustomerTest.cs" />
     <Compile Include="Customers\Handlers\CustomerHandlerTest.cs" />
     <Compile Include="Customers\Repositories\CustomerRepositoryTest.cs" />
+    <Compile Include="Customers\Validations\CustomerValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

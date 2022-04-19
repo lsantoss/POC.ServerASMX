@@ -59,6 +59,7 @@
     <Compile Include="Customers\Queries\Results\CustomerQueryResult.cs" />
     <Compile Include="Customers\Repositories\CustomerRepository.cs" />
     <Compile Include="Customers\Repositories\Queries\CustomerQueries.cs" />
+    <Compile Include="Customers\Validations\CustomerValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

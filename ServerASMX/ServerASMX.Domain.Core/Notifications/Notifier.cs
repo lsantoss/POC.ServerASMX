@@ -29,6 +29,16 @@ namespace ServerASMX.Domain.Core.Notifications
             _notifications.Add(new Notification(property, message));
         }
 
+        public void AddNotification(IReadOnlyCollection<Notification> notifications)
+        {
+            if(notifications != null && notifications.Count > 0)
+            {
+                Inactivate();
+                foreach (var notification in notifications)
+                    _notifications.Add(notification);
+            }
+        }
+
         private void Inactivate()
         {
             Valid = false;

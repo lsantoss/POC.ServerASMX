@@ -1,6 +1,7 @@
 ﻿using ServerASMX.Domain.Core.Notifications;
 using ServerASMX.Domain.Customers.Commands.Output;
 using ServerASMX.Domain.Customers.Enums;
+using ServerASMX.Domain.Customers.Validations;
 using System;
 
 namespace ServerASMX.Domain.Customers.Entities
@@ -43,45 +44,31 @@ namespace ServerASMX.Domain.Customers.Entities
         public void SetId(long id)
         {
             Id = id;
-
-            if (Id <= 0)
-                AddNotification("Id", "Id must be greater than zero");
+            AddNotification(new CustomerValidation().ValidateId(Id));
         }
 
         public void SetName(string name)
         {
             Name = name;
-
-            if (string.IsNullOrWhiteSpace(Name))
-                AddNotification("Name", "Name is a required field");
-            else if (Name.Length > 100)
-                AddNotification("Name", $"Name must contain a maximum of 100 characters");
+            AddNotification(new CustomerValidation().ValidateName(Name));
         }
 
         public void SetBirth(DateTime birth)
         {
             Birth = birth;
-
-            if (Birth == DateTime.MinValue)
-                AddNotification("Birth", "Birth must contain a valid date");
-            else if (Birth > DateTime.Now)
-                AddNotification("Birth", "Birth must be less than the current date");
+            AddNotification(new CustomerValidation().ValidateBirth(Birth));
         }
 
         public void SetGender(EGender gender)
         {
             Gender = gender;
-
-            if (!Enum.IsDefined(typeof(EGender), Gender))
-                AddNotification("Gender", "Invalid entered gender");
+            AddNotification(new CustomerValidation().ValidateGender(Gender));
         }
 
         public void SetCashBalance(decimal cashBalance)
         {
             CashBalance = cashBalance;
-
-            if (CashBalance < 0)
-                AddNotification("CashBalance", "CashBalance must be greater than or equal to zero");
+            AddNotification(new CustomerValidation().ValidateCashBalance(CashBalance));
         }
 
         public CustomerCommandOutput MapToCustomerCommandOutput() => new CustomerCommandOutput(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
