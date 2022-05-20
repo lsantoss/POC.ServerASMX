@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="006da78f-0a09-4bec-896e-d96a77f26da8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Dapper" />
+      <ReferencedAssembly AssemblyName="Microsoft.CSharp" />
+      <ReferencedAssembly AssemblyName="Microsoft.Data.Tools.Components" />
+      <ReferencedAssembly AssemblyName="Microsoft.Data.Tools.Schema.Sql" />
+      <ReferencedAssembly AssemblyName="Microsoft.Data.Tools.Schema.Sql.UnitTesting" />
+      <ReferencedAssembly AssemblyName="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter" />
+      <ReferencedAssembly AssemblyName="Microsoft.Win32.Primitives" />
+      <ReferencedAssembly AssemblyName="mscorlib" />
+      <ReferencedAssembly AssemblyName="Newtonsoft.Json" />
+      <ReferencedAssembly AssemblyName="nunit.framework" />
+      <ReferencedAssembly AssemblyName="POC.ServerASMX.Domain" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.AppContext" />
+      <ReferencedAssembly AssemblyName="System.ComponentModel.Composition" />
+      <ReferencedAssembly AssemblyName="System.Configuration" />
+      <ReferencedAssembly AssemblyName="System.Console" />
+      <ReferencedAssembly AssemblyName="System.Core" />
+      <ReferencedAssembly AssemblyName="System.Data" />
+      <ReferencedAssembly AssemblyName="System.Data.DataSetExtensions" />
+      <ReferencedAssembly AssemblyName="System.Diagnostics.DiagnosticSource" />
+      <ReferencedAssembly AssemblyName="System.Diagnostics.Tracing" />
+      <ReferencedAssembly AssemblyName="System.Globalization.Calendars" />
+      <ReferencedAssembly AssemblyName="System.IO" />
+      <ReferencedAssembly AssemblyName="System.IO.Compression" />
+      <ReferencedAssembly AssemblyName="System.IO.Compression.FileSystem" />
+      <ReferencedAssembly AssemblyName="System.IO.Compression.ZipFile" />
+      <ReferencedAssembly AssemblyName="System.IO.FileSystem" />
+      <ReferencedAssembly AssemblyName="System.IO.FileSystem.Primitives" />
+      <ReferencedAssembly AssemblyName="System.Linq" />
+      <ReferencedAssembly AssemblyName="System.Linq.Expressions" />
+      <ReferencedAssembly AssemblyName="System.Net.Http" />
+      <ReferencedAssembly AssemblyName="System.Net.Sockets" />
+      <ReferencedAssembly AssemblyName="System.Numerics" />
+      <ReferencedAssembly AssemblyName="System.Reflection" />
+      <ReferencedAssembly AssemblyName="System.Runtime" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Extensions" />
+      <ReferencedAssembly AssemblyName="System.Runtime.InteropServices" />
+      <ReferencedAssembly AssemblyName="System.Runtime.InteropServices.RuntimeInformation" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.Security.Cryptography.Algorithms" />
+      <ReferencedAssembly AssemblyName="System.Security.Cryptography.Encoding" />
+      <ReferencedAssembly AssemblyName="System.Security.Cryptography.Primitives" />
+      <ReferencedAssembly AssemblyName="System.Security.Cryptography.X509Certificates" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+      <ReferencedAssembly AssemblyName="System.Text.RegularExpressions" />
+      <ReferencedAssembly AssemblyName="System.Xml" />
+      <ReferencedAssembly AssemblyName="System.Xml.Linq" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost:44322/CustomerService.asmx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerService.disco" MetadataType="Disco" ID="17af2ced-fd77-465a-8248-3f6b0253c757" SourceId="1" SourceUrl="https://localhost:44322/CustomerService.asmx?disco" />
+    <MetadataFile FileName="CustomerService.wsdl" MetadataType="Wsdl" ID="f437a4cd-8e18-4ddd-b7e0-ea3ea94f29fc" SourceId="1" SourceUrl="https://localhost:44322/CustomerService.asmx?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
