@@ -12,7 +12,7 @@
 <ol type="number">
   <li>Criar um projeto <b>Web Vazio</b> (.net framework)</li>
   <li>Adicione um novo arquivo do tipo <b>Serviço Web (ASMX)</b></li>  
-  <li>Nos métodos use a assinatura: <b>[WebMethod]</b></li>   
+  <li>Nos métodos use a anotação: <b>[WebMethod]</b></li>   
   <li>
     Exemplo de método:
     <blockquote>
