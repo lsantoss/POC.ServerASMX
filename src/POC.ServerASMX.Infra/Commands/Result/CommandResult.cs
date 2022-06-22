@@ -1,8 +1,8 @@
-﻿using POC.ServerASMX.Domain.Core.Notifications;
+﻿using POC.ServerASMX.Infra.Notifications;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace POC.ServerASMX.Domain.Core.Commands.Result
+namespace POC.ServerASMX.Infra.Commands.Result
 {
     public class CommandResult
     {

@@ -1,4 +1,4 @@
-﻿using POC.ServerASMX.Domain.Core.Notifications;
+﻿using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Domain.Customers.Commands.Output;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;

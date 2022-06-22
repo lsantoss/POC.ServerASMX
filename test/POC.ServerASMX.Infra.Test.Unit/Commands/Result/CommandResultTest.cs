@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Domain.Core.Commands.Result;
-using POC.ServerASMX.Domain.Core.Notifications;
+using POC.ServerASMX.Infra.Commands.Result;
+using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
 using System.Collections.Generic;
 
-namespace POC.ServerASMX.Domain.Core.Test.Unit.Commands.Result
+namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 {
     internal class CommandResultTest : BaseUnitTest
     {

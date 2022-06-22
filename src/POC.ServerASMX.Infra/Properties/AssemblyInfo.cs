@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("POC.ServerASMX.Domain.Core")]
+[assembly: AssemblyTitle("POC.ServerASMX.Infra")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("POC.ServerASMX.Domain.Core")]
+[assembly: AssemblyProduct("POC.ServerASMX.Infra")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

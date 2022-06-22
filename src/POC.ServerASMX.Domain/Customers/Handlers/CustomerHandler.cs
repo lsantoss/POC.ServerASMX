@@ -1,4 +1,4 @@
-﻿using POC.ServerASMX.Domain.Core.Commands.Result;
+﻿using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;

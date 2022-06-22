@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace POC.ServerASMX.Domain.Core.Notifications
+namespace POC.ServerASMX.Infra.Notifications
 {
     public class Notifier
     {

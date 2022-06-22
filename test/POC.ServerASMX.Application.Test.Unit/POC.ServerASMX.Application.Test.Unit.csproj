@@ -61,13 +61,13 @@
       <Project>{6883d523-9e33-4ba0-abd2-85dc01486b85}</Project>
       <Name>POC.ServerASMX.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\POC.ServerASMX.Domain.Core\POC.ServerASMX.Domain.Core.csproj">
-      <Project>{0721206a-0f9e-4aee-9ce2-d98cc06e66cd}</Project>
-      <Name>POC.ServerASMX.Domain.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
       <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
       <Name>POC.ServerASMX.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
+      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
+      <Name>POC.ServerASMX.Infra</Name>
     </ProjectReference>
     <ProjectReference Include="..\POC.ServerASMX.Test.Base\POC.ServerASMX.Test.Base.csproj">
       <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>

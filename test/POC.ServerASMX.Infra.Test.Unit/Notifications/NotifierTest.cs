@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Domain.Core.Notifications;
+using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
 
-namespace POC.ServerASMX.Domain.Core.Test.Unit.Notifications
+namespace POC.ServerASMX.Infra.Test.Unit.Notifications
 {
     internal class NotifierTest : BaseUnitTest
     {

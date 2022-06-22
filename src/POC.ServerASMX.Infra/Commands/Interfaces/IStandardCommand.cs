@@ -1,4 +1,4 @@
-﻿namespace POC.ServerASMX.Domain.Core.Commands.Interfaces
+﻿namespace POC.ServerASMX.Infra.Commands.Interfaces
 {
     public interface IStandardCommand
     {

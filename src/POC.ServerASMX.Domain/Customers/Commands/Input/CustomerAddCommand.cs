@@ -1,5 +1,5 @@
-﻿using POC.ServerASMX.Domain.Core.Commands.Interfaces;
-using POC.ServerASMX.Domain.Core.Notifications;
+﻿using POC.ServerASMX.Infra.Commands.Interfaces;
+using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;

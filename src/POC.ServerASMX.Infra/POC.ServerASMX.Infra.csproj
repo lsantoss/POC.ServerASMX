@@ -7,8 +7,8 @@
     <ProjectGuid>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Domain.Core</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Domain.Core</AssemblyName>
+    <RootNamespace>POC.ServerASMX.Infra</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Infra</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

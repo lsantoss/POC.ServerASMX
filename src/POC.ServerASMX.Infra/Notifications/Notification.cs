@@ -1,4 +1,4 @@
-﻿namespace POC.ServerASMX.Domain.Core.Notifications
+﻿namespace POC.ServerASMX.Infra.Notifications
 {
     public sealed class Notification
     {
