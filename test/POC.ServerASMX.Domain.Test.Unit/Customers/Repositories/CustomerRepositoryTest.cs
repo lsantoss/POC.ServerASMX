@@ -7,6 +7,7 @@ using POC.ServerASMX.Test.Base.Extensions;
 using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
 {
@@ -17,13 +18,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         public CustomerRepositoryTest() => _repository = new CustomerRepository();
 
         [Test]
-        public void Insert_Success()
+        public async Task InsertAsync_Success()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            var result = _repository.Get(customer.Id);
+            var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -39,43 +40,43 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
 
         [Test]
         [TestCase(null)]
-        public void Insert_Invalid_Name_Exception(string name)
+        public void InsertAsync_Invalid_Name_Exception(string name)
         {
             var customer = MocksUnitTest.Customer;
             customer.SetName(name);
 
-            Assert.Throws<SqlException>(() => _repository.Insert(customer));
+            Assert.ThrowsAsync<SqlException>(() => _repository.InsertAsync(customer));
         }
 
         [Test]
-        public void Insert_Invalid_Birth_Exception()
+        public void InsertAsync_Invalid_Birth_Exception()
         {
             var customer = MocksUnitTest.Customer;
             customer.SetBirth(DateTime.MinValue);
 
-            Assert.Throws<SqlTypeException>(() => _repository.Insert(customer));
+            Assert.ThrowsAsync<SqlTypeException>(() => _repository.InsertAsync(customer));
         }
 
         [Test]
         [TestCase(-1)]
-        public void Insert_Invalid_Gender_Exception(EGender gender)
+        public void InsertAsync_Invalid_Gender_Exception(EGender gender)
         {
             var customer = MocksUnitTest.Customer;
             customer.SetGender(gender);
 
-            Assert.Throws<SqlException>(() => _repository.Insert(customer));
+            Assert.ThrowsAsync<SqlException>(() => _repository.InsertAsync(customer));
         }
 
         [Test]
-        public void Update_Success()
+        public async Task UpdateAsync_Success()
         {
-            _repository.Insert(MocksUnitTest.Customer);
+            await _repository.InsertAsync(MocksUnitTest.Customer);
 
             var customer = MocksUnitTest.CustomerEdited;
 
-            _repository.Update(customer);
+            await _repository.UpdateAsync(customer);
 
-            var result = _repository.Get(customer.Id);
+            var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -91,52 +92,52 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
 
         [Test]
         [TestCase(null)]
-        public void Update_Invalid_Name_Exception(string name)
+        public async Task UpdateAsync_Invalid_Name_Exception(string name)
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
             customer.SetName(name);
 
-            Assert.Throws<SqlException>(() => _repository.Update(customer));
+            Assert.ThrowsAsync<SqlException>(() => _repository.UpdateAsync(customer));
         }
 
         [Test]
-        public void Update_Invalid_Birth_Exception()
+        public async Task UpdateAsync_Invalid_Birth_Exception()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
             customer.SetBirth(DateTime.MinValue);
 
-            Assert.Throws<SqlTypeException>(() => _repository.Update(customer));
+            Assert.ThrowsAsync<SqlTypeException>(() => _repository.UpdateAsync(customer));
         }
 
         [Test]
         [TestCase(-1)]
-        public void Update_Invalid_Gender_Exception(EGender gender)
+        public async Task UpdateAsync_Invalid_Gender_Exception(EGender gender)
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
             customer.SetGender(gender);
 
-            Assert.Throws<SqlException>(() => _repository.Update(customer));
+            Assert.ThrowsAsync<SqlException>(() => _repository.UpdateAsync(customer));
         }
 
         [Test]
-        public void Delete_Success()
+        public async Task DeleteAsync_Success()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            _repository.Delete(customer.Id);
+            await _repository.DeleteAsync(customer.Id);
 
-            var result = _repository.Get(customer.Id);
+            var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -146,15 +147,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void ChangeActivityState_Success(bool active)
+        public async Task ChangeActivityStateAsync_Success(bool active)
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            _repository.ChangeActivityState(customer.Id, active);
+            await _repository.ChangeActivityStateAsync(customer.Id, active);
 
-            var result = _repository.Get(customer.Id);
+            var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -169,13 +170,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         }
 
         [Test]
-        public void Get_Registred_Id_Success()
+        public async Task GetAsync_Registred_Id_Success()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            var result = _repository.Get(customer.Id);
+            var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -193,9 +194,9 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         [TestCase(0)]
         [TestCase(-1)]
         [TestCase(long.MaxValue)]
-        public void Get_Not_Registred_Id_Success(long id)
+        public async Task GetAsync_Not_Registred_Id_Success(long id)
         {
-            var result = _repository.Get(id);
+            var result = await _repository.GetAsync(id);
 
             TestContext.WriteLine(result.Format());
 
@@ -203,13 +204,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         }
 
         [Test]
-        public void List_Registred_Ids_Success()
+        public async Task ListAsync_Registred_Ids_Success()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            var result = _repository.List();
+            var result = await _repository.ListAsync();
 
             TestContext.WriteLine(result.Format());
 
@@ -225,9 +226,9 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         }
 
         [Test]
-        public void List_Not_Registred_Ids_Success()
+        public async Task ListAsync_Not_Registred_Ids_Success()
         {
-            var result = _repository.List();
+            var result = await _repository.ListAsync();
 
             TestContext.WriteLine(result.Format());
 
@@ -235,13 +236,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         }
 
         [Test]
-        public void CheckId_Registred_Id_Success()
+        public async Task CheckIdAsync_Registred_Id_Success()
         {
             var customer = MocksUnitTest.Customer;
 
-            _repository.Insert(customer);
+            await _repository.InsertAsync(customer);
 
-            var result = _repository.CheckId(customer.Id);
+            var result = await _repository.CheckIdAsync(customer.Id);
 
             TestContext.WriteLine(result.Format());
 
@@ -252,9 +253,9 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
         [TestCase(0)]
         [TestCase(-1)]
         [TestCase(long.MaxValue)]
-        public void CheckId_Not_Registred_Id_Success(long id)
+        public async Task CheckIdAsync_Not_Registred_Id_Success(long id)
         {
-            var result = _repository.CheckId(id);
+            var result = await _repository.CheckIdAsync(id);
 
             TestContext.WriteLine(result.Format());
 

@@ -1,4 +1,4 @@
-﻿namespace POC.ServerASMX.Domain.Customers.Repositories.Queries
+﻿namespace POC.ServerASMX.Infra.Data.Repositories.Queries
 {
     public static class CustomerQueries
     {

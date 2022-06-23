@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Web.Services;
 using System.Xml.Serialization;
 using POC.ServerASMX.Domain.Customers.Commands.Result;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application
 {
@@ -29,23 +30,23 @@ namespace POC.ServerASMX.Application
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public CommandResult Add(CustomerAddCommand command) => _handler.Handle(command);
+        public async Task<CommandResult> Add(CustomerAddCommand command) => await _handler.HandleAsync(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public CommandResult Update(CustomerUpdateCommand command) => _handler.Handle(command);
+        public async Task<CommandResult> Update(CustomerUpdateCommand command) => await _handler.HandleAsync(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public CommandResult ChangeActivityState(CustomerActivityStateCommand command) => _handler.Handle(command);
+        public async Task<CommandResult> ChangeActivityState(CustomerActivityStateCommand command) => await _handler.HandleAsync(command);
 
         [WebMethod]
-        public CommandResult Delete(CustomerDeleteCommand command) => _handler.Handle(command);
+        public async Task<CommandResult> Delete(CustomerDeleteCommand command) => await _handler.HandleAsync(command);
 
         [WebMethod]
-        public CustomerQueryResult Get(long id) => _repository.Get(id);
+        public async Task<CustomerQueryResult> Get(long id) => await _repository.GetAsync(id);
 
         [WebMethod]
-        public List<CustomerQueryResult> List() => _repository.List();
+        public async Task<List<CustomerQueryResult>> List() => await _repository.ListAsync();
     }
 }

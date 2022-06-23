@@ -6,6 +6,7 @@ using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
 using System;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 {
@@ -16,11 +17,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         public CustomerServiceTest() => _customerService = new CustomerService();
 
         [Test]
-        public void Add_Success()
+        public async Task Add_Success()
         {
             var command = MocksUnitTest.CustomerAddCommand;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -40,11 +41,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Add_Invalid_Command_Null()
+        public async Task Add_Invalid_Command_Null()
         {
             var command = (CustomerAddCommand)null;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -58,7 +59,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [TestCase(null, -1, -1)]
         [TestCase("", -1, -1)]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public void Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
+        public async Task Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerAddCommand
             {
@@ -68,7 +69,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
                 CashBalance = cashBalance
             };
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -82,12 +83,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public void Add_Invalid_Name(string name)
+        public async Task Add_Invalid_Name(string name)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Name = name;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -98,12 +99,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Add_Invalid_Birth_DateTimeMin()
+        public async Task Add_Invalid_Birth_DateTimeMin()
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -114,12 +115,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Add_Invalid_Birth_FutureDate()
+        public async Task Add_Invalid_Birth_FutureDate()
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -131,12 +132,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public void Add_Invalid_Gender(EGender gender)
+        public async Task Add_Invalid_Gender(EGender gender)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Gender = gender;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -148,12 +149,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public void Add_Invalid_CashBalance(decimal cashBalance)
+        public async Task Add_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = _customerService.Add(command);
+            var commandResult = await _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -164,13 +165,13 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Update_Success()
+        public async Task Update_Success()
         {
-            _customerService.Add(MocksUnitTest.CustomerAddCommand);
+            await _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerUpdateCommand;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -190,11 +191,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Update_Invalid_Command_Null()
+        public async Task Update_Invalid_Command_Null()
         {
             var command = (CustomerUpdateCommand)null;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -208,7 +209,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [TestCase(-1, null, -1, -1)]
         [TestCase(-1, "", -1, -1)]
         [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public void Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
+        public async Task Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerUpdateCommand
             {
@@ -219,7 +220,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
                 CashBalance = cashBalance
             };
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -230,11 +231,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Update_Invalid_Not_Resgistred_Id()
+        public async Task Update_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -247,12 +248,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Update_Invalid_Id(long id)
+        public async Task Update_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Id = id;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -266,12 +267,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public void Update_Invalid_Name(string name)
+        public async Task Update_Invalid_Name(string name)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Name = name;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -282,12 +283,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Update_Invalid_Birth_DateTimeMin()
+        public async Task Update_Invalid_Birth_DateTimeMin()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -298,12 +299,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Update_Invalid_Birth_FutureDate()
+        public async Task Update_Invalid_Birth_FutureDate()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -315,12 +316,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public void Update_Invalid_Gender(EGender gender)
+        public async Task Update_Invalid_Gender(EGender gender)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Gender = gender;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -332,12 +333,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public void Update_Invalid_CashBalance(decimal cashBalance)
+        public async Task Update_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = _customerService.Update(command);
+            var commandResult = await _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -348,13 +349,13 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Activity_State_Success()
+        public async Task Activity_State_Success()
         {
-            _customerService.Add(MocksUnitTest.CustomerAddCommand);
+            await _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerActivityStateCommand;
 
-            var commandResult = _customerService.ChangeActivityState(command);
+            var commandResult = await _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -365,11 +366,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Activity_State_Invalid_Command_Null()
+        public async Task Activity_State_Invalid_Command_Null()
         {
             var command = (CustomerActivityStateCommand)null;
 
-            var commandResult = _customerService.ChangeActivityState(command);
+            var commandResult = await _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -380,11 +381,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Activity_State_Invalid_Not_Resgistred_Id()
+        public async Task Activity_State_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerActivityStateCommand;
 
-            var commandResult = _customerService.ChangeActivityState(command);
+            var commandResult = await _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -397,12 +398,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Activity_State_Invalid_Id(long id)
+        public async Task Activity_State_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerActivityStateCommand;
             command.Id = id;
 
-            var commandResult = _customerService.ChangeActivityState(command);
+            var commandResult = await _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -413,13 +414,13 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Delete_Success()
+        public async Task Delete_Success()
         {
-            _customerService.Add(MocksUnitTest.CustomerAddCommand);
+            await _customerService.Add(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerDeleteCommand;
 
-            var commandResult = _customerService.Delete(command);
+            var commandResult = await _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -430,11 +431,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Delete_Invalid_Command_Null()
+        public async Task Delete_Invalid_Command_Null()
         {
             var command = (CustomerDeleteCommand)null;
 
-            var commandResult = _customerService.Delete(command);
+            var commandResult = await _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -445,11 +446,11 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Delete_Invalid_Not_Resgistred_Id()
+        public async Task Delete_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerDeleteCommand;
 
-            var commandResult = _customerService.Delete(command);
+            var commandResult = await _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -462,12 +463,12 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Delete_Invalid_Id(long id)
+        public async Task Delete_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerDeleteCommand;
             command.Id = id;
 
-            var commandResult = _customerService.Delete(command);
+            var commandResult = await _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -478,13 +479,13 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void Get_Registred_Id_Success()
+        public async Task Get_Registred_Id_Success()
         {
             var command = MocksUnitTest.CustomerAddCommand;
 
-            _customerService.Add(command);
+            await _customerService.Add(command);
 
-            var result = _customerService.Get(1);
+            var result = await _customerService.Get(1);
 
             TestContext.WriteLine(result.Format());
 
@@ -502,9 +503,9 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         [TestCase(0)]
         [TestCase(-1)]
         [TestCase(long.MaxValue)]
-        public void Get_Not_Registred_Id_Success(long id)
+        public async Task Get_Not_Registred_Id_Success(long id)
         {
-            var result = _customerService.Get(id);
+            var result = await _customerService.Get(id);
 
             TestContext.WriteLine(result.Format());
 
@@ -512,13 +513,13 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void List_Registred_Ids_Success()
+        public async Task List_Registred_Ids_Success()
         {
             var command = MocksUnitTest.CustomerAddCommand;
 
-            _customerService.Add(command);
+            await _customerService.Add(command);
 
-            var result = _customerService.List();
+            var result = await _customerService.List();
 
             TestContext.WriteLine(result.Format());
 
@@ -534,9 +535,9 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
         }
 
         [Test]
-        public void List_Not_Registred_Ids_Success()
+        public async Task List_Not_Registred_Ids_Success()
         {
-            var result = _customerService.List();
+            var result = await _customerService.List();
 
             TestContext.WriteLine(result.Format());
 

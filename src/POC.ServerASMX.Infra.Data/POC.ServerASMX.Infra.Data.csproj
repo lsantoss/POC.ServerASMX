@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</ProjectGuid>
+    <ProjectGuid>{314DF703-C60D-4F1D-9C46-261C09EB45FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Domain</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Domain</AssemblyName>
+    <RootNamespace>POC.ServerASMX.Infra.Data</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Infra.Data</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,33 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers\Commands\Input\CustomerActivityStateCommand.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerAddCommand.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerDeleteCommand.cs" />
-    <Compile Include="Customers\Commands\Input\CustomerUpdateCommand.cs" />
-    <Compile Include="Customers\Commands\Result\CustomerCommandResult.cs" />
-    <Compile Include="Customers\Entities\Customer.cs" />
-    <Compile Include="Customers\Enums\EGender.cs" />
-    <Compile Include="Customers\Handlers\CustomerHandler.cs" />
-    <Compile Include="Customers\Interfaces\Handlers\ICustomerHandler.cs" />
-    <Compile Include="Customers\Interfaces\Repositories\ICustomerRepository.cs" />
-    <Compile Include="Customers\Queries\Results\CustomerQueryResult.cs" />
-    <Compile Include="Customers\Repositories\CustomerRepository.cs" />
-    <Compile Include="Customers\Validations\CustomerValidation.cs" />
+    <Compile Include="DataContexts\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj">
-      <Project>{314DF703-C60D-4F1D-9C46-261C09EB45FB}</Project>
-      <Name>POC.ServerASMX.Infra.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
-      <Project>{0721206a-0f9e-4aee-9ce2-d98cc06e66cd}</Project>
-      <Name>POC.ServerASMX.Infra</Name>
-    </ProjectReference>
+    <Compile Include="Repositories\Queries\CustomerQueries.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

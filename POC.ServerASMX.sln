@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Infra", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Infra.Test.Unit", "test\POC.ServerASMX.Infra.Test.Unit\POC.ServerASMX.Infra.Test.Unit.csproj", "{E1F594E8-21E2-4E04-989F-75EDA6969545}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Infra.Data", "src\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj", "{314DF703-C60D-4F1D-9C46-261C09EB45FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1F594E8-21E2-4E04-989F-75EDA6969545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314DF703-C60D-4F1D-9C46-261C09EB45FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314DF703-C60D-4F1D-9C46-261C09EB45FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314DF703-C60D-4F1D-9C46-261C09EB45FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314DF703-C60D-4F1D-9C46-261C09EB45FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{36E0871E-E42F-49FE-A14D-FA274A8E73C2} = {AB63A2EB-A041-4716-A787-2385E5068DA7}
 		{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD} = {203E76C2-7C41-4278-94D0-59A4560D2C94}
 		{E1F594E8-21E2-4E04-989F-75EDA6969545} = {36E0871E-E42F-49FE-A14D-FA274A8E73C2}
+		{314DF703-C60D-4F1D-9C46-261C09EB45FB} = {203E76C2-7C41-4278-94D0-59A4560D2C94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4138501-CCAD-42DA-BD86-D0400319E48A}

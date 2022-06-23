@@ -1,13 +1,14 @@
 ﻿using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Customers.Interfaces.Handlers
 {
     public interface ICustomerHandler
     {
-        CommandResult Handle(CustomerAddCommand command);
-        CommandResult Handle(CustomerUpdateCommand command);
-        CommandResult Handle(CustomerActivityStateCommand command);
-        CommandResult Handle(CustomerDeleteCommand command);
+        Task<CommandResult> HandleAsync(CustomerAddCommand command);
+        Task<CommandResult> HandleAsync(CustomerUpdateCommand command);
+        Task<CommandResult> HandleAsync(CustomerActivityStateCommand command);
+        Task<CommandResult> HandleAsync(CustomerDeleteCommand command);
     }
 }

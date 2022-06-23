@@ -54,32 +54,32 @@ namespace POC.ServerASMX.Domain.Customers.Validations
 
         public IReadOnlyCollection<Notification> ValidateCommand(CustomerAddCommand command)
         {
-            _ = ValidateName(command.Name);
-            _ = ValidateBirth(command.Birth);
-            _ = ValidateGender(command.Gender);
-            _ = ValidateCashBalance(command.CashBalance);
+            ValidateName(command.Name);
+            ValidateBirth(command.Birth);
+            ValidateGender(command.Gender);
+            ValidateCashBalance(command.CashBalance);
             return Notifications;
         }
 
         public IReadOnlyCollection<Notification> ValidateCommand(CustomerUpdateCommand command)
         {
-            _ = ValidateId(command.Id);
-            _ = ValidateName(command.Name);
-            _ = ValidateBirth(command.Birth);
-            _ = ValidateGender(command.Gender);
-            _ = ValidateCashBalance(command.CashBalance);
+            ValidateId(command.Id);
+            ValidateName(command.Name);
+            ValidateBirth(command.Birth);
+            ValidateGender(command.Gender);
+            ValidateCashBalance(command.CashBalance);
             return Notifications;
         }
 
         public IReadOnlyCollection<Notification> ValidateCommand(CustomerActivityStateCommand command)
         {
-            _ = ValidateId(command.Id);
+            ValidateId(command.Id);
             return Notifications;
         }
 
         public IReadOnlyCollection<Notification> ValidateCommand(CustomerDeleteCommand command)
         {
-            _ = ValidateId(command.Id);
+            ValidateId(command.Id);
             return Notifications;
         }
     }

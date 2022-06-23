@@ -2,28 +2,28 @@
 using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Queries.Results;
-using POC.ServerASMX.Domain.Customers.Repositories.Queries;
+using POC.ServerASMX.Infra.Data.DataContexts;
+using POC.ServerASMX.Infra.Data.Repositories.Queries;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Customers.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly string _connectionString;
+        private readonly DataContext _dataContext;
         private readonly DynamicParameters _parameters;
 
         public CustomerRepository()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
+            _dataContext = new DataContext();
             _parameters = new DynamicParameters();
         }
 
-        public long Insert(Customer client)
+        public async Task<long> InsertAsync(Customer client)
         {
             _parameters.Add("Name", client.Name, DbType.String);
             _parameters.Add("Birth", client.Birth, DbType.DateTime);
@@ -33,13 +33,10 @@ namespace POC.ServerASMX.Domain.Customers.Repositories
             _parameters.Add("CreationDate", client.CreationDate, DbType.DateTime);
             _parameters.Add("ChangeDate", client.ChangeDate, DbType.DateTime);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                return connection.ExecuteScalar<long>(CustomerQueries.Insert, _parameters);
-            }
+            return await _dataContext.Connection.ExecuteScalarAsync<long>(CustomerQueries.Insert, _parameters);
         }
 
-        public void Update(Customer client)
+        public async Task UpdateAsync(Customer client)
         {
             _parameters.Add("Id", client.Id, DbType.Int64);
             _parameters.Add("Name", client.Name, DbType.String);
@@ -50,60 +47,42 @@ namespace POC.ServerASMX.Domain.Customers.Repositories
             _parameters.Add("CreationDate", client.CreationDate, DbType.DateTime);
             _parameters.Add("ChangeDate", client.ChangeDate, DbType.DateTime);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                _ = connection.Execute(CustomerQueries.Update, _parameters);
-            }
+            await _dataContext.Connection.ExecuteAsync(CustomerQueries.Update, _parameters);
         }
 
-        public void Delete(long id)
+        public async Task DeleteAsync(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                _ = connection.Execute(CustomerQueries.Delete, _parameters);
-            }
+            await _dataContext.Connection.ExecuteAsync(CustomerQueries.Delete, _parameters);
         }
 
-        public void ChangeActivityState(long id, bool active)
+        public async Task ChangeActivityStateAsync(long id, bool active)
         {
             _parameters.Add("Id", id, DbType.Int64);
             _parameters.Add("Active", active, DbType.Boolean);
             _parameters.Add("ChangeDate", DateTime.Now, DbType.DateTime);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                _ = connection.Execute(CustomerQueries.ChangeActivityState, _parameters);
-            }
+            await _dataContext.Connection.ExecuteAsync(CustomerQueries.ChangeActivityState, _parameters);
         }
 
-        public CustomerQueryResult Get(long id)
+        public async Task<CustomerQueryResult> GetAsync(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                return connection.Query<CustomerQueryResult>(CustomerQueries.Get, _parameters).FirstOrDefault();
-            }
+            return (await _dataContext.Connection.QueryAsync<CustomerQueryResult>(CustomerQueries.Get, _parameters)).FirstOrDefault();
         }
 
-        public List<CustomerQueryResult> List()
+        public async Task<List<CustomerQueryResult>> ListAsync()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                return connection.Query<CustomerQueryResult>(CustomerQueries.List, _parameters).ToList();
-            }
+            return (await _dataContext.Connection.QueryAsync<CustomerQueryResult>(CustomerQueries.List, _parameters)).ToList();
         }
 
-        public bool CheckId(long id)
+        public async Task<bool> CheckIdAsync(long id)
         {
             _parameters.Add("Id", id, DbType.Int64);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                return connection.Query<bool>(CustomerQueries.CheckId, _parameters).FirstOrDefault();
-            }
+            return (await _dataContext.Connection.QueryAsync<bool>(CustomerQueries.CheckId, _parameters)).FirstOrDefault();
         }
     }
 }

@@ -8,6 +8,7 @@ using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
 using System;
+using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
 {
@@ -18,11 +19,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         public CustomerHandlerTest() => _handler = new CustomerHandler();
 
         [Test]
-        public void Handle_Add_Success()
+        public async Task HandleAsync_Add_Success()
         {
             var command = MocksUnitTest.CustomerAddCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -42,11 +43,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Add_Invalid_Command_Null()
+        public async Task HandleAsync_Add_Invalid_Command_Null()
         {
             var command = (CustomerAddCommand)null;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -60,7 +61,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [TestCase(null, -1, -1)]
         [TestCase("", -1, -1)]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public void Handle_Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
+        public async Task HandleAsync_Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerAddCommand
             {
@@ -70,7 +71,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
                 CashBalance = cashBalance
             };
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -84,12 +85,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public void Handle_Add_Invalid_Name(string name)
+        public async Task HandleAsync_Add_Invalid_Name(string name)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Name = name;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -100,12 +101,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Add_Invalid_Birth_DateTimeMin()
+        public async Task HandleAsync_Add_Invalid_Birth_DateTimeMin()
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -116,12 +117,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Add_Invalid_Birth_FutureDate()
+        public async Task HandleAsync_Add_Invalid_Birth_FutureDate()
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -133,12 +134,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
 
         [Test]
         [TestCase(-1)]
-        public void Handle_Add_Invalid_Gender(EGender gender)
+        public async Task HandleAsync_Add_Invalid_Gender(EGender gender)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.Gender = gender;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -150,12 +151,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
 
         [Test]
         [TestCase(-1)]
-        public void Handle_Add_Invalid_CashBalance(decimal cashBalance)
+        public async Task HandleAsync_Add_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksUnitTest.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -166,13 +167,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Update_Success()
+        public async Task HandleAsync_Update_Success()
         {
-            _handler.Handle(MocksUnitTest.CustomerAddCommand);
+            await _handler.HandleAsync(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerUpdateCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -192,11 +193,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Update_Invalid_Command_Null()
+        public async Task HandleAsync_Update_Invalid_Command_Null()
         {
             var command = (CustomerUpdateCommand)null;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -210,7 +211,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [TestCase(-1, null, -1, -1)]
         [TestCase(-1, "", -1, -1)]
         [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public void Handle_Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
+        public async Task HandleAsync_Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerUpdateCommand
             {
@@ -221,7 +222,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
                 CashBalance = cashBalance
             };
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -232,11 +233,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Update_Invalid_Not_Resgistred_Id()
+        public async Task HandleAsync_Update_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -249,12 +250,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Handle_Update_Invalid_Id(long id)
+        public async Task HandleAsync_Update_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Id = id;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -268,12 +269,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public void Handle_Update_Invalid_Name(string name)
+        public async Task HandleAsync_Update_Invalid_Name(string name)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Name = name;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -284,12 +285,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Update_Invalid_Birth_DateTimeMin()
+        public async Task HandleAsync_Update_Invalid_Birth_DateTimeMin()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -300,12 +301,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Update_Invalid_Birth_FutureDate()
+        public async Task HandleAsync_Update_Invalid_Birth_FutureDate()
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -317,12 +318,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
 
         [Test]
         [TestCase(-1)]
-        public void Handle_Update_Invalid_Gender(EGender gender)
+        public async Task HandleAsync_Update_Invalid_Gender(EGender gender)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.Gender = gender;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -334,12 +335,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
 
         [Test]
         [TestCase(-1)]
-        public void Handle_Update_Invalid_CashBalance(decimal cashBalance)
+        public async Task HandleAsync_Update_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksUnitTest.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -350,13 +351,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Activity_State_Success()
+        public async Task HandleAsync_Activity_State_Success()
         {
-            _handler.Handle(MocksUnitTest.CustomerAddCommand);
+            await _handler.HandleAsync(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerActivityStateCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -367,11 +368,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Activity_State_Invalid_Command_Null()
+        public async Task HandleAsync_Activity_State_Invalid_Command_Null()
         {
             var command = (CustomerActivityStateCommand)null;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -382,11 +383,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Activity_State_Invalid_Not_Resgistred_Id()
+        public async Task HandleAsync_Activity_State_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerActivityStateCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -399,12 +400,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Handle_Activity_State_Invalid_Id(long id)
+        public async Task HandleAsync_Activity_State_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerActivityStateCommand;
             command.Id = id;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -415,13 +416,13 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Delete_Success()
+        public async Task HandleAsync_Delete_Success()
         {
-            _handler.Handle(MocksUnitTest.CustomerAddCommand);
+            await _handler.HandleAsync(MocksUnitTest.CustomerAddCommand);
 
             var command = MocksUnitTest.CustomerDeleteCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -432,11 +433,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Delete_Invalid_Command_Null()
+        public async Task HandleAsync_Delete_Invalid_Command_Null()
         {
             var command = (CustomerDeleteCommand)null;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -447,11 +448,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         }
 
         [Test]
-        public void Handle_Delete_Invalid_Not_Resgistred_Id()
+        public async Task HandleAsync_Delete_Invalid_Not_Resgistred_Id()
         {
             var command = MocksUnitTest.CustomerDeleteCommand;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -464,12 +465,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public void Handle_Delete_Invalid_Id(long id)
+        public async Task HandleAsync_Delete_Invalid_Id(long id)
         {
             var command = MocksUnitTest.CustomerDeleteCommand;
             command.Id = id;
 
-            var commandResult = _handler.Handle(command);
+            var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.Format());
 
