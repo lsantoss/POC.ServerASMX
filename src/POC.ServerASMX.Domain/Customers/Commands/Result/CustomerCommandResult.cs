@@ -1,9 +1,9 @@
 ﻿using POC.ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace POC.ServerASMX.Domain.Customers.Commands.Output
+namespace POC.ServerASMX.Domain.Customers.Commands.Result
 {
-    public class CustomerCommandOutput
+    public class CustomerCommandResult
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -14,9 +14,9 @@ namespace POC.ServerASMX.Domain.Customers.Commands.Output
         public DateTime CreationDate { get; private set; }
         public DateTime? ChangeDate { get; private set; }
 
-        public CustomerCommandOutput() { }
+        public CustomerCommandResult() { }
 
-        public CustomerCommandOutput(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
+        public CustomerCommandResult(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
         {
             Id = id;
             Name = name;

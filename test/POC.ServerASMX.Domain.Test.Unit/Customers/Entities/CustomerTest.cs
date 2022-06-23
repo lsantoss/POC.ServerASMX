@@ -165,21 +165,21 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         }
 
         [Test]
-        public void MapToCustomerCommandOutput_Success()
+        public void MapToCustomerCommandResult_Success()
         {
             var customer = MocksUnitTest.Customer;
-            var commandOutput = customer.MapToCustomerCommandOutput();
+            var commandResult = customer.MapToCustomerCommandResult();
 
-            TestContext.WriteLine(commandOutput.Format());
+            TestContext.WriteLine(commandResult.Format());
 
-            Assert.AreEqual(customer.Id, commandOutput.Id);
-            Assert.AreEqual(customer.Name, commandOutput.Name);
-            Assert.AreEqual(customer.Birth, commandOutput.Birth);
-            Assert.AreEqual(customer.Gender, commandOutput.Gender);
-            Assert.AreEqual(customer.CashBalance, commandOutput.CashBalance);
-            Assert.AreEqual(customer.Active, commandOutput.Active);
-            Assert.AreEqual(customer.CreationDate, commandOutput.CreationDate);
-            Assert.AreEqual(customer.ChangeDate, commandOutput.ChangeDate);
+            Assert.AreEqual(customer.Id, commandResult.Id);
+            Assert.AreEqual(customer.Name, commandResult.Name);
+            Assert.AreEqual(customer.Birth, commandResult.Birth);
+            Assert.AreEqual(customer.Gender, commandResult.Gender);
+            Assert.AreEqual(customer.CashBalance, commandResult.CashBalance);
+            Assert.AreEqual(customer.Active, commandResult.Active);
+            Assert.AreEqual(customer.CreationDate, commandResult.CreationDate);
+            Assert.AreEqual(customer.ChangeDate, commandResult.ChangeDate);
         }
     }
 }

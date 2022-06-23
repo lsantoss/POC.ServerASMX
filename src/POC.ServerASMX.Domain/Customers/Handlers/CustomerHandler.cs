@@ -33,9 +33,9 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             var id = _repository.Insert(customer);
             customer.SetId(id);
 
-            var outputData = customer.MapToCustomerCommandOutput();
+            var resultData = customer.MapToCustomerCommandResult();
 
-            return new CommandResult("Customer successfully inserted!", outputData);
+            return new CommandResult("Customer successfully inserted!", resultData);
         }
 
         public CommandResult Handle(CustomerUpdateCommand command)
@@ -58,9 +58,9 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
 
             _repository.Update(customer);
 
-            var outputData = customer.MapToCustomerCommandOutput();
+            var resultData = customer.MapToCustomerCommandResult();
 
-            return new CommandResult("Customer successfully updated!", outputData);
+            return new CommandResult("Customer successfully updated!", resultData);
         }
 
         public CommandResult Handle(CustomerActivityStateCommand command)

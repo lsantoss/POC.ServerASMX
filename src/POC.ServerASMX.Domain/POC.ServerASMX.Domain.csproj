@@ -50,7 +50,7 @@
     <Compile Include="Customers\Commands\Input\CustomerAddCommand.cs" />
     <Compile Include="Customers\Commands\Input\CustomerDeleteCommand.cs" />
     <Compile Include="Customers\Commands\Input\CustomerUpdateCommand.cs" />
-    <Compile Include="Customers\Commands\Output\CustomerCommandOutput.cs" />
+    <Compile Include="Customers\Commands\Result\CustomerCommandResult.cs" />
     <Compile Include="Customers\Entities\Customer.cs" />
     <Compile Include="Customers\Enums\EGender.cs" />
     <Compile Include="Customers\Handlers\CustomerHandler.cs" />

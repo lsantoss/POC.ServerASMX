@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
-using POC.ServerASMX.Domain.Customers.Commands.Output;
+using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Constants;
@@ -22,7 +22,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
             var commandResult = _customerService.Add(command);
 
-            var result = (CustomerCommandOutput)commandResult.Data;
+            var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.Format());
 
@@ -172,7 +172,7 @@ namespace POC.ServerASMX.Application.Test.Unit.Customers.Services
 
             var commandResult = _customerService.Update(command);
 
-            var result = (CustomerCommandOutput)commandResult.Data;
+            var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.Format());
 

@@ -52,7 +52,7 @@
     <Compile Include="Customers\Commands\Input\CustomerAddCommandTest.cs" />
     <Compile Include="Customers\Commands\Input\CustomerDeleteCommandTest.cs" />
     <Compile Include="Customers\Commands\Input\CustomerUpdateCommandTest.cs" />
-    <Compile Include="Customers\Commands\Output\CustomerCommandOutputTest.cs" />
+    <Compile Include="Customers\Commands\Result\CustomerCommandResultTest.cs" />
     <Compile Include="Customers\Entities\CustomerTest.cs" />
     <Compile Include="Customers\Handlers\CustomerHandlerTest.cs" />
     <Compile Include="Customers\Repositories\CustomerRepositoryTest.cs" />

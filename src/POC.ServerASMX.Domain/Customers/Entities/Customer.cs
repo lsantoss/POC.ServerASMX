@@ -1,8 +1,8 @@
 ﻿using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Domain.Customers.Commands.Output;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
 using System;
+using POC.ServerASMX.Domain.Customers.Commands.Result;
 
 namespace POC.ServerASMX.Domain.Customers.Entities
 {
@@ -71,7 +71,7 @@ namespace POC.ServerASMX.Domain.Customers.Entities
             AddNotification(new CustomerValidation().ValidateCashBalance(CashBalance));
         }
 
-        public CustomerCommandOutput MapToCustomerCommandOutput() => new CustomerCommandOutput(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
+        public CustomerCommandResult MapToCustomerCommandResult() => new CustomerCommandResult(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
 
         private void SetActive(bool active) => Active = active;
         private void SetCreationDate(DateTime creationDate) => CreationDate = creationDate;

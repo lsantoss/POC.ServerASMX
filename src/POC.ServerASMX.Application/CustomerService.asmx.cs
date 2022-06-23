@@ -1,6 +1,5 @@
 ﻿using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
-using POC.ServerASMX.Domain.Customers.Commands.Output;
 using POC.ServerASMX.Domain.Customers.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
 using System.Xml.Serialization;
+using POC.ServerASMX.Domain.Customers.Commands.Result;
 
 namespace POC.ServerASMX.Application
 {
@@ -28,15 +28,15 @@ namespace POC.ServerASMX.Application
         }
 
         [WebMethod]
-        [XmlInclude(typeof(CustomerCommandOutput))]
+        [XmlInclude(typeof(CustomerCommandResult))]
         public CommandResult Add(CustomerAddCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        [XmlInclude(typeof(CustomerCommandOutput))]
+        [XmlInclude(typeof(CustomerCommandResult))]
         public CommandResult Update(CustomerUpdateCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        [XmlInclude(typeof(CustomerCommandOutput))]
+        [XmlInclude(typeof(CustomerCommandResult))]
         public CommandResult ChangeActivityState(CustomerActivityStateCommand command) => _handler.Handle(command);
 
         [WebMethod]
