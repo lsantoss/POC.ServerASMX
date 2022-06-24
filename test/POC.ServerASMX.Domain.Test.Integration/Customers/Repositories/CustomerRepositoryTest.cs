@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Threading.Tasks;
 
-namespace POC.ServerASMX.Domain.Test.Unit.Customers.Repositories
+namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 {
     internal class CustomerRepositoryTest : DatabaseUnitTest
     {

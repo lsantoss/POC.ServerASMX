@@ -10,7 +10,7 @@ using POC.ServerASMX.Test.Base.Extensions;
 using System;
 using System.Threading.Tasks;
 
-namespace POC.ServerASMX.Domain.Test.Unit.Customers.Handlers
+namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
 {
     internal class CustomerHandlerTest : DatabaseUnitTest
     {
