@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Tools.Base.Common;
 using System.Collections.Generic;
 
 namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 {
-    internal class CommandResultTest : BaseUnitTest
+    internal class CommandResultTest : BaseTest
     {
         [Test]
         [TestCase("Message")]
@@ -15,7 +15,7 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         {
             var commandResult = new CommandResult(message);
 
-            TestContext.WriteLine(commandResult.Format());
+            TestContext.WriteLine(commandResult.ToJson());
 
             Assert.IsTrue(commandResult.Success);
             Assert.AreEqual(message, commandResult.Message);
@@ -29,7 +29,7 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         {
             var commandResult = new CommandResult(message, data);
 
-            TestContext.WriteLine(commandResult.Format());
+            TestContext.WriteLine(commandResult.ToJson());
 
             Assert.IsTrue(commandResult.Success);
             Assert.AreEqual(message, commandResult.Message);
@@ -45,7 +45,7 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 
             var commandResult = new CommandResult(message, errors);
 
-            TestContext.WriteLine(commandResult.Format());
+            TestContext.WriteLine(commandResult.ToJson());
 
             Assert.IsFalse(commandResult.Success);
             Assert.AreEqual(message, commandResult.Message);
@@ -60,7 +60,7 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         {
             var commandResult = new CommandResult(message, notificationProperty, notificationMessage);
 
-            TestContext.WriteLine(commandResult.Format());
+            TestContext.WriteLine(commandResult.ToJson());
 
             Assert.IsFalse(commandResult.Success);
             Assert.AreEqual(message, commandResult.Message);

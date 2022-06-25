@@ -2,8 +2,9 @@
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Repositories;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Base.Mocks.UnitTests;
+using POC.ServerASMX.Test.Tools.Base.Integration;
 using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 {
-    internal class CustomerRepositoryTest : DatabaseUnitTest
+    internal class CustomerRepositoryTest : IntegrationTest
     {
         private readonly ICustomerRepository _repository;
 
@@ -20,13 +21,13 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task InsertAsync_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
             var result = await _repository.GetAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(customer.Id, result.Id);
             Assert.AreEqual(customer.Name, result.Name);
@@ -42,7 +43,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(null)]
         public void InsertAsync_Invalid_Name_Exception(string name)
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
             customer.SetName(name);
 
             Assert.ThrowsAsync<SqlException>(() => _repository.InsertAsync(customer));
@@ -51,7 +52,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void InsertAsync_Invalid_Birth_Exception()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
             customer.SetBirth(DateTime.MinValue);
 
             Assert.ThrowsAsync<SqlTypeException>(() => _repository.InsertAsync(customer));
@@ -61,7 +62,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public void InsertAsync_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
             customer.SetGender(gender);
 
             Assert.ThrowsAsync<SqlException>(() => _repository.InsertAsync(customer));
@@ -70,15 +71,15 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task UpdateAsync_Success()
         {
-            await _repository.InsertAsync(MocksUnitTest.Customer);
+            await _repository.InsertAsync(MocksData.Customer);
 
-            var customer = MocksUnitTest.CustomerEdited;
+            var customer = MocksData.CustomerEdited;
 
             await _repository.UpdateAsync(customer);
 
             var result = await _repository.GetAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(customer.Id, result.Id);
             Assert.AreEqual(customer.Name, result.Name);
@@ -94,7 +95,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(null)]
         public async Task UpdateAsync_Invalid_Name_Exception(string name)
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
@@ -106,7 +107,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task UpdateAsync_Invalid_Birth_Exception()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
@@ -119,7 +120,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public async Task UpdateAsync_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
@@ -131,7 +132,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task DeleteAsync_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
@@ -139,7 +140,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             var result = await _repository.GetAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.IsNull(result);
         }
@@ -149,7 +150,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(false)]
         public async Task ChangeActivityStateAsync_Success(bool active)
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
@@ -157,7 +158,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             var result = await _repository.GetAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(customer.Id, result.Id);
             Assert.AreEqual(customer.Name, result.Name);
@@ -172,13 +173,13 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task GetAsync_Registred_Id_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
             var result = await _repository.GetAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(customer.Id, result.Id);
             Assert.AreEqual(customer.Name, result.Name);
@@ -198,7 +199,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         {
             var result = await _repository.GetAsync(id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.IsNull(result);
         }
@@ -206,13 +207,13 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task ListAsync_Registred_Ids_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
             var result = await _repository.ListAsync();
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(customer.Id, result[0].Id);
@@ -230,7 +231,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         {
             var result = await _repository.ListAsync();
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.AreEqual(0, result.Count);
         }
@@ -238,13 +239,13 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public async Task CheckIdAsync_Registred_Id_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             await _repository.InsertAsync(customer);
 
             var result = await _repository.CheckIdAsync(customer.Id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.True(result);
         }
@@ -257,7 +258,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         {
             var result = await _repository.CheckIdAsync(id);
 
-            TestContext.WriteLine(result.Format());
+            TestContext.WriteLine(result.ToJson());
 
             Assert.False(result);
         }

@@ -6,19 +6,29 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace POC.ServerASMX.Test.Base.Base
+namespace POC.ServerASMX.Test.Tools.Base.Common
 {
     [TestFixture]
-    public class DatabaseUnitTest : BaseUnitTest
+    public class DatabaseTest : BaseTest
     {
-        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
-        private static readonly string _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
+        private readonly string _connectionString;
+        private readonly string _connectionStringReal;
+        private readonly string _scriptCreateDatabasePath;
+        private readonly string _scriptCreateTablesPath;
+        private readonly string _scriptDropTablesPath;
 
-        private static readonly string _scriptCreateDatabasePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateDatabase.sql";
-        private static readonly string _scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTables.sql";
-        private static readonly string _scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTables.sql";
+        public DatabaseTest() : base()
+        {
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-        public DatabaseUnitTest() : base() { }
+            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
+            _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
+            _scriptCreateDatabasePath = $@"{baseDirectory}\Sql\CreateDatabase.sql";
+            _scriptCreateTablesPath = $@"{baseDirectory}\Sql\CreateTables.sql";
+            _scriptDropTablesPath = $@"{baseDirectory}\Sql\DropTables.sql";
+
+            CreateDatabase();
+        }
 
         [OneTimeSetUp]
         protected override void OneTimeSetUp() => InitializeData();
@@ -34,17 +44,18 @@ namespace POC.ServerASMX.Test.Base.Base
 
         private void InitializeData()
         {
-            MocksUnitTest = new MocksUnitTest();
-            PrepareDatabase();
+            MocksData = new MocksData();
+            DropTablesAndProcedures();
+            CreateTablesAndProcedures();
         }
 
         private void ClearData()
         {
-            MocksUnitTest = null;
-            DestroyDatabase();
+            MocksData = null;
+            DropTablesAndProcedures();
         }
 
-        private void PrepareDatabase()
+        private void CreateDatabase()
         {
             try
             {
@@ -54,8 +65,18 @@ namespace POC.ServerASMX.Test.Base.Base
                     {
                         connection.Execute(streamReader.ReadToEnd());
                     }
-                }
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error running scripts to create the test database: {ex.Message}");
+            }
+        }
 
+        private void CreateTablesAndProcedures()
+        {
+            try
+            {
                 using (var streamReader = new StreamReader(_scriptCreateTablesPath))
                 {
                     var scripts = streamReader.ReadToEnd().Split(
@@ -74,7 +95,7 @@ namespace POC.ServerASMX.Test.Base.Base
             }
         }
 
-        private void DestroyDatabase()
+        private void DropTablesAndProcedures()
         {
             try
             {

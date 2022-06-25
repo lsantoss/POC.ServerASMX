@@ -18,8 +18,8 @@
     <ProjectGuid>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Test.Base</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Test.Base</AssemblyName>
+    <RootNamespace>POC.ServerASMX.Test.Tools</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Test.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -88,9 +88,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BaseIntegrationTest.cs" />
-    <Compile Include="Base\BaseUnitTest.cs" />
-    <Compile Include="Base\DatabaseUnitTest.cs" />
+    <Compile Include="Base\Contract\ContractTest.cs" />
+    <Compile Include="Base\Common\BaseTest.cs" />
+    <Compile Include="Base\Common\DatabaseTest.cs" />
+    <Compile Include="Base\Integration\IntegrationTest.cs" />
     <Compile Include="Connected Services\CustomerService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,17 +99,17 @@
     </Compile>
     <Compile Include="Constants\StringsWithPredefinedSizes.cs" />
     <Compile Include="Extensions\JsonFormatter.cs" />
-    <Compile Include="Mocks\IntegrationTests\Customers\Requests\CustomerActivityStateRequestMock.cs" />
-    <Compile Include="Mocks\IntegrationTests\Customers\Requests\CustomerAddRequestMock.cs" />
-    <Compile Include="Mocks\IntegrationTests\Customers\Requests\CustomerDeleteRequestMock.cs" />
-    <Compile Include="Mocks\IntegrationTests\Customers\Requests\CustomerUpdateRequestMock.cs" />
-    <Compile Include="Mocks\IntegrationTests\MocksIntegrationTest.cs" />
-    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
-    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerAddCommandMock.cs" />
-    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
-    <Compile Include="Mocks\UnitTests\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
-    <Compile Include="Mocks\UnitTests\Customers\Entities\CustomerMock.cs" />
-    <Compile Include="Mocks\UnitTests\MocksUnitTest.cs" />
+    <Compile Include="MockContractTests\Customers\Requests\CustomerActivityStateRequestMock.cs" />
+    <Compile Include="MockContractTests\Customers\Requests\CustomerAddRequestMock.cs" />
+    <Compile Include="MockContractTests\Customers\Requests\CustomerDeleteRequestMock.cs" />
+    <Compile Include="MockContractTests\Customers\Requests\CustomerUpdateRequestMock.cs" />
+    <Compile Include="MockContractTests\MocksIntegrationTest.cs" />
+    <Compile Include="Mocks\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
+    <Compile Include="Mocks\Customers\Commands\Input\CustomerAddCommandMock.cs" />
+    <Compile Include="Mocks\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
+    <Compile Include="Mocks\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
+    <Compile Include="Mocks\Customers\Entities\CustomerMock.cs" />
+    <Compile Include="Mocks\MocksData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CustomerService\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -2,14 +2,14 @@
 using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Tools.Base.Common;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 {
-    internal class CustomerValidationTest : BaseUnitTest
+    internal class CustomerValidationTest : BaseTest
     {
         [Test]
         [TestCase(1)]
@@ -18,7 +18,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateId(id);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -30,7 +30,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateId(id);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -42,7 +42,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateName(name);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -55,7 +55,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateName(name);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -65,7 +65,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateBirth(new DateTime(1995, 07, 14));
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -75,7 +75,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateBirth(DateTime.MinValue);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -85,7 +85,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateBirth(DateTime.Now.AddDays(1));
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -97,7 +97,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateGender(gender);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -108,7 +108,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateGender(gender);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -120,7 +120,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateCashBalance(cashBalance);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -131,7 +131,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         {
             var notifications = new CustomerValidation().ValidateCashBalance(cashBalance);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -139,11 +139,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Add_Valid()
         {
-            var command = MocksUnitTest.CustomerAddCommand;
+            var command = MocksData.CustomerAddCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -164,7 +164,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -172,11 +172,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Update_Valid()
         {
-            var command = MocksUnitTest.CustomerUpdateCommand;
+            var command = MocksData.CustomerUpdateCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -198,7 +198,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -206,11 +206,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_ActivityState_Valid()
         {
-            var command = MocksUnitTest.CustomerActivityStateCommand;
+            var command = MocksData.CustomerActivityStateCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -227,7 +227,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }
@@ -235,11 +235,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Delete_Valid()
         {
-            var command = MocksUnitTest.CustomerDeleteCommand;
+            var command = MocksData.CustomerDeleteCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreEqual(0, notifications.Count);
         }
@@ -256,7 +256,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
-            TestContext.WriteLine(notifications.Format());
+            TestContext.WriteLine(notifications.ToJson());
 
             Assert.AreNotEqual(0, notifications.Count);
         }

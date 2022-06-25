@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Tools.Base.Common;
 
 namespace POC.ServerASMX.Infra.Test.Unit.Notifications
 {
-    internal class NotificationTest : BaseUnitTest
+    internal class NotificationTest : BaseTest
     {
         [Test]
         [TestCase("Property", "Message")]
@@ -13,7 +13,7 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
         {
             var notification = new Notification(property, message);
 
-            TestContext.WriteLine(notification.Format());
+            TestContext.WriteLine(notification.ToJson());
 
             Assert.AreEqual(property, notification.Property);
             Assert.AreEqual(message, notification.Message);

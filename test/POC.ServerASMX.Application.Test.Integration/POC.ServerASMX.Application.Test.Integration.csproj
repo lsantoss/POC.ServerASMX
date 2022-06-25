@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\POC.ServerASMX.Test.Base\POC.ServerASMX.Test.Base.csproj">
-      <Project>{5bead5cd-8d40-4bba-9bcf-b4eb16538524}</Project>
-      <Name>POC.ServerASMX.Test.Base</Name>
+    <ProjectReference Include="..\POC.ServerASMX.Test.Tools\POC.ServerASMX.Test.Tools.csproj">
+      <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>
+      <Name>POC.ServerASMX.Test.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

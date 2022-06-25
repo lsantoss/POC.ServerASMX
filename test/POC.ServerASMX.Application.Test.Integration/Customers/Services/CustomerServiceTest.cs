@@ -1,14 +1,14 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.CustomerService;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Tools.Base.Contract;
 using System;
 using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 {
-    internal class CustomerServiceTest : BaseIntegrationTest
+    internal class CustomerServiceTest : ContractTest
     {
         private readonly CustomerServiceSoapClient _customerServiceSoapClient;
 
@@ -27,7 +27,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var result = (CustomerCommandOutput)commandResult.Data;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.True(commandResult.Success);
                 Assert.AreEqual("Customer successfully inserted!", commandResult.Message);
@@ -57,7 +57,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -90,7 +90,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -118,7 +118,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -143,7 +143,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -168,7 +168,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -194,7 +194,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.AddResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -224,7 +224,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var result = (CustomerCommandOutput)commandResult.Data;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.True(commandResult.Success);
                 Assert.AreEqual("Customer successfully updated!", commandResult.Message);
@@ -255,7 +255,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -287,7 +287,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -313,7 +313,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
@@ -340,7 +340,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -368,7 +368,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -393,7 +393,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -418,7 +418,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -444,7 +444,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -472,7 +472,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.True(commandResult.Success);
                 Assert.AreEqual("Customer successfully updated!", commandResult.Message);
@@ -496,7 +496,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -522,7 +522,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
@@ -549,7 +549,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -577,7 +577,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.DeleteResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.True(commandResult.Success);
                 Assert.AreEqual("Customer successfully deleted!", commandResult.Message);
@@ -601,7 +601,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.DeleteResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -627,7 +627,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.DeleteResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
@@ -654,7 +654,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var commandResult = response?.Body?.DeleteResult;
 
-                TestContext.WriteLine(commandResult.Format());
+                TestContext.WriteLine(commandResult.ToJson());
 
                 Assert.False(commandResult.Success);
                 Assert.AreEqual("Invalid parameters", commandResult.Message);
@@ -681,7 +681,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var result = response?.Body?.GetResult;
 
-                TestContext.WriteLine(result.Format());
+                TestContext.WriteLine(result.ToJson());
 
                 Assert.AreEqual(idAdd, result.Id);
                 Assert.AreEqual(command.Name, result.Name);
@@ -710,7 +710,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var result = response?.Body?.GetResult;
 
-                TestContext.WriteLine(result.Format());
+                TestContext.WriteLine(result.ToJson());
 
                 Assert.IsNull(result);
             }
@@ -729,7 +729,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
                 var result = response?.Body?.ListResult;
 
-                TestContext.WriteLine(result.Format());
+                TestContext.WriteLine(result.ToJson());
 
                 Assert.IsNotNull(result);
             }

@@ -5,7 +5,7 @@ using POC.ServerASMX.Test.Base.Mocks.UnitTests.Customers.Entities;
 
 namespace POC.ServerASMX.Test.Base.Mocks.UnitTests
 {
-    public class MocksUnitTest
+    public class MocksData
     {
         public Customer Customer { get; }
         public Customer CustomerEdited { get; }
@@ -14,7 +14,7 @@ namespace POC.ServerASMX.Test.Base.Mocks.UnitTests
         public CustomerDeleteCommand CustomerDeleteCommand { get; }
         public CustomerActivityStateCommand CustomerActivityStateCommand { get; }
 
-        public MocksUnitTest()
+        public MocksData()
         {
             Customer = CustomerMock.GetCustomer();
             CustomerEdited = CustomerMock.GetCustomerEdited();

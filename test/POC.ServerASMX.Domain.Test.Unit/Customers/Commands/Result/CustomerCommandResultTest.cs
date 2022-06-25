@@ -1,21 +1,21 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Domain.Customers.Commands.Result;
-using POC.ServerASMX.Test.Base.Base;
 using POC.ServerASMX.Test.Base.Extensions;
+using POC.ServerASMX.Test.Tools.Base.Common;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Result
 {
-    internal class CustomerCommandResultTest : BaseUnitTest
+    internal class CustomerCommandResultTest : BaseTest
     {
         [Test]
         public void Constructor_Success()
         {
-            var customer = MocksUnitTest.Customer;
+            var customer = MocksData.Customer;
 
             var commandResult = new CustomerCommandResult(customer.Id, customer.Name, customer.Birth,
                 customer.Gender, customer.CashBalance, customer.Active, customer.CreationDate, customer.ChangeDate);
 
-            TestContext.WriteLine(commandResult.Format());
+            TestContext.WriteLine(commandResult.ToJson());
 
             Assert.AreEqual(customer.Id, commandResult.Id);
             Assert.AreEqual(customer.Name, commandResult.Name);

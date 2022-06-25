@@ -1,7 +1,7 @@
 ﻿using POC.ServerASMX.Test.Base.CustomerService;
-using POC.ServerASMX.Test.Base.Mocks.IntegrationTests.Customers.Requests;
+using POC.ServerASMX.Test.Tools.MockContractTests.Customers.Requests;
 
-namespace POC.ServerASMX.Test.Base.Mocks.IntegrationTests
+namespace POC.ServerASMX.Test.Tools.MockContractTests
 {
     public class MocksIntegrationTest
     {
