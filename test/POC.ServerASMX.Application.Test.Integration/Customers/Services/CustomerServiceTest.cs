@@ -1,106 +1,91 @@
 ﻿using NUnit.Framework;
+using POC.ServerASMX.Domain.Customers.Commands.Input;
+using POC.ServerASMX.Domain.Customers.Commands.Result;
+using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Test.Base.Constants;
-using POC.ServerASMX.Test.Base.CustomerService;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Contract;
+using POC.ServerASMX.Test.Tools.Base.Integration;
 using System;
 using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 {
-    internal class CustomerServiceTest : ContractTest
+    internal class CustomerServiceTest : IntegrationTest
     {
-        private readonly CustomerServiceSoapClient _customerServiceSoapClient;
+        private readonly CustomerService _customerService;
 
-        public CustomerServiceTest() => _customerServiceSoapClient = new CustomerServiceSoapClient("CustomerServiceSoap");
+        public CustomerServiceTest() => _customerService = new CustomerService();
 
         [Test]
         public async Task Add_Success()
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+
+            var commandResult = await _customerService.Add(command);
+
+            var result = (CustomerCommandResult)commandResult.Data;
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-
-                var response = await _customerServiceSoapClient.AddAsync(command);
-
-                var commandResult = response?.Body?.AddResult;
-
-                var result = (CustomerCommandOutput)commandResult.Data;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully inserted!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.IsNull(result.ChangeDate);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully inserted!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(result.Id, Is.EqualTo(1));
+                Assert.That(result.Name, Is.EqualTo(command.Name));
+                Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
         public async Task Add_Invalid_Command_Null()
         {
-            try
+            var command = (CustomerAddCommand)null;
+
+            var commandResult = await _customerService.Add(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = (CustomerAddCommand)null;
-
-                var response = await _customerServiceSoapClient.AddAsync(command);
-
-                var commandResult = response?.Body?.AddResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
-        [TestCase(null, -1)]
-        [TestCase("", -1)]
-        [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1)]
-        public async Task Add_Invalid_Command(string name, decimal cashBalance)
+        [TestCase(null, -1, -1)]
+        [TestCase("", -1, -1)]
+        [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
+        public async Task Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
         {
-            try
+            var command = new CustomerAddCommand
             {
-                var command = new CustomerAddCommand
-                {
-                    Name = name,
-                    Birth = DateTime.MinValue,
-                    Gender = EGender.Male,
-                    CashBalance = cashBalance
-                };
+                Name = name,
+                Birth = DateTime.MinValue,
+                Gender = gender,
+                CashBalance = cashBalance
+            };
 
-                var response = await _customerServiceSoapClient.AddAsync(command);
+            var commandResult = await _customerService.Add(command);
 
-                var commandResult = response?.Body?.AddResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -109,221 +94,191 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public async Task Add_Invalid_Name(string name)
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+            command.Name = name;
+
+            var commandResult = await _customerService.Add(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Name = name;
-
-                var response = await _customerServiceSoapClient.AddAsync(command);
-
-                var commandResult = response?.Body?.AddResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Add_Invalid_Birth_DateTimeMin()
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+            command.Birth = DateTime.MinValue;
+
+            var commandResult = await _customerService.Add(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Birth = DateTime.MinValue;
-
-                var response = await _customerServiceSoapClient.AddAsync(command);
-
-                var commandResult = response?.Body?.AddResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Add_Invalid_Birth_FutureDate()
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+            command.Birth = DateTime.Now.AddDays(1);
+
+            var commandResult = await _customerService.Add(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Birth = DateTime.Now.AddDays(1);
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
+        }
 
-                var response = await _customerServiceSoapClient.AddAsync(command);
+        [Test]
+        [TestCase(-1)]
+        public async Task Add_Invalid_Gender(EGender gender)
+        {
+            var command = MocksData.CustomerAddCommand;
+            command.Gender = gender;
 
-                var commandResult = response?.Body?.AddResult;
+            var commandResult = await _customerService.Add(command);
 
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         [TestCase(-1)]
         public async Task Add_Invalid_CashBalance(decimal cashBalance)
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+            command.CashBalance = cashBalance;
+
+            var commandResult = await _customerService.Add(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.CashBalance = cashBalance;
-
-                var response = await _customerServiceSoapClient.AddAsync(command);
-
-                var commandResult = response?.Body?.AddResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Update_Success()
         {
-            try
+            await _customerService.Add(MocksData.CustomerAddCommand);
+
+            var command = MocksData.CustomerUpdateCommand;
+
+            var commandResult = await _customerService.Update(command);
+
+            var result = (CustomerCommandResult)commandResult.Data;
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
-
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = idAdd;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                var result = (CustomerCommandOutput)commandResult.Data;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.AreEqual(command.Id, result.Id);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.AreEqual(DateTime.Now.Date, result.ChangeDate.Value.Date);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(result.Id, Is.EqualTo(command.Id));
+                Assert.That(result.Name, Is.EqualTo(command.Name));
+                Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.Date));
+            });
         }
 
         [Test]
         public async Task Update_Invalid_Command_Null()
         {
-            try
+            var command = (CustomerUpdateCommand)null;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = (CustomerUpdateCommand)null;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
-        [TestCase(-1, null, -1)]
-        [TestCase(-1, "", -1)]
-        [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1)]
-        public async Task Update_Invalid_Command(long id, string name, decimal cashBalance)
+        [TestCase(-1, null, -1, -1)]
+        [TestCase(-1, "", -1, -1)]
+        [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
+        public async Task Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
         {
-            try
+            var command = new CustomerUpdateCommand
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
-                command.Name = name;
-                command.Birth = DateTime.MinValue;
-                command.Gender = EGender.Male;
-                command.CashBalance = cashBalance;
+                Id = id,
+                Name = name,
+                Birth = DateTime.MinValue,
+                Gender = gender,
+                CashBalance = cashBalance
+            };
 
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
+            var commandResult = await _customerService.Update(command);
 
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
-        [TestCase(long.MaxValue)]
-        public async Task Update_Invalid_Not_Resgistred_Id(long id)
+        public async Task Update_Invalid_Not_Resgistred_Id()
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -331,26 +286,20 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public async Task Update_Invalid_Id(long id)
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+            command.Id = id;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -359,180 +308,154 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public async Task Update_Invalid_Name(string name)
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+            command.Name = name;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Name = name;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Update_Invalid_Birth_DateTimeMin()
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+            command.Birth = DateTime.MinValue;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Birth = DateTime.MinValue;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Update_Invalid_Birth_FutureDate()
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+            command.Birth = DateTime.Now.AddDays(1);
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Birth = DateTime.Now.AddDays(1);
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
+        }
 
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
+        [Test]
+        [TestCase(-1)]
+        public async Task Update_Invalid_Gender(EGender gender)
+        {
+            var command = MocksData.CustomerUpdateCommand;
+            command.Gender = gender;
 
-                var commandResult = response?.Body?.UpdateResult;
+            var commandResult = await _customerService.Update(command);
 
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         [TestCase(-1)]
         public async Task Update_Invalid_CashBalance(decimal cashBalance)
         {
-            try
+            var command = MocksData.CustomerUpdateCommand;
+            command.CashBalance = cashBalance;
+
+            var commandResult = await _customerService.Update(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.CashBalance = cashBalance;
-
-                var response = await _customerServiceSoapClient.UpdateAsync(command);
-
-                var commandResult = response?.Body?.UpdateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Activity_State_Success()
         {
-            try
+            await _customerService.Add(MocksData.CustomerAddCommand);
+
+            var command = MocksData.CustomerActivityStateCommand;
+
+            var commandResult = await _customerService.ChangeActivityState(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
-
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = idAdd;
-
-                var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
-
-                var commandResult = response?.Body?.ChangeActivityStateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.IsNull(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Activity_State_Invalid_Command_Null()
         {
-            try
+            var command = (CustomerActivityStateCommand)null;
+
+            var commandResult = await _customerService.ChangeActivityState(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = (CustomerActivityStateCommand)null;
-
-                var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
-
-                var commandResult = response?.Body?.ChangeActivityStateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
-        [TestCase(long.MaxValue)]
-        public async Task Activity_State_Invalid_Not_Resgistred_Id(long id)
+        public async Task Activity_State_Invalid_Not_Resgistred_Id()
         {
-            try
+            var command = MocksData.CustomerActivityStateCommand;
+
+            var commandResult = await _customerService.ChangeActivityState(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
-
-                var commandResult = response?.Body?.ChangeActivityStateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -540,104 +463,76 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public async Task Activity_State_Invalid_Id(long id)
         {
-            try
+            var command = MocksData.CustomerActivityStateCommand;
+            command.Id = id;
+
+            var commandResult = await _customerService.ChangeActivityState(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
-
-                var commandResult = response?.Body?.ChangeActivityStateResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Delete_Success()
         {
-            try
+            await _customerService.Add(MocksData.CustomerAddCommand);
+
+            var command = MocksData.CustomerDeleteCommand;
+
+            var commandResult = await _customerService.Delete(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
-
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = idAdd;
-
-                var response = await _customerServiceSoapClient.DeleteAsync(command);
-
-                var commandResult = response?.Body?.DeleteResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully deleted!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.IsNull(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully deleted!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Delete_Invalid_Command_Null()
         {
-            try
+            var command = (CustomerDeleteCommand)null;
+
+            var commandResult = await _customerService.Delete(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = (CustomerDeleteCommand)null;
-
-                var response = await _customerServiceSoapClient.DeleteAsync(command);
-
-                var commandResult = response?.Body?.DeleteResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
-        [TestCase(long.MaxValue)]
-        public async Task Delete_Invalid_Not_Resgistred_Id(long id)
+        public async Task Delete_Invalid_Not_Resgistred_Id()
         {
-            try
+            var command = MocksData.CustomerDeleteCommand;
+
+            var commandResult = await _customerService.Delete(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.DeleteAsync(command);
-
-                var commandResult = response?.Body?.DeleteResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -645,57 +540,44 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public async Task Delete_Invalid_Id(long id)
         {
-            try
+            var command = MocksData.CustomerDeleteCommand;
+            command.Id = id;
+
+            var commandResult = await _customerService.Delete(command);
+
+            TestContext.WriteLine(commandResult.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = id;
-
-                var response = await _customerServiceSoapClient.DeleteAsync(command);
-
-                var commandResult = response?.Body?.DeleteResult;
-
-                TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
         public async Task Get_Registred_Id_Success()
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+
+            await _customerService.Add(command);
+
+            var result = await _customerService.Get(1);
+
+            TestContext.WriteLine(result.ToJson());
+            
+            Assert.Multiple(() =>
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
-
-                var response = await _customerServiceSoapClient.GetAsync(idAdd);
-
-                var result = response?.Body?.GetResult;
-
-                TestContext.WriteLine(result.ToJson());
-
-                Assert.AreEqual(idAdd, result.Id);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.IsNull(result.ChangeDate);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+                Assert.That(result.Id, Is.EqualTo(1));
+                Assert.That(result.Name, Is.EqualTo(command.Name));
+                Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -704,39 +586,46 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(long.MaxValue)]
         public async Task Get_Not_Registred_Id_Success(long id)
         {
-            try
-            {
-                var response = await _customerServiceSoapClient.GetAsync(id);
+            var result = await _customerService.Get(id);
 
-                var result = response?.Body?.GetResult;
+            TestContext.WriteLine(result.ToJson());
 
-                TestContext.WriteLine(result.ToJson());
-
-                Assert.IsNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+            Assert.That(result, Is.Null);
         }
 
         [Test]
-        public async Task List_Success()
+        public async Task List_Registred_Ids_Success()
         {
-            try
+            var command = MocksData.CustomerAddCommand;
+
+            await _customerService.Add(command);
+
+            var result = await _customerService.List();
+
+            TestContext.WriteLine(result.ToJson());
+
+            Assert.Multiple(() =>
             {
-                var response = await _customerServiceSoapClient.ListAsync();
+                Assert.That(result, Has.Count.EqualTo(1));
+                Assert.That(result[0].Id, Is.EqualTo(1));
+                Assert.That(result[0].Name, Is.EqualTo(command.Name));
+                Assert.That(result[0].Birth, Is.EqualTo(command.Birth));
+                Assert.That(result[0].Gender, Is.EqualTo(command.Gender));
+                Assert.That(result[0].CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result[0].Active, Is.True);
+                Assert.That(result[0].CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result[0].ChangeDate, Is.Null);
+            });
+        }
 
-                var result = response?.Body?.ListResult;
+        [Test]
+        public async Task List_Not_Registred_Ids_Success()
+        {
+            var result = await _customerService.List();
 
-                TestContext.WriteLine(result.ToJson());
+            TestContext.WriteLine(result.ToJson());
 
-                Assert.IsNotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Inconclusive(e.Message);
-            }
+            Assert.That(result, Is.Empty);
         }
     }
 }

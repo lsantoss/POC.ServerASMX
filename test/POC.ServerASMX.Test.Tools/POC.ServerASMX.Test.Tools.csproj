@@ -152,10 +152,10 @@
     <Content Include="Sql\CreateDatabase.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\CreateTables.sql">
+    <Content Include="Sql\CreateTablesAndProcedures.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\DropTables.sql">
+    <Content Include="Sql\DropTablesAndProcedures.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

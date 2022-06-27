@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F73ECD25-D0F0-4789-AF1C-1A5793319406}</ProjectGuid>
+    <ProjectGuid>{5CE22451-358E-423F-9E03-538A48A8F9F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Application.Test.Unit</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Application.Test.Unit</AssemblyName>
+    <RootNamespace>POC.ServerASMX.Application.Test.Contract</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Application.Test.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,7 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,18 +58,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\POC.ServerASMX.Application\POC.ServerASMX.Application.csproj">
-      <Project>{6883d523-9e33-4ba0-abd2-85dc01486b85}</Project>
-      <Name>POC.ServerASMX.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
-      <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
-      <Name>POC.ServerASMX.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
-      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
-      <Name>POC.ServerASMX.Infra</Name>
-    </ProjectReference>
     <ProjectReference Include="..\POC.ServerASMX.Test.Tools\POC.ServerASMX.Test.Tools.csproj">
       <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>
       <Name>POC.ServerASMX.Test.Tools</Name>

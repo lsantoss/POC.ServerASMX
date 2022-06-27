@@ -24,8 +24,8 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
             _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
             _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
             _scriptCreateDatabasePath = $@"{baseDirectory}\Sql\CreateDatabase.sql";
-            _scriptCreateTablesPath = $@"{baseDirectory}\Sql\CreateTables.sql";
-            _scriptDropTablesPath = $@"{baseDirectory}\Sql\DropTables.sql";
+            _scriptCreateTablesPath = $@"{baseDirectory}\Sql\CreateTablesAndProcedures.sql";
+            _scriptDropTablesPath = $@"{baseDirectory}\Sql\DropTablesAndProcedures.sql";
 
             CreateDatabase();
         }
