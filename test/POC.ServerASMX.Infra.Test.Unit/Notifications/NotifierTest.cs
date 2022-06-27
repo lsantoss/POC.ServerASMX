@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 
 namespace POC.ServerASMX.Infra.Test.Unit.Notifications
 {
-    internal class NotifierTest : BaseTest
+    internal class NotifierTest : UnitTest
     {
         [Test]
         public void Construtor_Success()

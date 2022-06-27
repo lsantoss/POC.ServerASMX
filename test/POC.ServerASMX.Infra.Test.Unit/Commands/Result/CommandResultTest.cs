@@ -2,12 +2,12 @@
 using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Infra.Notifications;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 using System.Collections.Generic;
 
 namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 {
-    internal class CommandResultTest : BaseTest
+    internal class CommandResultTest : UnitTest
     {
         [Test]
         [TestCase("Message")]
@@ -16,11 +16,14 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
             var commandResult = new CommandResult(message);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.IsTrue(commandResult.Success);
-            Assert.AreEqual(message, commandResult.Message);
-            Assert.IsNull(commandResult.Data);
-            Assert.AreEqual(0, commandResult.Errors.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo(message));
+                Assert.That(commandResult.Data, Is.Null);
+                Assert.That(commandResult.Errors, Is.Empty);
+            });
         }
 
         [Test]
@@ -30,11 +33,14 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
             var commandResult = new CommandResult(message, data);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.IsTrue(commandResult.Success);
-            Assert.AreEqual(message, commandResult.Message);
-            Assert.AreEqual(data, commandResult.Data);
-            Assert.AreEqual(0, commandResult.Errors.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo(message));
+                Assert.That(commandResult.Data, Is.EqualTo(data));
+                Assert.That(commandResult.Errors, Is.Empty);
+            });
         }
 
         [Test]
@@ -47,11 +53,14 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 
             TestContext.WriteLine(commandResult.ToJson());
 
-            Assert.IsFalse(commandResult.Success);
-            Assert.AreEqual(message, commandResult.Message);
-            Assert.IsNull(commandResult.Data);
-            Assert.AreEqual(errors.Count, commandResult.Errors.Count);
-            Assert.AreEqual(errors, commandResult.Errors);
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo(message));
+                Assert.That(commandResult.Data, Is.Null);
+                Assert.That(commandResult.Errors, Has.Count.EqualTo(errors.Count));
+                Assert.That(commandResult.Errors, Is.EqualTo(errors));
+            });
         }
 
         [Test]
@@ -62,12 +71,15 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
 
             TestContext.WriteLine(commandResult.ToJson());
 
-            Assert.IsFalse(commandResult.Success);
-            Assert.AreEqual(message, commandResult.Message);
-            Assert.IsNull(commandResult.Data);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.AreEqual(notificationProperty, commandResult.Errors[0].Property);
-            Assert.AreEqual(notificationMessage, commandResult.Errors[0].Message);
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo(message));
+                Assert.That(commandResult.Data, Is.Null);
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Errors[0].Property, Is.EqualTo(notificationProperty));
+                Assert.That(commandResult.Errors[0].Message, Is.EqualTo(notificationMessage));
+            });
         }
     }
 }

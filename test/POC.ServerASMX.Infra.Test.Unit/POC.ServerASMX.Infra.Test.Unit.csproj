@@ -9,8 +9,8 @@
     <ProjectGuid>{E1F594E8-21E2-4E04-989F-75EDA6969545}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Domain.Core.Test.Unit</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Domain.Core.Test.Unit</AssemblyName>
+    <RootNamespace>POC.ServerASMX.Infra.Test.Unit</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Infra.Test.Unit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -56,7 +56,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\NUnit.Analyzers.3.3.0\analyzers\dotnet\cs\nunit.analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
       <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>

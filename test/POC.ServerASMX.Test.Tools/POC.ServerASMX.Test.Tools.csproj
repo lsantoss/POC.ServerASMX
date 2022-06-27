@@ -92,6 +92,7 @@
     <Compile Include="Base\Common\BaseTest.cs" />
     <Compile Include="Base\Common\DatabaseTest.cs" />
     <Compile Include="Base\Integration\IntegrationTest.cs" />
+    <Compile Include="Base\Unit\UnitTest.cs" />
     <Compile Include="Connected Services\CustomerService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
