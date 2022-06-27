@@ -14,9 +14,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
             var notification = new Notification(property, message);
 
             TestContext.WriteLine(notification.ToJson());
-
-            Assert.AreEqual(property, notification.Property);
-            Assert.AreEqual(message, notification.Message);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(notification.Property, Is.EqualTo(property));
+                Assert.That(notification.Message, Is.EqualTo(message));
+            });
         }
     }
 }

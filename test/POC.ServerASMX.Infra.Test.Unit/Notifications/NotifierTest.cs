@@ -13,10 +13,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
             var notifier = new Notifier();
 
             TestContext.WriteLine(notifier.ToJson());
-
-            Assert.IsTrue(notifier.Valid);
-            Assert.IsFalse(notifier.Invalid);
-            Assert.AreEqual(0, notifier.Notifications.Count);
+            Assert.Multiple(() =>
+            {
+                Assert.That(notifier.Valid, Is.True);
+                Assert.That(notifier.Invalid, Is.False);
+                Assert.That(notifier.Notifications, Is.Empty);
+            });
         }
 
         [Test]
@@ -27,10 +29,13 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
             notifier.AddNotification(property, message);
 
             TestContext.WriteLine(notifier.ToJson());
-
-            Assert.IsFalse(notifier.Valid);
-            Assert.IsTrue(notifier.Invalid);
-            Assert.AreNotEqual(0, notifier.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(notifier.Valid, Is.False);
+                Assert.That(notifier.Invalid, Is.True);
+                Assert.That(notifier.Notifications, Is.Not.Empty);
+            });
         }
     }
 }
