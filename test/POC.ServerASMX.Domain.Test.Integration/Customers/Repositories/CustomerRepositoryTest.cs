@@ -28,15 +28,18 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
             var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-
-            Assert.AreEqual(customer.Id, result.Id);
-            Assert.AreEqual(customer.Name, result.Name);
-            Assert.AreEqual(customer.Birth, result.Birth);
-            Assert.AreEqual(customer.Gender, result.Gender);
-            Assert.AreEqual(customer.CashBalance, result.CashBalance);
-            Assert.IsTrue(result.Active);
-            Assert.AreEqual(customer.CreationDate.Date, result.CreationDate.Date);
-            Assert.IsNull(result.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Id, Is.EqualTo(customer.Id));
+                Assert.That(result.Name, Is.EqualTo(customer.Name));
+                Assert.That(result.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(result.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(customer.CreationDate.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -80,15 +83,18 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
             var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-
-            Assert.AreEqual(customer.Id, result.Id);
-            Assert.AreEqual(customer.Name, result.Name);
-            Assert.AreEqual(customer.Birth, result.Birth);
-            Assert.AreEqual(customer.Gender, result.Gender);
-            Assert.AreEqual(customer.CashBalance, result.CashBalance);
-            Assert.IsTrue(result.Active);
-            Assert.AreEqual(customer.CreationDate.Date, result.CreationDate.Date);
-            Assert.IsNull(result.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Id, Is.EqualTo(customer.Id));
+                Assert.That(result.Name, Is.EqualTo(customer.Name));
+                Assert.That(result.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(result.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(customer.CreationDate.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -142,7 +148,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.IsNull(result);
+            Assert.That(result, Is.Null);
         }
 
         [Test]
@@ -159,15 +165,18 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
             var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-
-            Assert.AreEqual(customer.Id, result.Id);
-            Assert.AreEqual(customer.Name, result.Name);
-            Assert.AreEqual(customer.Birth, result.Birth);
-            Assert.AreEqual(customer.Gender, result.Gender);
-            Assert.AreEqual(customer.CashBalance, result.CashBalance);
-            Assert.AreEqual(active, result.Active);
-            Assert.AreEqual(customer.CreationDate.Date, result.CreationDate.Date);
-            Assert.AreEqual(DateTime.Now.Date, result.ChangeDate.Value.Date);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Id, Is.EqualTo(customer.Id));
+                Assert.That(result.Name, Is.EqualTo(customer.Name));
+                Assert.That(result.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(result.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(result.Active, Is.EqualTo(active));
+                Assert.That(result.CreationDate.Date, Is.EqualTo(customer.CreationDate.Date));
+                Assert.That(result.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.Date));
+            });
         }
 
         [Test]
@@ -180,15 +189,18 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
             var result = await _repository.GetAsync(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-
-            Assert.AreEqual(customer.Id, result.Id);
-            Assert.AreEqual(customer.Name, result.Name);
-            Assert.AreEqual(customer.Birth, result.Birth);
-            Assert.AreEqual(customer.Gender, result.Gender);
-            Assert.AreEqual(customer.CashBalance, result.CashBalance);
-            Assert.IsTrue(result.Active);
-            Assert.AreEqual(customer.CreationDate.Date, result.CreationDate.Date);
-            Assert.IsNull(result.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Id, Is.EqualTo(customer.Id));
+                Assert.That(result.Name, Is.EqualTo(customer.Name));
+                Assert.That(result.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(result.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(customer.CreationDate.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -201,7 +213,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.IsNull(result);
+            Assert.That(result, Is.Null);
         }
 
         [Test]
@@ -215,15 +227,18 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(customer.Id, result[0].Id);
-            Assert.AreEqual(customer.Name, result[0].Name);
-            Assert.AreEqual(customer.Birth, result[0].Birth);
-            Assert.AreEqual(customer.Gender, result[0].Gender);
-            Assert.AreEqual(customer.CashBalance, result[0].CashBalance);
-            Assert.AreEqual(customer.Active, result[0].Active);
-            Assert.AreEqual(customer.CreationDate.Date, result[0].CreationDate.Date);
-            Assert.AreEqual(customer.ChangeDate, result[0].ChangeDate);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Has.Count.EqualTo(1));
+                Assert.That(result[0].Id, Is.EqualTo(customer.Id));
+                Assert.That(result[0].Name, Is.EqualTo(customer.Name));
+                Assert.That(result[0].Birth, Is.EqualTo(customer.Birth));
+                Assert.That(result[0].Gender, Is.EqualTo(customer.Gender));
+                Assert.That(result[0].CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(result[0].Active, Is.EqualTo(customer.Active));
+                Assert.That(result[0].CreationDate.Date, Is.EqualTo(customer.CreationDate.Date));
+                Assert.That(result[0].ChangeDate, Is.EqualTo(customer.ChangeDate));
+            });
         }
 
         [Test]
@@ -233,7 +248,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.AreEqual(0, result.Count);
+            Assert.That(result, Is.Empty);
         }
 
         [Test]
@@ -247,7 +262,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.True(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -260,7 +275,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
             TestContext.WriteLine(result.ToJson());
 
-            Assert.False(result);
+            Assert.That(result, Is.False);
         }
     }
 }

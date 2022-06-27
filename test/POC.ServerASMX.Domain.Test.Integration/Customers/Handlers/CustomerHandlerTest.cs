@@ -28,18 +28,21 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.True(commandResult.Success);
-            Assert.AreEqual("Customer successfully inserted!", commandResult.Message);
-            Assert.AreEqual(0, commandResult.Errors.Count);
-            Assert.AreEqual(1, result.Id);
-            Assert.AreEqual(command.Name, result.Name);
-            Assert.AreEqual(command.Birth, result.Birth);
-            Assert.AreEqual(command.Gender, result.Gender);
-            Assert.AreEqual(command.CashBalance, result.CashBalance);
-            Assert.IsTrue(result.Active);
-            Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-            Assert.IsNull(result.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully inserted!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(result.Id, Is.EqualTo(1));
+                Assert.That(result.Name, Is.EqualTo(command.Name));
+                Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -50,11 +53,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -74,11 +80,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -93,11 +102,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -109,11 +121,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -125,11 +140,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -142,11 +160,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -159,11 +180,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -178,18 +202,21 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.True(commandResult.Success);
-            Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-            Assert.AreEqual(0, commandResult.Errors.Count);
-            Assert.AreEqual(command.Id, result.Id);
-            Assert.AreEqual(command.Name, result.Name);
-            Assert.AreEqual(command.Birth, result.Birth);
-            Assert.AreEqual(command.Gender, result.Gender);
-            Assert.AreEqual(command.CashBalance, result.CashBalance);
-            Assert.IsTrue(result.Active);
-            Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-            Assert.AreEqual(DateTime.Now.Date, result.ChangeDate.Value.Date);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(result.Id, Is.EqualTo(command.Id));
+                Assert.That(result.Name, Is.EqualTo(command.Name));
+                Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(result.Active, Is.True);
+                Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(result.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.Date));
+            });
         }
 
         [Test]
@@ -200,11 +227,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -225,11 +255,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -240,11 +273,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -258,11 +294,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -277,11 +316,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -293,11 +335,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -309,11 +354,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -326,11 +374,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -343,11 +394,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -360,11 +414,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.True(commandResult.Success);
-            Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-            Assert.AreEqual(0, commandResult.Errors.Count);
-            Assert.IsNull(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -375,11 +432,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -390,11 +450,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -408,11 +471,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -425,11 +491,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.True(commandResult.Success);
-            Assert.AreEqual("Customer successfully deleted!", commandResult.Message);
-            Assert.AreEqual(0, commandResult.Errors.Count);
-            Assert.IsNull(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.True);
+                Assert.That(commandResult.Message, Is.EqualTo("Customer successfully deleted!"));
+                Assert.That(commandResult.Errors, Is.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -440,11 +509,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -455,11 +527,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
 
         [Test]
@@ -473,11 +548,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
             var commandResult = await _handler.HandleAsync(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.False(commandResult.Success);
-            Assert.AreEqual("Invalid parameters", commandResult.Message);
-            Assert.AreNotEqual(0, commandResult.Errors.Count);
-            Assert.Null(commandResult.Data);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Success, Is.False);
+                Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                Assert.That(commandResult.Errors, Is.Not.Empty);
+                Assert.That(commandResult.Data, Is.Null);
+            });
         }
     }
 }
