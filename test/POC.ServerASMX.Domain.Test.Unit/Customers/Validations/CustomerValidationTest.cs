@@ -4,12 +4,12 @@ using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 {
-    internal class CustomerValidationTest : BaseTest
+    internal class CustomerValidationTest : UnitTest
     {
         [Test]
         [TestCase(1)]
@@ -20,7 +20,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -133,7 +133,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -178,7 +178,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -200,7 +200,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -212,7 +212,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -229,7 +229,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
 
         [Test]
@@ -241,7 +241,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
@@ -258,7 +258,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
 
             TestContext.WriteLine(notifications.ToJson());
 
-            Assert.AreNotEqual(0, notifications.Count);
+            Assert.That(notifications, Is.Not.Empty);
         }
     }
 }

@@ -2,12 +2,12 @@
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
 {
-    internal class CustomerUpdateCommandTest : BaseTest
+    internal class CustomerUpdateCommandTest : UnitTest
     {
         [Test]
         public void IsValid_Valid()
@@ -15,9 +15,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             var command = MocksData.CustomerUpdateCommand;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.True(command.IsValid());
-            Assert.AreEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.True);
+                Assert.That(command.Notifications, Is.Empty);
+            });
         }
 
         [Test]
@@ -29,9 +32,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Id = id;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -44,9 +50,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Name = name;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -56,9 +65,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Birth = DateTime.MinValue;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+           
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -68,9 +80,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Birth = DateTime.Now.AddDays(1);
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -81,9 +96,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Gender = gender;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -94,9 +112,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.CashBalance = cashBalance;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
     }
 }

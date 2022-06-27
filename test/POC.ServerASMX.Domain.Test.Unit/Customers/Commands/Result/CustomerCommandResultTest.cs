@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Result
 {
-    internal class CustomerCommandResultTest : BaseTest
+    internal class CustomerCommandResultTest : UnitTest
     {
         [Test]
         public void Constructor_Success()
@@ -16,15 +16,18 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Result
                 customer.Gender, customer.CashBalance, customer.Active, customer.CreationDate, customer.ChangeDate);
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.AreEqual(customer.Id, commandResult.Id);
-            Assert.AreEqual(customer.Name, commandResult.Name);
-            Assert.AreEqual(customer.Birth, commandResult.Birth);
-            Assert.AreEqual(customer.Gender, commandResult.Gender);
-            Assert.AreEqual(customer.CashBalance, commandResult.CashBalance);
-            Assert.AreEqual(customer.Active, commandResult.Active);
-            Assert.AreEqual(customer.CreationDate, commandResult.CreationDate);
-            Assert.AreEqual(customer.ChangeDate, commandResult.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Id, Is.EqualTo(customer.Id));
+                Assert.That(commandResult.Name, Is.EqualTo(customer.Name));
+                Assert.That(commandResult.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(commandResult.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(commandResult.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(commandResult.Active, Is.EqualTo(customer.Active));
+                Assert.That(commandResult.CreationDate, Is.EqualTo(customer.CreationDate));
+                Assert.That(commandResult.ChangeDate, Is.EqualTo(customer.ChangeDate));
+            });
         }
     }
 }

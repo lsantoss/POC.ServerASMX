@@ -3,12 +3,12 @@ using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
 {
-    internal class CustomerTest : BaseTest
+    internal class CustomerTest : UnitTest
     {
         [Test]
         public void IsValid_Valid()
@@ -16,9 +16,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             var customer = MocksData.Customer;
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.True(customer.Valid);
-            Assert.AreEqual(0, customer.Notifications.Count);
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Notifications, Is.Empty);
+            });
         }
 
         [Test]
@@ -30,16 +32,19 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
 
             TestContext.WriteLine(customer.ToJson());
 
-            Assert.IsTrue(customer.Valid);
-            Assert.AreEqual(0, customer.Notifications.Count);
-            Assert.AreEqual(0, customer.Id);
-            Assert.AreEqual(command.Name, customer.Name);
-            Assert.AreEqual(command.Birth, customer.Birth);
-            Assert.AreEqual(command.Gender, customer.Gender);
-            Assert.AreEqual(command.CashBalance, customer.CashBalance);
-            Assert.IsTrue(customer.Active);
-            Assert.AreEqual(DateTime.Now.Date, customer.CreationDate.Date);
-            Assert.IsNull(customer.ChangeDate);
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Notifications, Is.Empty);
+                Assert.That(customer.Id, Is.Zero);
+                Assert.That(customer.Name, Is.EqualTo(command.Name));
+                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Active, Is.True);
+                Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(customer.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -51,17 +56,20 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
                 command.Gender, command.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.True(customer.Valid);
-            Assert.AreEqual(0, customer.Notifications.Count);
-            Assert.AreEqual(command.Id, customer.Id);
-            Assert.AreEqual(command.Name, customer.Name);
-            Assert.AreEqual(command.Birth, customer.Birth);
-            Assert.AreEqual(command.Gender, customer.Gender);
-            Assert.AreEqual(command.CashBalance, customer.CashBalance);
-            Assert.IsTrue(customer.Active);
-            Assert.AreEqual(DateTime.Now.Date, customer.CreationDate.Date);
-            Assert.AreEqual(DateTime.Now.AddDays(1).Date, customer.ChangeDate.Value.Date);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Notifications, Is.Empty);
+                Assert.That(customer.Id, Is.EqualTo(command.Id));
+                Assert.That(customer.Name, Is.EqualTo(command.Name));
+                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Active, Is.True);
+                Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(customer.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.AddDays(1).Date));
+            });
         }
 
         [Test]
@@ -72,17 +80,20 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, true, DateTime.Now);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.True(customer.Valid);
-            Assert.AreEqual(0, customer.Notifications.Count);
-            Assert.AreEqual(command.Id, customer.Id);
-            Assert.AreEqual(command.Name, customer.Name);
-            Assert.AreEqual(command.Birth, customer.Birth);
-            Assert.AreEqual(command.Gender, customer.Gender);
-            Assert.AreEqual(command.CashBalance, customer.CashBalance);
-            Assert.IsTrue(customer.Active);
-            Assert.AreEqual(DateTime.Now.Date, customer.CreationDate.Date);
-            Assert.IsNull(customer.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Notifications, Is.Empty);
+                Assert.That(customer.Id, Is.EqualTo(command.Id));
+                Assert.That(customer.Name, Is.EqualTo(command.Name));
+                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Active, Is.True);
+                Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(customer.ChangeDate, Is.Null);
+            });
         }
 
         [Test]
@@ -94,9 +105,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetId(id);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -109,9 +123,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetName(name);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -121,9 +138,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetBirth(DateTime.MinValue);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -133,9 +153,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetBirth(DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -146,9 +169,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetGender(gender);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -159,9 +185,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             customer.SetCashBalance(cashBalance);
 
             TestContext.WriteLine(customer.ToJson());
-
-            Assert.False(customer.Valid);
-            Assert.AreNotEqual(0, customer.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -171,15 +200,18 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             var commandResult = customer.MapToCustomerCommandResult();
 
             TestContext.WriteLine(commandResult.ToJson());
-
-            Assert.AreEqual(customer.Id, commandResult.Id);
-            Assert.AreEqual(customer.Name, commandResult.Name);
-            Assert.AreEqual(customer.Birth, commandResult.Birth);
-            Assert.AreEqual(customer.Gender, commandResult.Gender);
-            Assert.AreEqual(customer.CashBalance, commandResult.CashBalance);
-            Assert.AreEqual(customer.Active, commandResult.Active);
-            Assert.AreEqual(customer.CreationDate, commandResult.CreationDate);
-            Assert.AreEqual(customer.ChangeDate, commandResult.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(commandResult.Id, Is.EqualTo(customer.Id));
+                Assert.That(commandResult.Name, Is.EqualTo(customer.Name));
+                Assert.That(commandResult.Birth, Is.EqualTo(customer.Birth));
+                Assert.That(commandResult.Gender, Is.EqualTo(customer.Gender));
+                Assert.That(commandResult.CashBalance, Is.EqualTo(customer.CashBalance));
+                Assert.That(commandResult.Active, Is.EqualTo(customer.Active));
+                Assert.That(commandResult.CreationDate, Is.EqualTo(customer.CreationDate));
+                Assert.That(commandResult.ChangeDate, Is.EqualTo(customer.ChangeDate));
+            });
         }
     }
 }

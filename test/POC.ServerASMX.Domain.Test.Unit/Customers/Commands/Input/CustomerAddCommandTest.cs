@@ -2,12 +2,12 @@
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Test.Base.Constants;
 using POC.ServerASMX.Test.Base.Extensions;
-using POC.ServerASMX.Test.Tools.Base.Common;
+using POC.ServerASMX.Test.Tools.Base.Unit;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
 {
-    internal class CustomerAddCommandTest : BaseTest
+    internal class CustomerAddCommandTest : UnitTest
     {
         [Test]
         public void IsValid_Valid()
@@ -15,9 +15,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             var command = MocksData.CustomerAddCommand;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.True(command.IsValid());
-            Assert.AreEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.True);
+                Assert.That(command.Notifications, Is.Empty);
+            });
         }
 
         [Test]
@@ -30,9 +33,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Name = name;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -42,9 +48,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Birth = DateTime.MinValue;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -54,9 +63,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Birth = DateTime.Now.AddDays(1);
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -67,9 +79,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.Gender = gender;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -80,9 +95,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             command.CashBalance = cashBalance;
 
             TestContext.WriteLine(command.ToJson());
-
-            Assert.False(command.IsValid());
-            Assert.AreNotEqual(0, command.Notifications.Count);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(command.IsValid(), Is.False);
+                Assert.That(command.Notifications, Is.Not.Empty);
+            });
         }
 
         [Test]
@@ -92,15 +110,18 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
             var mapResult = command.MapToCustomer();
 
             TestContext.WriteLine(mapResult.ToJson());
-
-            Assert.AreEqual(0, mapResult.Id);
-            Assert.AreEqual(command.Name, mapResult.Name);
-            Assert.AreEqual(command.Birth, mapResult.Birth);
-            Assert.AreEqual(command.Gender, mapResult.Gender);
-            Assert.AreEqual(command.CashBalance, mapResult.CashBalance);
-            Assert.IsTrue(mapResult.Active);
-            Assert.AreEqual(DateTime.Now.Date, mapResult.CreationDate.Date);
-            Assert.IsNull(mapResult.ChangeDate);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.That(mapResult.Id, Is.EqualTo(0));
+                Assert.That(mapResult.Name, Is.EqualTo(command.Name));
+                Assert.That(mapResult.Birth, Is.EqualTo(command.Birth));
+                Assert.That(mapResult.Gender, Is.EqualTo(command.Gender));
+                Assert.That(mapResult.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(mapResult.Active, Is.True);
+                Assert.That(mapResult.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                Assert.That(mapResult.ChangeDate, Is.Null);
+            });
         }
     }
 }

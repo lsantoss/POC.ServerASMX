@@ -58,7 +58,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\NUnit.Analyzers.3.3.0\analyzers\dotnet\cs\nunit.analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
       <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
