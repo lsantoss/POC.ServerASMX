@@ -13,12 +13,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         public void IsValid_Valid()
         {
             var command = MocksData.CustomerUpdateCommand;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.True);
+                Assert.That(valid, Is.True);
+                Assert.That(command.Valid, Is.True);
+                Assert.That(command.Invalid, Is.False);
                 Assert.That(command.Notifications, Is.Empty);
             });
         }
@@ -30,12 +33,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Id = id;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }
@@ -48,12 +54,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Name = name;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }
@@ -63,12 +72,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
            
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }
@@ -78,12 +90,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }
@@ -94,12 +109,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Gender = gender;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }
@@ -110,12 +128,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         {
             var command = MocksData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }

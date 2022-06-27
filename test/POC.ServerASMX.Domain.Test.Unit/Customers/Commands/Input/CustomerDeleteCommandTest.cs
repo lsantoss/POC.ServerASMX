@@ -10,12 +10,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         public void IsValid_Valid()
         {
             var command = MocksData.CustomerDeleteCommand;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
             
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.True);
+                Assert.That(valid, Is.True);
+                Assert.That(command.Valid, Is.True);
+                Assert.That(command.Invalid, Is.False);
                 Assert.That(command.Notifications, Is.Empty);
             });
         }
@@ -25,14 +28,17 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MocksData.CustomerUpdateCommand;
             command.Id = id;
+            var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
-            
+
             Assert.Multiple(() =>
             {
-                Assert.That(command.IsValid(), Is.False);
+                Assert.That(valid, Is.False);
+                Assert.That(command.Valid, Is.False);
+                Assert.That(command.Invalid, Is.True);
                 Assert.That(command.Notifications, Is.Not.Empty);
             });
         }

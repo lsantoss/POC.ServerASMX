@@ -19,6 +19,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
             });
         }
@@ -35,6 +36,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
                 Assert.That(customer.Id, Is.Zero);
                 Assert.That(customer.Name, Is.EqualTo(command.Name));
@@ -60,6 +62,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
                 Assert.That(customer.Id, Is.EqualTo(command.Id));
                 Assert.That(customer.Name, Is.EqualTo(command.Name));
@@ -84,6 +87,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
+                Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
                 Assert.That(customer.Id, Is.EqualTo(command.Id));
                 Assert.That(customer.Name, Is.EqualTo(command.Name));
@@ -109,6 +113,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
@@ -127,6 +132,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
@@ -142,6 +148,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
@@ -157,6 +164,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
@@ -173,6 +181,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
@@ -189,6 +198,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
+                Assert.That(customer.Invalid, Is.True);
                 Assert.That(customer.Notifications, Is.Not.Empty);
             });
         }
