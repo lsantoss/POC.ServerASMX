@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace POC.ServerASMX.Test.Base.Extensions
+namespace POC.ServerASMX.Test.Tools.Extensions
 {
     public static class JsonFormatter
     {

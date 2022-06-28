@@ -2,7 +2,7 @@
 using POC.ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace POC.ServerASMX.Test.Base.Mocks.UnitTests.Customers.Commands.Input
+namespace POC.ServerASMX.Test.Tools.Mocks.Customers.Commands.Input
 {
     public static class CustomerAddCommandMock
     {

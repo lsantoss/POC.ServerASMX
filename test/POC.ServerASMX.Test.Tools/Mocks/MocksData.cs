@@ -1,9 +1,9 @@
 ﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Entities;
-using POC.ServerASMX.Test.Base.Mocks.UnitTests.Customers.Commands.Input;
-using POC.ServerASMX.Test.Base.Mocks.UnitTests.Customers.Entities;
+using POC.ServerASMX.Test.Tools.Mocks.Customers.Commands.Input;
+using POC.ServerASMX.Test.Tools.Mocks.Customers.Entities;
 
-namespace POC.ServerASMX.Test.Base.Mocks.UnitTests
+namespace POC.ServerASMX.Test.Tools.Mocks
 {
     public class MocksData
     {

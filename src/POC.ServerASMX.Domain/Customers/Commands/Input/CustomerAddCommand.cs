@@ -1,8 +1,8 @@
-﻿using POC.ServerASMX.Infra.Commands.Interfaces;
-using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Domain.Customers.Entities;
+﻿using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
+using POC.ServerASMX.Infra.Commands.Interfaces;
+using POC.ServerASMX.Infra.Notifications;
 using System;
 
 namespace POC.ServerASMX.Domain.Customers.Commands.Input

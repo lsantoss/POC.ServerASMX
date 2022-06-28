@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Test.Base.Mocks.UnitTests;
+using POC.ServerASMX.Test.Tools.Mocks;
 
 namespace POC.ServerASMX.Test.Tools.Base.Common
 {

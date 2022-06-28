@@ -1,8 +1,8 @@
-﻿using POC.ServerASMX.Infra.Notifications;
+﻿using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
+using POC.ServerASMX.Infra.Notifications;
 using System;
-using POC.ServerASMX.Domain.Customers.Commands.Result;
 
 namespace POC.ServerASMX.Domain.Customers.Entities
 {

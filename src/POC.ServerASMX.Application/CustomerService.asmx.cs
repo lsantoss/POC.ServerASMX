@@ -1,16 +1,15 @@
-﻿using POC.ServerASMX.Infra.Commands.Result;
-using POC.ServerASMX.Domain.Customers.Commands.Input;
+﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
+using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Queries.Results;
 using POC.ServerASMX.Domain.Customers.Repositories;
+using POC.ServerASMX.Infra.Commands.Result;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
 using System.Xml.Serialization;
-using POC.ServerASMX.Domain.Customers.Commands.Result;
-using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application
 {
@@ -30,23 +29,23 @@ namespace POC.ServerASMX.Application
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public async Task<CommandResult> Add(CustomerAddCommand command) => await _handler.HandleAsync(command);
+        public CommandResult Add(CustomerAddCommand command) => _handler.Handle(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public async Task<CommandResult> Update(CustomerUpdateCommand command) => await _handler.HandleAsync(command);
+        public CommandResult Update(CustomerUpdateCommand command) => _handler.Handle(command);
 
         [WebMethod]
         [XmlInclude(typeof(CustomerCommandResult))]
-        public async Task<CommandResult> ChangeActivityState(CustomerActivityStateCommand command) => await _handler.HandleAsync(command);
+        public CommandResult ChangeActivityState(CustomerActivityStateCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public async Task<CommandResult> Delete(CustomerDeleteCommand command) => await _handler.HandleAsync(command);
+        public CommandResult Delete(CustomerDeleteCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public async Task<CustomerQueryResult> Get(long id) => await _repository.GetAsync(id);
+        public CustomerQueryResult Get(long id) => _repository.Get(id);
 
         [WebMethod]
-        public async Task<List<CustomerQueryResult>> List() => await _repository.ListAsync();
+        public List<CustomerQueryResult> List() => _repository.List();
     }
 }

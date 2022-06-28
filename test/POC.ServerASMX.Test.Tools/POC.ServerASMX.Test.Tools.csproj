@@ -100,11 +100,6 @@
     </Compile>
     <Compile Include="Constants\StringsWithPredefinedSizes.cs" />
     <Compile Include="Extensions\JsonFormatter.cs" />
-    <Compile Include="MockContractTests\Customers\Requests\CustomerActivityStateRequestMock.cs" />
-    <Compile Include="MockContractTests\Customers\Requests\CustomerAddRequestMock.cs" />
-    <Compile Include="MockContractTests\Customers\Requests\CustomerDeleteRequestMock.cs" />
-    <Compile Include="MockContractTests\Customers\Requests\CustomerUpdateRequestMock.cs" />
-    <Compile Include="MockContractTests\MocksIntegrationTest.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerActivityStateCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerAddCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
@@ -114,29 +109,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Connected Services\CustomerService\CustomerService.wsdl" />
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.AddResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.AddResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.CommandResult.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.CommandResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.DeleteResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.GetResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.GetResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.ListResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.ListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Base.CustomerService.UpdateResponse.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -174,18 +170,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
       <Project>{a6276646-3f59-490d-ad3e-241fbc9d4b9b}</Project>
       <Name>POC.ServerASMX.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CustomerService\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\NUnit.Analyzers.3.3.0\analyzers\dotnet\cs\nunit.analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

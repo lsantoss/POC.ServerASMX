@@ -1,11 +1,10 @@
-﻿using POC.ServerASMX.Infra.Commands.Result;
-using POC.ServerASMX.Domain.Customers.Commands.Input;
+﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Repositories;
+using POC.ServerASMX.Infra.Commands.Result;
 using System;
-using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Customers.Handlers
 {
@@ -18,7 +17,7 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             _repository = new CustomerRepository();
         }
 
-        public async Task<CommandResult> HandleAsync(CustomerAddCommand command)
+        public CommandResult Handle(CustomerAddCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -31,7 +30,7 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            var id = await _repository.InsertAsync(customer);
+            var id = _repository.Insert(customer);
             customer.SetId(id);
 
             var resultData = customer.MapToCustomerCommandResult();
@@ -39,7 +38,7 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             return new CommandResult("Customer successfully inserted!", resultData);
         }
 
-        public async Task<CommandResult> HandleAsync(CustomerUpdateCommand command)
+        public CommandResult Handle(CustomerUpdateCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -47,7 +46,7 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (!command.IsValid())
                 return new CommandResult("Invalid parameters", command.Notifications);
 
-            var customerQR = await _repository.GetAsync(command.Id);
+            var customerQR = _repository.Get(command.Id);
 
             if (customerQR == null)
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
@@ -57,14 +56,14 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            await _repository.UpdateAsync(customer);
+            _repository.Update(customer);
 
             var resultData = customer.MapToCustomerCommandResult();
 
             return new CommandResult("Customer successfully updated!", resultData);
         }
 
-        public async Task<CommandResult> HandleAsync(CustomerActivityStateCommand command)
+        public CommandResult Handle(CustomerActivityStateCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -72,15 +71,15 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (!command.IsValid())
                 return new CommandResult("Invalid parameters", command.Notifications);
 
-            if (!await _repository.CheckIdAsync(command.Id))
+            if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
-            await _repository.ChangeActivityStateAsync(command.Id, command.Active);
+            _repository.ChangeActivityState(command.Id, command.Active);
 
             return new CommandResult("Customer successfully updated!");
         }
 
-        public async Task<CommandResult> HandleAsync(CustomerDeleteCommand command)
+        public CommandResult Handle(CustomerDeleteCommand command)
         {
             if (command == null)
                 return new CommandResult("Invalid parameters", "Input parameters", "Input parameters are null");
@@ -88,10 +87,10 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (!command.IsValid())
                 return new CommandResult("Invalid parameters", command.Notifications);
 
-            if (!await _repository.CheckIdAsync(command.Id))
+            if (!_repository.CheckId(command.Id))
                 return new CommandResult("Inconsistencies in the data", "Id", "Invalid id. This id is not registered!");
 
-            await _repository.DeleteAsync(command.Id);
+            _repository.Delete(command.Id);
 
             return new CommandResult("Customer successfully deleted!");
         }

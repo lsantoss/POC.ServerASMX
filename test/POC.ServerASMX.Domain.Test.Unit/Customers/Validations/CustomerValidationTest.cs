@@ -2,9 +2,9 @@
 using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
-using POC.ServerASMX.Test.Base.Constants;
-using POC.ServerASMX.Test.Base.Extensions;
 using POC.ServerASMX.Test.Tools.Base.Unit;
+using POC.ServerASMX.Test.Tools.Constants;
+using POC.ServerASMX.Test.Tools.Extensions;
 using System;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations

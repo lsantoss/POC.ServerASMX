@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Infra.Commands.Result;
 using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Test.Base.Extensions;
 using POC.ServerASMX.Test.Tools.Base.Unit;
+using POC.ServerASMX.Test.Tools.Extensions;
 using System.Collections.Generic;
 
 namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result

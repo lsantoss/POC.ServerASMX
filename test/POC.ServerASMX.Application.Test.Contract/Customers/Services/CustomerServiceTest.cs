@@ -1,9 +1,10 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Test.Base.Constants;
-using POC.ServerASMX.Test.Base.CustomerService;
-using POC.ServerASMX.Test.Base.Extensions;
 using POC.ServerASMX.Test.Tools.Base.Contract;
+using POC.ServerASMX.Test.Tools.Constants;
+using POC.ServerASMX.Test.Tools.CustomerService;
+using POC.ServerASMX.Test.Tools.Extensions;
 using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
@@ -19,28 +20,37 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
-                var result = (CustomerCommandOutput)commandResult.Data;
+                var result = (CustomerCommandResult)commandResult.Data;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully inserted!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.IsNull(result.ChangeDate);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.True);
+                    Assert.That(commandResult.Message, Is.EqualTo("Customer successfully inserted!"));
+                    Assert.That(commandResult.Errors, Is.Empty);
+                    Assert.That(result.Name, Is.EqualTo(command.Name));
+                    Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                    Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                    Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                    Assert.That(result.Active, Is.True);
+                    Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                    Assert.That(result.ChangeDate, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -58,13 +68,16 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -91,13 +104,16 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -111,21 +127,29 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Name = name;
+                var command = new CustomerAddCommand()
+                {
+                    Name = name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -136,21 +160,29 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Birth = DateTime.MinValue;
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = DateTime.MinValue,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -161,21 +193,29 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.Birth = DateTime.Now.AddDays(1);
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = DateTime.Now.AddDays(1),
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -187,21 +227,29 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
-                command.CashBalance = cashBalance;
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = cashBalance
+                };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -212,33 +260,50 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
+                var commandAdd = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = idAdd;
+                var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
+                var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
+
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = idAdd,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = MocksData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
-                var result = (CustomerCommandOutput)commandResult.Data;
+                var result = (CustomerCommandResult)commandResult.Data;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.AreEqual(command.Id, result.Id);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.AreEqual(DateTime.Now.Date, result.ChangeDate.Value.Date);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.True);
+                    Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                    Assert.That(commandResult.Errors, Is.Empty);
+                    Assert.That(result.Id, Is.EqualTo(command.Id));
+                    Assert.That(result.Name, Is.EqualTo(command.Name));
+                    Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                    Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                    Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                    Assert.That(result.Active, Is.True);
+                    Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                    Assert.That(result.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.Date));
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -256,13 +321,16 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -276,25 +344,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
-                command.Name = name;
-                command.Birth = DateTime.MinValue;
-                command.Gender = EGender.Male;
-                command.CashBalance = cashBalance;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = id,
+                    Name = name,
+                    Birth = DateTime.MinValue,
+                    Gender = EGender.Male,
+                    CashBalance = cashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -306,21 +379,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = id,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = MocksData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -333,21 +415,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Id = id;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = id,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = MocksData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -361,21 +452,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Name = name;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = MocksData.CustomerUpdateCommand.Id,
+                    Name = name,
+                    Birth = MocksData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -386,21 +486,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Birth = DateTime.MinValue;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = MocksData.CustomerUpdateCommand.Id,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = DateTime.MinValue,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -411,21 +520,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.Birth = DateTime.Now.AddDays(1);
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = MocksData.CustomerUpdateCommand.Id,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = DateTime.Now.AddDays(1),
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -437,21 +555,30 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerUpdateCommand;
-                command.CashBalance = cashBalance;
+                var command = new CustomerUpdateCommand()
+                {
+                    Id = MocksData.CustomerUpdateCommand.Id,
+                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Birth = MocksData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    CashBalance = cashBalance
+                };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -462,24 +589,38 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
+                var commandAdd = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = idAdd;
+                var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
+                var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
+
+                var command = new CustomerActivityStateCommand()
+                {
+                    Id = idAdd,
+                    Active = MocksData.CustomerActivityStateCommand.Active
+                };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully updated!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.IsNull(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.True);
+                    Assert.That(commandResult.Message, Is.EqualTo("Customer successfully updated!"));
+                    Assert.That(commandResult.Errors, Is.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -497,13 +638,16 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -515,21 +659,27 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = id;
+                var command = new CustomerActivityStateCommand()
+                {
+                    Id = id,
+                    Active = MocksData.CustomerActivityStateCommand.Active
+                };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -542,21 +692,27 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerActivityStateCommand;
-                command.Id = id;
+                var command = new CustomerActivityStateCommand()
+                {
+                    Id = id,
+                    Active = MocksData.CustomerActivityStateCommand.Active
+                };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -567,24 +723,34 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
+                var commandAdd = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = idAdd;
+                var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
+                var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
+
+                var command = new CustomerDeleteCommand() { Id = idAdd };
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.True(commandResult.Success);
-                Assert.AreEqual("Customer successfully deleted!", commandResult.Message);
-                Assert.AreEqual(0, commandResult.Errors.Count);
-                Assert.IsNull(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.True);
+                    Assert.That(commandResult.Message, Is.EqualTo("Customer successfully deleted!"));
+                    Assert.That(commandResult.Errors, Is.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -602,13 +768,16 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -620,21 +789,23 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = id;
+                var command = new CustomerDeleteCommand() { Id = id };
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Inconsistencies in the data", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Inconsistencies in the data"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -647,21 +818,23 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerDeleteCommand;
-                command.Id = id;
+                var command = new CustomerDeleteCommand() { Id = id };
 
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-
-                Assert.False(commandResult.Success);
-                Assert.AreEqual("Invalid parameters", commandResult.Message);
-                Assert.AreNotEqual(0, commandResult.Errors.Count);
-                Assert.Null(commandResult.Data);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(commandResult.Success, Is.False);
+                    Assert.That(commandResult.Message, Is.EqualTo("Invalid parameters"));
+                    Assert.That(commandResult.Errors, Is.Not.Empty);
+                    Assert.That(commandResult.Data, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -672,27 +845,36 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
-                var command = MocksIntegrationTest.CustomerAddCommand;
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
 
-                var responseAdd = await _customerServiceSoapClient.AddAsync(MocksIntegrationTest.CustomerAddCommand);
-                var idAdd = ((CustomerCommandOutput)responseAdd?.Body?.AddResult?.Data).Id;
+                var responseAdd = await _customerServiceSoapClient.AddAsync(command);
+                var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
 
                 var response = await _customerServiceSoapClient.GetAsync(idAdd);
 
                 var result = response?.Body?.GetResult;
 
                 TestContext.WriteLine(result.ToJson());
-
-                Assert.AreEqual(idAdd, result.Id);
-                Assert.AreEqual(command.Name, result.Name);
-                Assert.AreEqual(command.Birth, result.Birth);
-                Assert.AreEqual(command.Gender, result.Gender);
-                Assert.AreEqual(command.CashBalance, result.CashBalance);
-                Assert.IsTrue(result.Active);
-                Assert.AreEqual(DateTime.Now.Date, result.CreationDate.Date);
-                Assert.IsNull(result.ChangeDate);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.Id, Is.EqualTo(idAdd));
+                    Assert.That(result.Name, Is.EqualTo(command.Name));
+                    Assert.That(result.Birth, Is.EqualTo(command.Birth));
+                    Assert.That(result.Gender, Is.EqualTo(command.Gender));
+                    Assert.That(result.CashBalance, Is.EqualTo(command.CashBalance));
+                    Assert.That(result.Active, Is.True);
+                    Assert.That(result.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                    Assert.That(result.ChangeDate, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -712,9 +894,9 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
 
                 TestContext.WriteLine(result.ToJson());
 
-                Assert.IsNull(result);
+                Assert.That(result, Is.Null);
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }
@@ -725,15 +907,55 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                var command = new CustomerAddCommand()
+                {
+                    Name = MocksData.CustomerAddCommand.Name,
+                    Birth = MocksData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                };
+
+                var responseAdd = await _customerServiceSoapClient.AddAsync(command);
+                var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
+
                 var response = await _customerServiceSoapClient.ListAsync();
 
                 var result = response?.Body?.ListResult;
 
                 TestContext.WriteLine(result.ToJson());
 
-                Assert.IsNotNull(result);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result[0].Id, Is.EqualTo(idAdd));
+                    Assert.That(result[0].Name, Is.EqualTo(command.Name));
+                    Assert.That(result[0].Birth, Is.EqualTo(command.Birth));
+                    Assert.That(result[0].Gender, Is.EqualTo(command.Gender));
+                    Assert.That(result[0].CashBalance, Is.EqualTo(command.CashBalance));
+                    Assert.That(result[0].Active, Is.True);
+                    Assert.That(result[0].CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
+                    Assert.That(result[0].ChangeDate, Is.Null);
+                });
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException e)
+            {
+                Assert.Inconclusive(e.Message);
+            }
+        }
+
+        [Test]
+        public async Task List_Not_Registred_Ids_Success()
+        {
+            try
+            {
+                var response = await _customerServiceSoapClient.ListAsync();
+
+                var result = response?.Body?.ListResult;
+
+                TestContext.WriteLine(result.ToJson());
+
+                Assert.That(result, Is.Not.Null);
+            }
+            catch (EndpointNotFoundException e)
             {
                 Assert.Inconclusive(e.Message);
             }

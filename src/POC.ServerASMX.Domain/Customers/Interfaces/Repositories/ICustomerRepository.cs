@@ -1,20 +1,19 @@
 ﻿using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Queries.Results;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Domain.Customers.Interfaces.Repositories
 {
     public interface ICustomerRepository
     {
-        Task<long> InsertAsync(Customer client);
-        Task UpdateAsync(Customer client);
-        Task DeleteAsync(long id);
-        Task ChangeActivityStateAsync(long id, bool active);
+        long Insert(Customer client);
+        void Update(Customer client);
+        void Delete(long id);
+        void ChangeActivityState(long id, bool active);
 
-        Task<CustomerQueryResult> GetAsync(long id);
-        Task<List<CustomerQueryResult>> ListAsync();
+        CustomerQueryResult Get(long id);
+        List<CustomerQueryResult> List();
 
-        Task<bool> CheckIdAsync(long id);
+        bool CheckId(long id);
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace POC.ServerASMX.Test.Base.CustomerService {
+namespace POC.ServerASMX.Test.Tools.CustomerService {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,10 +17,10 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Notifier", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand))]
     public partial class Notifier : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -50,7 +50,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CustomerUpdateCommand", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerUpdateCommand : POC.ServerASMX.Test.Base.CustomerService.Notifier {
+    public partial class CustomerUpdateCommand : POC.ServerASMX.Test.Tools.CustomerService.Notifier {
         
         private long IdField;
         
@@ -59,7 +59,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         
         private System.DateTime BirthField;
         
-        private POC.ServerASMX.Test.Base.CustomerService.EGender GenderField;
+        private POC.ServerASMX.Test.Tools.CustomerService.EGender GenderField;
         
         private decimal CashBalanceField;
         
@@ -103,7 +103,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public POC.ServerASMX.Test.Base.CustomerService.EGender Gender {
+        public POC.ServerASMX.Test.Tools.CustomerService.EGender Gender {
             get {
                 return this.GenderField;
             }
@@ -133,7 +133,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CustomerActivityStateCommand", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerActivityStateCommand : POC.ServerASMX.Test.Base.CustomerService.Notifier {
+    public partial class CustomerActivityStateCommand : POC.ServerASMX.Test.Tools.CustomerService.Notifier {
         
         private long IdField;
         
@@ -170,7 +170,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CustomerDeleteCommand", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerDeleteCommand : POC.ServerASMX.Test.Base.CustomerService.Notifier {
+    public partial class CustomerDeleteCommand : POC.ServerASMX.Test.Tools.CustomerService.Notifier {
         
         private long IdField;
         
@@ -192,14 +192,14 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CustomerAddCommand", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerAddCommand : POC.ServerASMX.Test.Base.CustomerService.Notifier {
+    public partial class CustomerAddCommand : POC.ServerASMX.Test.Tools.CustomerService.Notifier {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         private System.DateTime BirthField;
         
-        private POC.ServerASMX.Test.Base.CustomerService.EGender GenderField;
+        private POC.ServerASMX.Test.Tools.CustomerService.EGender GenderField;
         
         private decimal CashBalanceField;
         
@@ -230,7 +230,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public POC.ServerASMX.Test.Base.CustomerService.EGender Gender {
+        public POC.ServerASMX.Test.Tools.CustomerService.EGender Gender {
             get {
                 return this.GenderField;
             }
@@ -274,17 +274,17 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CommandResult", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.Notifier))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.EGender))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.Notification>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.Notification))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerCommandOutput))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.Notifier))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.EGender))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.Notification))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerCommandResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult>))]
     public partial class CommandResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -299,7 +299,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         private object DataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.Notification> ErrorsField;
+        private System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification> ErrorsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -351,7 +351,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.Notification> Errors {
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification> Errors {
             get {
                 return this.ErrorsField;
             }
@@ -436,9 +436,9 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerCommandOutput", Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerCommandResult", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerCommandOutput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CustomerCommandResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -450,7 +450,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         
         private System.DateTime BirthField;
         
-        private POC.ServerASMX.Test.Base.CustomerService.EGender GenderField;
+        private POC.ServerASMX.Test.Tools.CustomerService.EGender GenderField;
         
         private decimal CashBalanceField;
         
@@ -510,7 +510,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public POC.ServerASMX.Test.Base.CustomerService.EGender Gender {
+        public POC.ServerASMX.Test.Tools.CustomerService.EGender Gender {
             get {
                 return this.GenderField;
             }
@@ -600,7 +600,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         
         private System.DateTime BirthField;
         
-        private POC.ServerASMX.Test.Base.CustomerService.EGender GenderField;
+        private POC.ServerASMX.Test.Tools.CustomerService.EGender GenderField;
         
         private decimal CashBalanceField;
         
@@ -660,7 +660,7 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public POC.ServerASMX.Test.Base.CustomerService.EGender Gender {
+        public POC.ServerASMX.Test.Tools.CustomerService.EGender Gender {
             get {
                 return this.GenderField;
             }
@@ -740,45 +740,45 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento command no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Add", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.AddResponse Add(POC.ServerASMX.Test.Base.CustomerService.AddRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.AddResponse Add(POC.ServerASMX.Test.Tools.CustomerService.AddRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Add", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.AddResponse> AddAsync(POC.ServerASMX.Test.Base.CustomerService.AddRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.AddResponse> AddAsync(POC.ServerASMX.Test.Tools.CustomerService.AddRequest request);
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento command no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Update", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.UpdateResponse Update(POC.ServerASMX.Test.Base.CustomerService.UpdateRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse Update(POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Update", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.UpdateResponse> UpdateAsync(POC.ServerASMX.Test.Base.CustomerService.UpdateRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse> UpdateAsync(POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest request);
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento command no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ChangeActivityState", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse ChangeActivityState(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse ChangeActivityState(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ChangeActivityState", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse> ChangeActivityStateAsync(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse> ChangeActivityStateAsync(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest request);
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento command no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Delete", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.DeleteResponse Delete(POC.ServerASMX.Test.Base.CustomerService.DeleteRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse Delete(POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Delete", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.DeleteResponse> DeleteAsync(POC.ServerASMX.Test.Base.CustomerService.DeleteRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse> DeleteAsync(POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest request);
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento GetResult no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Get", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.GetResponse Get(POC.ServerASMX.Test.Base.CustomerService.GetRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.GetResponse Get(POC.ServerASMX.Test.Tools.CustomerService.GetRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Get", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.GetResponse> GetAsync(POC.ServerASMX.Test.Base.CustomerService.GetRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.GetResponse> GetAsync(POC.ServerASMX.Test.Tools.CustomerService.GetRequest request);
         
         // CODEGEN: Gerando contrato de mensagem porque o nome do elemento ListResult no namespace http://tempuri.org/ não está marcado como nulo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/List", ReplyAction="*")]
-        POC.ServerASMX.Test.Base.CustomerService.ListResponse List(POC.ServerASMX.Test.Base.CustomerService.ListRequest request);
+        POC.ServerASMX.Test.Tools.CustomerService.ListResponse List(POC.ServerASMX.Test.Tools.CustomerService.ListRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/List", ReplyAction="*")]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ListResponse> ListAsync(POC.ServerASMX.Test.Base.CustomerService.ListRequest request);
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ListResponse> ListAsync(POC.ServerASMX.Test.Tools.CustomerService.ListRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -788,12 +788,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class AddRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Add", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.AddRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.AddRequestBody Body;
         
         public AddRequest() {
         }
         
-        public AddRequest(POC.ServerASMX.Test.Base.CustomerService.AddRequestBody Body) {
+        public AddRequest(POC.ServerASMX.Test.Tools.CustomerService.AddRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -805,12 +805,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class AddRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand command;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand command;
         
         public AddRequestBody() {
         }
         
-        public AddRequestBody(POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand command) {
+        public AddRequestBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand command) {
             this.command = command;
         }
     }
@@ -822,12 +822,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class AddResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.AddResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.AddResponseBody Body;
         
         public AddResponse() {
         }
         
-        public AddResponse(POC.ServerASMX.Test.Base.CustomerService.AddResponseBody Body) {
+        public AddResponse(POC.ServerASMX.Test.Tools.CustomerService.AddResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -839,12 +839,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class AddResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult AddResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult AddResult;
         
         public AddResponseBody() {
         }
         
-        public AddResponseBody(POC.ServerASMX.Test.Base.CustomerService.CommandResult AddResult) {
+        public AddResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CommandResult AddResult) {
             this.AddResult = AddResult;
         }
     }
@@ -856,12 +856,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class UpdateRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Update", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.UpdateRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.UpdateRequestBody Body;
         
         public UpdateRequest() {
         }
         
-        public UpdateRequest(POC.ServerASMX.Test.Base.CustomerService.UpdateRequestBody Body) {
+        public UpdateRequest(POC.ServerASMX.Test.Tools.CustomerService.UpdateRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -873,12 +873,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class UpdateRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand command;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand command;
         
         public UpdateRequestBody() {
         }
         
-        public UpdateRequestBody(POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand command) {
+        public UpdateRequestBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand command) {
             this.command = command;
         }
     }
@@ -890,12 +890,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class UpdateResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.UpdateResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.UpdateResponseBody Body;
         
         public UpdateResponse() {
         }
         
-        public UpdateResponse(POC.ServerASMX.Test.Base.CustomerService.UpdateResponseBody Body) {
+        public UpdateResponse(POC.ServerASMX.Test.Tools.CustomerService.UpdateResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -907,12 +907,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class UpdateResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult UpdateResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult UpdateResult;
         
         public UpdateResponseBody() {
         }
         
-        public UpdateResponseBody(POC.ServerASMX.Test.Base.CustomerService.CommandResult UpdateResult) {
+        public UpdateResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CommandResult UpdateResult) {
             this.UpdateResult = UpdateResult;
         }
     }
@@ -924,12 +924,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ChangeActivityStateRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ChangeActivityState", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequestBody Body;
         
         public ChangeActivityStateRequest() {
         }
         
-        public ChangeActivityStateRequest(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequestBody Body) {
+        public ChangeActivityStateRequest(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -941,12 +941,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ChangeActivityStateRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand command;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand command;
         
         public ChangeActivityStateRequestBody() {
         }
         
-        public ChangeActivityStateRequestBody(POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand command) {
+        public ChangeActivityStateRequestBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand command) {
             this.command = command;
         }
     }
@@ -958,12 +958,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ChangeActivityStateResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ChangeActivityStateResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponseBody Body;
         
         public ChangeActivityStateResponse() {
         }
         
-        public ChangeActivityStateResponse(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponseBody Body) {
+        public ChangeActivityStateResponse(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -975,12 +975,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ChangeActivityStateResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult ChangeActivityStateResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult ChangeActivityStateResult;
         
         public ChangeActivityStateResponseBody() {
         }
         
-        public ChangeActivityStateResponseBody(POC.ServerASMX.Test.Base.CustomerService.CommandResult ChangeActivityStateResult) {
+        public ChangeActivityStateResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CommandResult ChangeActivityStateResult) {
             this.ChangeActivityStateResult = ChangeActivityStateResult;
         }
     }
@@ -992,12 +992,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class DeleteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Delete", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.DeleteRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.DeleteRequestBody Body;
         
         public DeleteRequest() {
         }
         
-        public DeleteRequest(POC.ServerASMX.Test.Base.CustomerService.DeleteRequestBody Body) {
+        public DeleteRequest(POC.ServerASMX.Test.Tools.CustomerService.DeleteRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1009,12 +1009,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class DeleteRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand command;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand command;
         
         public DeleteRequestBody() {
         }
         
-        public DeleteRequestBody(POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand command) {
+        public DeleteRequestBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand command) {
             this.command = command;
         }
     }
@@ -1026,12 +1026,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class DeleteResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.DeleteResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.DeleteResponseBody Body;
         
         public DeleteResponse() {
         }
         
-        public DeleteResponse(POC.ServerASMX.Test.Base.CustomerService.DeleteResponseBody Body) {
+        public DeleteResponse(POC.ServerASMX.Test.Tools.CustomerService.DeleteResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1043,12 +1043,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class DeleteResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult DeleteResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult DeleteResult;
         
         public DeleteResponseBody() {
         }
         
-        public DeleteResponseBody(POC.ServerASMX.Test.Base.CustomerService.CommandResult DeleteResult) {
+        public DeleteResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CommandResult DeleteResult) {
             this.DeleteResult = DeleteResult;
         }
     }
@@ -1060,12 +1060,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class GetRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Get", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.GetRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.GetRequestBody Body;
         
         public GetRequest() {
         }
         
-        public GetRequest(POC.ServerASMX.Test.Base.CustomerService.GetRequestBody Body) {
+        public GetRequest(POC.ServerASMX.Test.Tools.CustomerService.GetRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1094,12 +1094,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class GetResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.GetResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.GetResponseBody Body;
         
         public GetResponse() {
         }
         
-        public GetResponse(POC.ServerASMX.Test.Base.CustomerService.GetResponseBody Body) {
+        public GetResponse(POC.ServerASMX.Test.Tools.CustomerService.GetResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1111,12 +1111,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class GetResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult GetResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult GetResult;
         
         public GetResponseBody() {
         }
         
-        public GetResponseBody(POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult GetResult) {
+        public GetResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult GetResult) {
             this.GetResult = GetResult;
         }
     }
@@ -1128,12 +1128,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ListRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="List", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.ListRequestBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody Body;
         
         public ListRequest() {
         }
         
-        public ListRequest(POC.ServerASMX.Test.Base.CustomerService.ListRequestBody Body) {
+        public ListRequest(POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1155,12 +1155,12 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ListResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ListResponse", Namespace="http://tempuri.org/", Order=0)]
-        public POC.ServerASMX.Test.Base.CustomerService.ListResponseBody Body;
+        public POC.ServerASMX.Test.Tools.CustomerService.ListResponseBody Body;
         
         public ListResponse() {
         }
         
-        public ListResponse(POC.ServerASMX.Test.Base.CustomerService.ListResponseBody Body) {
+        public ListResponse(POC.ServerASMX.Test.Tools.CustomerService.ListResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1172,23 +1172,23 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
     public partial class ListResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult> ListResult;
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult;
         
         public ListResponseBody() {
         }
         
-        public ListResponseBody(System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult> ListResult) {
+        public ListResponseBody(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult) {
             this.ListResult = ListResult;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface CustomerServiceSoapChannel : POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap, System.ServiceModel.IClientChannel {
+    public interface CustomerServiceSoapChannel : POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CustomerServiceSoapClient : System.ServiceModel.ClientBase<POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap>, POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap {
+    public partial class CustomerServiceSoapClient : System.ServiceModel.ClientBase<POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap>, POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap {
         
         public CustomerServiceSoapClient() {
         }
@@ -1210,151 +1210,151 @@ namespace POC.ServerASMX.Test.Base.CustomerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.AddResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.Add(POC.ServerASMX.Test.Base.CustomerService.AddRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.AddResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.Add(POC.ServerASMX.Test.Tools.CustomerService.AddRequest request) {
             return base.Channel.Add(request);
         }
         
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult Add(POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.AddRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.AddRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.AddRequestBody();
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult Add(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.AddRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.AddRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.AddRequestBody();
             inValue.Body.command = command;
-            POC.ServerASMX.Test.Base.CustomerService.AddResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).Add(inValue);
+            POC.ServerASMX.Test.Tools.CustomerService.AddResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).Add(inValue);
             return retVal.Body.AddResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.AddResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.AddAsync(POC.ServerASMX.Test.Base.CustomerService.AddRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.AddResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.AddAsync(POC.ServerASMX.Test.Tools.CustomerService.AddRequest request) {
             return base.Channel.AddAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.AddResponse> AddAsync(POC.ServerASMX.Test.Base.CustomerService.CustomerAddCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.AddRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.AddRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.AddRequestBody();
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.AddResponse> AddAsync(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.AddRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.AddRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.AddRequestBody();
             inValue.Body.command = command;
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).AddAsync(inValue);
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).AddAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.UpdateResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.Update(POC.ServerASMX.Test.Base.CustomerService.UpdateRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.Update(POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest request) {
             return base.Channel.Update(request);
         }
         
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult Update(POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.UpdateRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.UpdateRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.UpdateRequestBody();
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult Update(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.UpdateRequestBody();
             inValue.Body.command = command;
-            POC.ServerASMX.Test.Base.CustomerService.UpdateResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).Update(inValue);
+            POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).Update(inValue);
             return retVal.Body.UpdateResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.UpdateResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.UpdateAsync(POC.ServerASMX.Test.Base.CustomerService.UpdateRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.UpdateAsync(POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest request) {
             return base.Channel.UpdateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.UpdateResponse> UpdateAsync(POC.ServerASMX.Test.Base.CustomerService.CustomerUpdateCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.UpdateRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.UpdateRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.UpdateRequestBody();
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.UpdateResponse> UpdateAsync(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.UpdateRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.UpdateRequestBody();
             inValue.Body.command = command;
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).UpdateAsync(inValue);
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).UpdateAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.ChangeActivityState(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.ChangeActivityState(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest request) {
             return base.Channel.ChangeActivityState(request);
         }
         
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult ChangeActivityState(POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequestBody();
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult ChangeActivityState(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequestBody();
             inValue.Body.command = command;
-            POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).ChangeActivityState(inValue);
+            POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).ChangeActivityState(inValue);
             return retVal.Body.ChangeActivityStateResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.ChangeActivityStateAsync(POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.ChangeActivityStateAsync(POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest request) {
             return base.Channel.ChangeActivityStateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateResponse> ChangeActivityStateAsync(POC.ServerASMX.Test.Base.CustomerService.CustomerActivityStateCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.ChangeActivityStateRequestBody();
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateResponse> ChangeActivityStateAsync(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ChangeActivityStateRequestBody();
             inValue.Body.command = command;
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).ChangeActivityStateAsync(inValue);
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).ChangeActivityStateAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.DeleteResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.Delete(POC.ServerASMX.Test.Base.CustomerService.DeleteRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.Delete(POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest request) {
             return base.Channel.Delete(request);
         }
         
-        public POC.ServerASMX.Test.Base.CustomerService.CommandResult Delete(POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.DeleteRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.DeleteRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.DeleteRequestBody();
+        public POC.ServerASMX.Test.Tools.CustomerService.CommandResult Delete(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.DeleteRequestBody();
             inValue.Body.command = command;
-            POC.ServerASMX.Test.Base.CustomerService.DeleteResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).Delete(inValue);
+            POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).Delete(inValue);
             return retVal.Body.DeleteResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.DeleteResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.DeleteAsync(POC.ServerASMX.Test.Base.CustomerService.DeleteRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.DeleteAsync(POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest request) {
             return base.Channel.DeleteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.DeleteResponse> DeleteAsync(POC.ServerASMX.Test.Base.CustomerService.CustomerDeleteCommand command) {
-            POC.ServerASMX.Test.Base.CustomerService.DeleteRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.DeleteRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.DeleteRequestBody();
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse> DeleteAsync(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand command) {
+            POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.DeleteRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.DeleteRequestBody();
             inValue.Body.command = command;
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).DeleteAsync(inValue);
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).DeleteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.GetResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.Get(POC.ServerASMX.Test.Base.CustomerService.GetRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.GetResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.Get(POC.ServerASMX.Test.Tools.CustomerService.GetRequest request) {
             return base.Channel.Get(request);
         }
         
-        public POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult Get(long id) {
-            POC.ServerASMX.Test.Base.CustomerService.GetRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.GetRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.GetRequestBody();
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult Get(long id) {
+            POC.ServerASMX.Test.Tools.CustomerService.GetRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.GetRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.GetRequestBody();
             inValue.Body.id = id;
-            POC.ServerASMX.Test.Base.CustomerService.GetResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).Get(inValue);
+            POC.ServerASMX.Test.Tools.CustomerService.GetResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).Get(inValue);
             return retVal.Body.GetResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.GetResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.GetAsync(POC.ServerASMX.Test.Base.CustomerService.GetRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.GetResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.GetAsync(POC.ServerASMX.Test.Tools.CustomerService.GetRequest request) {
             return base.Channel.GetAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.GetResponse> GetAsync(long id) {
-            POC.ServerASMX.Test.Base.CustomerService.GetRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.GetRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.GetRequestBody();
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.GetResponse> GetAsync(long id) {
+            POC.ServerASMX.Test.Tools.CustomerService.GetRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.GetRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.GetRequestBody();
             inValue.Body.id = id;
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).GetAsync(inValue);
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).GetAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        POC.ServerASMX.Test.Base.CustomerService.ListResponse POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.List(POC.ServerASMX.Test.Base.CustomerService.ListRequest request) {
+        POC.ServerASMX.Test.Tools.CustomerService.ListResponse POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.List(POC.ServerASMX.Test.Tools.CustomerService.ListRequest request) {
             return base.Channel.List(request);
         }
         
-        public System.Collections.Generic.List<POC.ServerASMX.Test.Base.CustomerService.CustomerQueryResult> List() {
-            POC.ServerASMX.Test.Base.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.ListRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.ListRequestBody();
-            POC.ServerASMX.Test.Base.CustomerService.ListResponse retVal = ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).List(inValue);
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> List() {
+            POC.ServerASMX.Test.Tools.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ListRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody();
+            POC.ServerASMX.Test.Tools.CustomerService.ListResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).List(inValue);
             return retVal.Body.ListResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ListResponse> POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap.ListAsync(POC.ServerASMX.Test.Base.CustomerService.ListRequest request) {
+        System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ListResponse> POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap.ListAsync(POC.ServerASMX.Test.Tools.CustomerService.ListRequest request) {
             return base.Channel.ListAsync(request);
         }
         
-        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Base.CustomerService.ListResponse> ListAsync() {
-            POC.ServerASMX.Test.Base.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Base.CustomerService.ListRequest();
-            inValue.Body = new POC.ServerASMX.Test.Base.CustomerService.ListRequestBody();
-            return ((POC.ServerASMX.Test.Base.CustomerService.CustomerServiceSoap)(this)).ListAsync(inValue);
+        public System.Threading.Tasks.Task<POC.ServerASMX.Test.Tools.CustomerService.ListResponse> ListAsync() {
+            POC.ServerASMX.Test.Tools.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ListRequest();
+            inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody();
+            return ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).ListAsync(inValue);
         }
     }
 }

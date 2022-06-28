@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using NUnit.Framework;
-using POC.ServerASMX.Test.Base.Mocks.UnitTests;
+using POC.ServerASMX.Test.Tools.Mocks;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;

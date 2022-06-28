@@ -2,7 +2,7 @@
 using POC.ServerASMX.Domain.Customers.Enums;
 using System;
 
-namespace POC.ServerASMX.Test.Base.Mocks.UnitTests.Customers.Entities
+namespace POC.ServerASMX.Test.Tools.Mocks.Customers.Entities
 {
     public static class CustomerMock
     {

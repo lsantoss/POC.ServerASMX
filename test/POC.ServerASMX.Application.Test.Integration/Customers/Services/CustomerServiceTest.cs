@@ -2,11 +2,10 @@
 using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Enums;
-using POC.ServerASMX.Test.Base.Constants;
-using POC.ServerASMX.Test.Base.Extensions;
 using POC.ServerASMX.Test.Tools.Base.Integration;
+using POC.ServerASMX.Test.Tools.Constants;
+using POC.ServerASMX.Test.Tools.Extensions;
 using System;
-using System.Threading.Tasks;
 
 namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 {
@@ -17,11 +16,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         public CustomerServiceTest() => _customerService = new CustomerService();
 
         [Test]
-        public async Task Add_Success()
+        public void Add_Success()
         {
             var command = MocksData.CustomerAddCommand;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -44,11 +43,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Add_Invalid_Command_Null()
+        public void Add_Invalid_Command_Null()
         {
             var command = (CustomerAddCommand)null;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -65,7 +64,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(null, -1, -1)]
         [TestCase("", -1, -1)]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public async Task Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
+        public void Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerAddCommand
             {
@@ -75,7 +74,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
                 CashBalance = cashBalance
             };
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -92,12 +91,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public async Task Add_Invalid_Name(string name)
+        public void Add_Invalid_Name(string name)
         {
             var command = MocksData.CustomerAddCommand;
             command.Name = name;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -111,12 +110,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Add_Invalid_Birth_DateTimeMin()
+        public void Add_Invalid_Birth_DateTimeMin()
         {
             var command = MocksData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -130,12 +129,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Add_Invalid_Birth_FutureDate()
+        public void Add_Invalid_Birth_FutureDate()
         {
             var command = MocksData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -150,12 +149,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public async Task Add_Invalid_Gender(EGender gender)
+        public void Add_Invalid_Gender(EGender gender)
         {
             var command = MocksData.CustomerAddCommand;
             command.Gender = gender;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -170,12 +169,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public async Task Add_Invalid_CashBalance(decimal cashBalance)
+        public void Add_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksData.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = await _customerService.Add(command);
+            var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -189,13 +188,13 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Update_Success()
+        public void Update_Success()
         {
-            await _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MocksData.CustomerAddCommand);
 
             var command = MocksData.CustomerUpdateCommand;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
@@ -218,11 +217,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Update_Invalid_Command_Null()
+        public void Update_Invalid_Command_Null()
         {
             var command = (CustomerUpdateCommand)null;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -239,7 +238,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1, null, -1, -1)]
         [TestCase(-1, "", -1, -1)]
         [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
-        public async Task Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
+        public void Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
         {
             var command = new CustomerUpdateCommand
             {
@@ -250,7 +249,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
                 CashBalance = cashBalance
             };
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -264,11 +263,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Update_Invalid_Not_Resgistred_Id()
+        public void Update_Invalid_Not_Resgistred_Id()
         {
             var command = MocksData.CustomerUpdateCommand;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -284,12 +283,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public async Task Update_Invalid_Id(long id)
+        public void Update_Invalid_Id(long id)
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Id = id;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -306,12 +305,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(null)]
         [TestCase("")]
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
-        public async Task Update_Invalid_Name(string name)
+        public void Update_Invalid_Name(string name)
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Name = name;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -325,12 +324,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Update_Invalid_Birth_DateTimeMin()
+        public void Update_Invalid_Birth_DateTimeMin()
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -344,12 +343,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Update_Invalid_Birth_FutureDate()
+        public void Update_Invalid_Birth_FutureDate()
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -364,12 +363,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public async Task Update_Invalid_Gender(EGender gender)
+        public void Update_Invalid_Gender(EGender gender)
         {
             var command = MocksData.CustomerUpdateCommand;
             command.Gender = gender;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -384,12 +383,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
 
         [Test]
         [TestCase(-1)]
-        public async Task Update_Invalid_CashBalance(decimal cashBalance)
+        public void Update_Invalid_CashBalance(decimal cashBalance)
         {
             var command = MocksData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
-            var commandResult = await _customerService.Update(command);
+            var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -403,13 +402,13 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Activity_State_Success()
+        public void Activity_State_Success()
         {
-            await _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MocksData.CustomerAddCommand);
 
             var command = MocksData.CustomerActivityStateCommand;
 
-            var commandResult = await _customerService.ChangeActivityState(command);
+            var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -423,11 +422,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Activity_State_Invalid_Command_Null()
+        public void Activity_State_Invalid_Command_Null()
         {
             var command = (CustomerActivityStateCommand)null;
 
-            var commandResult = await _customerService.ChangeActivityState(command);
+            var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -441,11 +440,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Activity_State_Invalid_Not_Resgistred_Id()
+        public void Activity_State_Invalid_Not_Resgistred_Id()
         {
             var command = MocksData.CustomerActivityStateCommand;
 
-            var commandResult = await _customerService.ChangeActivityState(command);
+            var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -461,12 +460,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public async Task Activity_State_Invalid_Id(long id)
+        public void Activity_State_Invalid_Id(long id)
         {
             var command = MocksData.CustomerActivityStateCommand;
             command.Id = id;
 
-            var commandResult = await _customerService.ChangeActivityState(command);
+            var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -480,13 +479,13 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Delete_Success()
+        public void Delete_Success()
         {
-            await _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MocksData.CustomerAddCommand);
 
             var command = MocksData.CustomerDeleteCommand;
 
-            var commandResult = await _customerService.Delete(command);
+            var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -500,11 +499,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Delete_Invalid_Command_Null()
+        public void Delete_Invalid_Command_Null()
         {
             var command = (CustomerDeleteCommand)null;
 
-            var commandResult = await _customerService.Delete(command);
+            var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -518,11 +517,11 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Delete_Invalid_Not_Resgistred_Id()
+        public void Delete_Invalid_Not_Resgistred_Id()
         {
             var command = MocksData.CustomerDeleteCommand;
 
-            var commandResult = await _customerService.Delete(command);
+            var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -538,12 +537,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         [TestCase(0)]
         [TestCase(-1)]
-        public async Task Delete_Invalid_Id(long id)
+        public void Delete_Invalid_Id(long id)
         {
             var command = MocksData.CustomerDeleteCommand;
             command.Id = id;
 
-            var commandResult = await _customerService.Delete(command);
+            var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
             
@@ -557,13 +556,13 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task Get_Registred_Id_Success()
+        public void Get_Registred_Id_Success()
         {
             var command = MocksData.CustomerAddCommand;
 
-            await _customerService.Add(command);
+            _customerService.Add(command);
 
-            var result = await _customerService.Get(1);
+            var result = _customerService.Get(1);
 
             TestContext.WriteLine(result.ToJson());
             
@@ -584,9 +583,9 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(0)]
         [TestCase(-1)]
         [TestCase(long.MaxValue)]
-        public async Task Get_Not_Registred_Id_Success(long id)
+        public void Get_Not_Registred_Id_Success(long id)
         {
-            var result = await _customerService.Get(id);
+            var result = _customerService.Get(id);
 
             TestContext.WriteLine(result.ToJson());
 
@@ -594,13 +593,13 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task List_Registred_Ids_Success()
+        public void List_Registred_Ids_Success()
         {
             var command = MocksData.CustomerAddCommand;
 
-            await _customerService.Add(command);
+            _customerService.Add(command);
 
-            var result = await _customerService.List();
+            var result = _customerService.List();
 
             TestContext.WriteLine(result.ToJson());
 
@@ -619,9 +618,9 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         }
 
         [Test]
-        public async Task List_Not_Registred_Ids_Success()
+        public void List_Not_Registred_Ids_Success()
         {
-            var result = await _customerService.List();
+            var result = _customerService.List();
 
             TestContext.WriteLine(result.ToJson());
 

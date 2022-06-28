@@ -1,4 +1,4 @@
-﻿namespace POC.ServerASMX.Test.Base.Constants
+﻿namespace POC.ServerASMX.Test.Tools.Constants
 {
     public static class StringsWithPredefinedSizes
     {

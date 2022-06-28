@@ -1,6 +1,6 @@
-﻿using POC.ServerASMX.Infra.Notifications;
-using POC.ServerASMX.Domain.Customers.Commands.Input;
+﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Enums;
+using POC.ServerASMX.Infra.Notifications;
 using System;
 using System.Collections.Generic;
 

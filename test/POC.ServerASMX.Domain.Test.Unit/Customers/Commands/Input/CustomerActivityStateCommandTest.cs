@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Test.Base.Extensions;
 using POC.ServerASMX.Test.Tools.Base.Unit;
+using POC.ServerASMX.Test.Tools.Extensions;
 
 namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
 {
