@@ -7,7 +7,7 @@ This application contains an example of ASMX Server
 
 > Cannot use interfaces as return type
 
-> Return classes must contain an empty constructor (for self-realization)
+> Return classes must contain an empty constructor
 
 ---
 
