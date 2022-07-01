@@ -953,7 +953,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
 
                 TestContext.WriteLine(result.ToJson());
 
-                Assert.That(result, Is.Not.Null);
+                Assert.That(result, Is.Empty);
             }
             catch (EndpointNotFoundException e)
             {

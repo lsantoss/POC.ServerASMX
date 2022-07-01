@@ -1,31 +1,35 @@
 # POC.ServerASMX
 
-<h3>Aplicação:</h3>
-<p>Essa aplicação contém um exemplo de Servidor ASMX</p>
-<p>Banco de Dados: SQL Server</p>
-<p>Biblioteca: Dapper</p>
-<p>Biblioteca: Newtonsoft.Json</p>
-<p>Biblioteca: NUnit</p>
-<p>Biblioteca: NUnit3TestAdapter</p>
+## Application:
+This application contains an example of ASMX Server
 
-<h3>Como fazer:</h3>
-<ol type="number">
-  <li>Criar um projeto <b>Web Vazio</b> (.net framework)</li>
-  <li>Adicione um novo arquivo do tipo <b>Serviço Web (ASMX)</b></li>  
-  <li>Nos métodos use a anotação: <b>[WebMethod]</b></li>   
-  <li>
-    Exemplo de método:
-    <blockquote>
-      [WebMethod]<br/>
-        public List<Customer> List()<br/>
-        {<br/>
-            return new List<Customer>();<br/>
-        }<br/>
-      </blockquote>
-  </li>
-</ol>
+> Unable to perform dependency injection
 
-<h3>Observações:</h3>
-<p>Não é possíevel realizar injeção de depêndencias</p>
-<p>Não é possíevel utilizar interfaces como tipo de retorno</p>
-<p>Classes de retorno devem conter um contrutor vazio (para serealização)</p>
+> Cannot use interfaces as return type
+
+> Return classes must contain an empty constructor (for self-realization)
+
+---
+
+## Frameworks:
+- .Net Framework 4.7.2
+
+---
+## Libraries (only most important):
+- Dapper
+- Microsoft.CodeDom.Providers.DotNetCompilerPlatform
+- Microsoft.VisualStudio.Azure.Containers.Tools.Targets
+- Newtonsoft.Json
+- NUnit
+- NUnit.Analyzers
+- NUnit3TestAdapter
+
+## How to configure and use:
+- Create an Empty Asp.Net Web Project (.Net Framework)
+- Add a new Web Service file (ASMX)
+- Nos métodos use a anotação:  `[WebMethod]`
+- Method example:
+  ```c#
+  [WebMethod]
+  public List<CustomerQueryResult> List() => _repository.List();
+  ```
