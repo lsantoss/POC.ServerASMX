@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContexts\DataContext.cs" />
+    <Compile Include="DataContexts\Interfaces\IDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Queries\CustomerQueries.cs" />
   </ItemGroup>

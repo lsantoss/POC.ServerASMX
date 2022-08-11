@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Application.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Application.Test.Integration", "test\POC.ServerASMX.Application.Test.Integration\POC.ServerASMX.Application.Test.Integration.csproj", "{F73ECD25-D0F0-4789-AF1C-1A5793319406}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ServerASMX.Infra.Data.Test.Integration", "test\POC.ServerASMX.Infra.Data.Test.Integration\POC.ServerASMX.Infra.Data.Test.Integration.csproj", "{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{F73ECD25-D0F0-4789-AF1C-1A5793319406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F73ECD25-D0F0-4789-AF1C-1A5793319406}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F73ECD25-D0F0-4789-AF1C-1A5793319406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524} = {7015ECD5-613B-4A7D-A985-57314E7862C6}
 		{5CE22451-358E-423F-9E03-538A48A8F9F0} = {ED72AB05-03CD-4435-924B-021F07261881}
 		{F73ECD25-D0F0-4789-AF1C-1A5793319406} = {ED72AB05-03CD-4435-924B-021F07261881}
+		{5A3E6F6E-32C6-4B77-BEBC-C215DE401885} = {36E0871E-E42F-49FE-A14D-FA274A8E73C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4138501-CCAD-42DA-BD86-D0400319E48A}

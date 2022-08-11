@@ -3,6 +3,7 @@ using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Queries.Results;
 using POC.ServerASMX.Infra.Data.DataContexts;
+using POC.ServerASMX.Infra.Data.DataContexts.Interfaces;
 using POC.ServerASMX.Infra.Data.Repositories.Queries;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace POC.ServerASMX.Domain.Customers.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly DataContext _dataContext;
+        private readonly IDataContext _dataContext;
         private readonly DynamicParameters _parameters;
 
         public CustomerRepository()

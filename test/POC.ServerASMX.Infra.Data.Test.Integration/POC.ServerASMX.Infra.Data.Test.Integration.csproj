@@ -6,12 +6,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5CE22451-358E-423F-9E03-538A48A8F9F0}</ProjectGuid>
+    <ProjectGuid>{5A3E6F6E-32C6-4B77-BEBC-C215DE401885}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>POC.ServerASMX.Application.Test.Contract</RootNamespace>
-    <AssemblyName>POC.ServerASMX.Application.Test.Contract</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>POC.ServerASMX.Infra.Data.Test.Integration</RootNamespace>
+    <AssemblyName>POC.ServerASMX.Infra.Data.Test.Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -40,8 +40,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,23 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers\Services\CustomerServiceTest.cs" />
+    <Compile Include="DataContexts\DataContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
-      <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
-      <Name>POC.ServerASMX.Domain</Name>
+    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj">
+      <Project>{314DF703-C60D-4F1D-9C46-261C09EB45FB}</Project>
+      <Name>POC.ServerASMX.Infra.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\POC.ServerASMX.Test.Tools\POC.ServerASMX.Test.Tools.csproj">
       <Project>{5BEAD5CD-8D40-4BBA-9BCF-B4EB16538524}</Project>
       <Name>POC.ServerASMX.Test.Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\NUnit.Analyzers.3.3.0\analyzers\dotnet\cs\nunit.analyzers.dll" />

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using POC.ServerASMX.Infra.Data.DataContexts.Interfaces;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace POC.ServerASMX.Infra.Data.DataContexts
 {
-    public class DataContext : IDisposable
+    public class DataContext : IDataContext
     {
         public SqlConnection Connection { get; }
 
