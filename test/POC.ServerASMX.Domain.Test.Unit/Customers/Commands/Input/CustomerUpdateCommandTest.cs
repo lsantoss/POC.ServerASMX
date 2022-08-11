@@ -12,7 +12,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Valid()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
@@ -31,7 +31,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Id = id;
             var valid = command.IsValid();
 
@@ -52,7 +52,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void IsValid_Invalid_Name(string name)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Name = name;
             var valid = command.IsValid();
 
@@ -70,7 +70,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
             var valid = command.IsValid();
 
@@ -88,7 +88,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_FutureDate()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
             var valid = command.IsValid();
 
@@ -107,7 +107,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Gender(EGender gender)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Gender = gender;
             var valid = command.IsValid();
 
@@ -126,7 +126,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
             var valid = command.IsValid();
 

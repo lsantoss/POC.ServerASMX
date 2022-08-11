@@ -6,6 +6,9 @@ namespace POC.ServerASMX.Test.Tools.Extensions
     {
         public static string ToJson(this string json)
         {
+            if (json == null)
+                return null;
+
             var obj = JsonConvert.DeserializeObject(json);
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }

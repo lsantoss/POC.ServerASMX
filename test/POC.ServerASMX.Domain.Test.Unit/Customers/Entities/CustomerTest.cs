@@ -13,7 +13,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void IsValid_Valid()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             TestContext.WriteLine(customer.ToJson());
             Assert.Multiple(() =>
@@ -27,7 +27,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_1()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             var customer = new Customer(command.Name, command.Birth, command.Gender, command.CashBalance);
 
@@ -52,7 +52,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_2()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var customer = new Customer(command.Id, command.Name, command.Birth, 
                 command.Gender, command.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
@@ -78,7 +78,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_3()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, true, DateTime.Now);
 
@@ -105,7 +105,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetId_Invalid(long id)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetId(id);
 
             TestContext.WriteLine(customer.ToJson());
@@ -124,7 +124,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void SetName_Invalid(string name)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetName(name);
 
             TestContext.WriteLine(customer.ToJson());
@@ -140,7 +140,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void SetBirth_Invalid_DateTimeMin()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetBirth(DateTime.MinValue);
 
             TestContext.WriteLine(customer.ToJson());
@@ -156,7 +156,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void SetBirth_Invalid_FutureDate()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetBirth(DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
@@ -173,7 +173,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetGender_Invalid(EGender gender)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetGender(gender);
 
             TestContext.WriteLine(customer.ToJson());
@@ -190,7 +190,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetCashBalance_Invalid(decimal cashBalance)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetCashBalance(cashBalance);
 
             TestContext.WriteLine(customer.ToJson());
@@ -206,7 +206,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void MapToCustomerCommandResult_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             var commandResult = customer.MapToCustomerCommandResult();
 
             TestContext.WriteLine(commandResult.ToJson());

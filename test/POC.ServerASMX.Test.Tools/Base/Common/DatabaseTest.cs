@@ -22,7 +22,7 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
             _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
-            _connectionStringReal = _connectionString.Replace("ServerASMXTest", "ServerASMX");
+            _connectionStringReal = _connectionString.Replace("ServerASMX.Test", "ServerASMX");
             _scriptCreateDatabasePath = $@"{baseDirectory}\Sql\CreateDatabase.sql";
             _scriptCreateTablesPath = $@"{baseDirectory}\Sql\CreateTablesAndProcedures.sql";
             _scriptDropTablesPath = $@"{baseDirectory}\Sql\DropTablesAndProcedures.sql";
@@ -44,14 +44,14 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
 
         private void InitializeData()
         {
-            MocksData = new MocksData();
+            MockData = new MockData();
             DropTablesAndProcedures();
             CreateTablesAndProcedures();
         }
 
         private void ClearData()
         {
-            MocksData = null;
+            MockData = null;
             DropTablesAndProcedures();
         }
 

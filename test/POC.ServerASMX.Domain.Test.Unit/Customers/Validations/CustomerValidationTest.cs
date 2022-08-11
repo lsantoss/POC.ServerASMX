@@ -139,7 +139,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Add_Valid()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
@@ -172,7 +172,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Update_Valid()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
@@ -206,7 +206,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_ActivityState_Valid()
         {
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 
@@ -235,7 +235,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Validations
         [Test]
         public void ValidateCommand_Delete_Valid()
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
 
             var notifications = new CustomerValidation().ValidateCommand(command);
 

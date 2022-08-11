@@ -3,6 +3,7 @@ using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
 using POC.ServerASMX.Domain.Customers.Repositories;
 using POC.ServerASMX.Test.Tools.Base.Integration;
+using POC.ServerASMX.Test.Tools.Constants;
 using POC.ServerASMX.Test.Tools.Extensions;
 using System;
 using System.Data.SqlClient;
@@ -19,7 +20,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Insert_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -42,9 +43,10 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
         [Test]
         [TestCase(null)]
+        [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Insert_Invalid_Name_Exception(string name)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetName(name);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
@@ -53,7 +55,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Insert_Invalid_Birth_Exception()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetBirth(DateTime.MinValue);
 
             Assert.Throws<SqlTypeException>(() => _repository.Insert(customer));
@@ -63,7 +65,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public void Insert_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
             customer.SetGender(gender);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
@@ -72,9 +74,9 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Update_Success()
         {
-            _repository.Insert(MocksData.Customer);
+            _repository.Insert(MockData.Customer);
 
-            var customer = MocksData.CustomerEdited;
+            var customer = MockData.CustomerEdited;
 
             _repository.Update(customer);
 
@@ -97,9 +99,10 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
 
         [Test]
         [TestCase(null)]
+        [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Update_Invalid_Name_Exception(string name)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -111,7 +114,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Update_Invalid_Birth_Exception()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -124,7 +127,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public void Update_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -136,7 +139,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Delete_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -154,7 +157,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(false)]
         public void ChangeActivityState_Success(bool active)
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -180,7 +183,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Get_Registred_Id_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -217,7 +220,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void List_Registred_Ids_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 
@@ -252,7 +255,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void CheckId_Registred_Id_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             _repository.Insert(customer);
 

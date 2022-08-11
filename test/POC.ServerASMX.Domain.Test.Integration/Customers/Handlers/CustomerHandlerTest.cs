@@ -20,7 +20,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Add_Success()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -95,7 +95,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Handle_Add_Invalid_Name(string name)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Name = name;
 
             var commandResult = _handler.Handle(command);
@@ -114,7 +114,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Add_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _handler.Handle(command);
@@ -133,7 +133,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Add_Invalid_Birth_FutureDate()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _handler.Handle(command);
@@ -153,7 +153,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Add_Invalid_Gender(EGender gender)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Gender = gender;
 
             var commandResult = _handler.Handle(command);
@@ -173,7 +173,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Add_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _handler.Handle(command);
@@ -192,9 +192,9 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Update_Success()
         {
-            _handler.Handle(MocksData.CustomerAddCommand);
+            _handler.Handle(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -267,7 +267,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -287,7 +287,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);
@@ -309,7 +309,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Handle_Update_Invalid_Name(string name)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Name = name;
 
             var commandResult = _handler.Handle(command);
@@ -328,7 +328,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _handler.Handle(command);
@@ -347,7 +347,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Update_Invalid_Birth_FutureDate()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _handler.Handle(command);
@@ -367,7 +367,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_Gender(EGender gender)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Gender = gender;
 
             var commandResult = _handler.Handle(command);
@@ -387,7 +387,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Update_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _handler.Handle(command);
@@ -406,9 +406,9 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Activity_State_Success()
         {
-            _handler.Handle(MocksData.CustomerAddCommand);
+            _handler.Handle(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -444,7 +444,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Activity_State_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -464,7 +464,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Activity_State_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);
@@ -483,9 +483,9 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Delete_Success()
         {
-            _handler.Handle(MocksData.CustomerAddCommand);
+            _handler.Handle(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -521,7 +521,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [Test]
         public void Handle_Delete_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
 
             var commandResult = _handler.Handle(command);
 
@@ -541,7 +541,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Handlers
         [TestCase(-1)]
         public void Handle_Delete_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
             command.Id = id;
 
             var commandResult = _handler.Handle(command);

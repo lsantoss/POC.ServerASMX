@@ -1,6 +1,6 @@
 --====================================================================================================================================
---========================================== CREATE DATABASE [ServerASMXTest] ========================================================
+--========================================== CREATE DATABASE [ServerASMX.Test] =======================================================
 --====================================================================================================================================
 USE [master]
-IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'ServerASMXTest')
-CREATE DATABASE ServerASMXTest
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'ServerASMX.Test')
+CREATE DATABASE [ServerASMX.Test]

@@ -10,7 +10,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Result
         [Test]
         public void Constructor_Success()
         {
-            var customer = MocksData.Customer;
+            var customer = MockData.Customer;
 
             var commandResult = new CustomerCommandResult(customer.Id, customer.Name, customer.Birth,
                 customer.Gender, customer.CashBalance, customer.Active, customer.CreationDate, customer.ChangeDate);

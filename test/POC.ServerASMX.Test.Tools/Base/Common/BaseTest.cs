@@ -6,20 +6,20 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
     [TestFixture]
     public class BaseTest
     {
-        protected MocksData MocksData { get; set; }
+        protected MockData MockData { get; set; }
 
-        public BaseTest() => MocksData = new MocksData();
+        public BaseTest() => MockData = new MockData();
 
         [OneTimeSetUp]
-        protected virtual void OneTimeSetUp() => MocksData = new MocksData();
+        protected virtual void OneTimeSetUp() => MockData = new MockData();
 
         [OneTimeTearDown]
-        protected virtual void OneTimeTearDown() => MocksData = null;
+        protected virtual void OneTimeTearDown() => MockData = null;
 
         [SetUp]
-        protected virtual void SetUp() => MocksData = new MocksData();
+        protected virtual void SetUp() => MockData = new MockData();
 
         [TearDown]
-        protected virtual void TearDown() => MocksData = null;
+        protected virtual void TearDown() => MockData = null;
     }
 }

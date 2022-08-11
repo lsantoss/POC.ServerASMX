@@ -18,7 +18,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Success()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             var commandResult = _customerService.Add(command);
 
@@ -93,7 +93,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Add_Invalid_Name(string name)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Name = name;
 
             var commandResult = _customerService.Add(command);
@@ -112,7 +112,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _customerService.Add(command);
@@ -131,7 +131,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Invalid_Birth_FutureDate()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _customerService.Add(command);
@@ -151,7 +151,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_Gender(EGender gender)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.Gender = gender;
 
             var commandResult = _customerService.Add(command);
@@ -171,7 +171,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _customerService.Add(command);
@@ -190,9 +190,9 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Success()
         {
-            _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var commandResult = _customerService.Update(command);
 
@@ -265,7 +265,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
 
             var commandResult = _customerService.Update(command);
 
@@ -285,7 +285,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Id = id;
 
             var commandResult = _customerService.Update(command);
@@ -307,7 +307,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Update_Invalid_Name(string name)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Name = name;
 
             var commandResult = _customerService.Update(command);
@@ -326,7 +326,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Birth_DateTimeMin()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
             var commandResult = _customerService.Update(command);
@@ -345,7 +345,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Birth_FutureDate()
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
             var commandResult = _customerService.Update(command);
@@ -365,7 +365,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Gender(EGender gender)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.Gender = gender;
 
             var commandResult = _customerService.Update(command);
@@ -385,7 +385,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MocksData.CustomerUpdateCommand;
+            var command = MockData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
             var commandResult = _customerService.Update(command);
@@ -404,9 +404,9 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Activity_State_Success()
         {
-            _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
 
             var commandResult = _customerService.ChangeActivityState(command);
 
@@ -442,7 +442,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Activity_State_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
 
             var commandResult = _customerService.ChangeActivityState(command);
 
@@ -462,7 +462,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Activity_State_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerActivityStateCommand;
+            var command = MockData.CustomerActivityStateCommand;
             command.Id = id;
 
             var commandResult = _customerService.ChangeActivityState(command);
@@ -481,9 +481,9 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Delete_Success()
         {
-            _customerService.Add(MocksData.CustomerAddCommand);
+            _customerService.Add(MockData.CustomerAddCommand);
 
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
 
             var commandResult = _customerService.Delete(command);
 
@@ -519,7 +519,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Delete_Invalid_Not_Resgistred_Id()
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
 
             var commandResult = _customerService.Delete(command);
 
@@ -539,7 +539,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Delete_Invalid_Id(long id)
         {
-            var command = MocksData.CustomerDeleteCommand;
+            var command = MockData.CustomerDeleteCommand;
             command.Id = id;
 
             var commandResult = _customerService.Delete(command);
@@ -558,7 +558,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Get_Registred_Id_Success()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             _customerService.Add(command);
 
@@ -595,7 +595,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void List_Registred_Ids_Success()
         {
-            var command = MocksData.CustomerAddCommand;
+            var command = MockData.CustomerAddCommand;
 
             _customerService.Add(command);
 

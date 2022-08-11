@@ -22,10 +22,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -130,9 +130,9 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerAddCommand()
                 {
                     Name = name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -162,10 +162,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
+                    Name = MockData.CustomerAddCommand.Name,
                     Birth = DateTime.MinValue,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -195,10 +195,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
+                    Name = MockData.CustomerAddCommand.Name,
                     Birth = DateTime.Now.AddDays(1),
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.AddAsync(command);
@@ -229,9 +229,9 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
                     CashBalance = cashBalance
                 };
 
@@ -262,10 +262,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var commandAdd = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
@@ -274,10 +274,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerUpdateCommand()
                 {
                     Id = idAdd,
-                    Name = MocksData.CustomerUpdateCommand.Name,
-                    Birth = MocksData.CustomerUpdateCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Name = MockData.CustomerUpdateCommand.Name,
+                    Birth = MockData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -382,10 +382,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerUpdateCommand()
                 {
                     Id = id,
-                    Name = MocksData.CustomerUpdateCommand.Name,
-                    Birth = MocksData.CustomerUpdateCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Name = MockData.CustomerUpdateCommand.Name,
+                    Birth = MockData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -418,10 +418,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerUpdateCommand()
                 {
                     Id = id,
-                    Name = MocksData.CustomerUpdateCommand.Name,
-                    Birth = MocksData.CustomerUpdateCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Name = MockData.CustomerUpdateCommand.Name,
+                    Birth = MockData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -454,11 +454,11 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerUpdateCommand()
                 {
-                    Id = MocksData.CustomerUpdateCommand.Id,
+                    Id = MockData.CustomerUpdateCommand.Id,
                     Name = name,
-                    Birth = MocksData.CustomerUpdateCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Birth = MockData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -488,11 +488,11 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerUpdateCommand()
                 {
-                    Id = MocksData.CustomerUpdateCommand.Id,
-                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Id = MockData.CustomerUpdateCommand.Id,
+                    Name = MockData.CustomerUpdateCommand.Name,
                     Birth = DateTime.MinValue,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -522,11 +522,11 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerUpdateCommand()
                 {
-                    Id = MocksData.CustomerUpdateCommand.Id,
-                    Name = MocksData.CustomerUpdateCommand.Name,
+                    Id = MockData.CustomerUpdateCommand.Id,
+                    Name = MockData.CustomerUpdateCommand.Name,
                     Birth = DateTime.Now.AddDays(1),
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
-                    CashBalance = MocksData.CustomerUpdateCommand.CashBalance
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
+                    CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
@@ -557,10 +557,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerUpdateCommand()
                 {
-                    Id = MocksData.CustomerUpdateCommand.Id,
-                    Name = MocksData.CustomerUpdateCommand.Name,
-                    Birth = MocksData.CustomerUpdateCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerUpdateCommand.Gender,
+                    Id = MockData.CustomerUpdateCommand.Id,
+                    Name = MockData.CustomerUpdateCommand.Name,
+                    Birth = MockData.CustomerUpdateCommand.Birth,
+                    Gender = (EGender)MockData.CustomerUpdateCommand.Gender,
                     CashBalance = cashBalance
                 };
 
@@ -591,10 +591,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var commandAdd = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
@@ -603,7 +603,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerActivityStateCommand()
                 {
                     Id = idAdd,
-                    Active = MocksData.CustomerActivityStateCommand.Active
+                    Active = MockData.CustomerActivityStateCommand.Active
                 };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -662,7 +662,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerActivityStateCommand()
                 {
                     Id = id,
-                    Active = MocksData.CustomerActivityStateCommand.Active
+                    Active = MockData.CustomerActivityStateCommand.Active
                 };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -695,7 +695,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var command = new CustomerActivityStateCommand()
                 {
                     Id = id,
-                    Active = MocksData.CustomerActivityStateCommand.Active
+                    Active = MockData.CustomerActivityStateCommand.Active
                 };
 
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
@@ -725,10 +725,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var commandAdd = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var responseAdd = await _customerServiceSoapClient.AddAsync(commandAdd);
@@ -847,10 +847,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var responseAdd = await _customerServiceSoapClient.AddAsync(command);
@@ -909,10 +909,10 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
             {
                 var command = new CustomerAddCommand()
                 {
-                    Name = MocksData.CustomerAddCommand.Name,
-                    Birth = MocksData.CustomerAddCommand.Birth,
-                    Gender = (EGender)MocksData.CustomerAddCommand.Gender,
-                    CashBalance = MocksData.CustomerAddCommand.CashBalance
+                    Name = MockData.CustomerAddCommand.Name,
+                    Birth = MockData.CustomerAddCommand.Birth,
+                    Gender = (EGender)MockData.CustomerAddCommand.Gender,
+                    CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
                 var responseAdd = await _customerServiceSoapClient.AddAsync(command);

@@ -105,7 +105,7 @@
     <Compile Include="Mocks\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
     <Compile Include="Mocks\Customers\Entities\CustomerMock.cs" />
-    <Compile Include="Mocks\MocksData.cs" />
+    <Compile Include="Mocks\MockData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
