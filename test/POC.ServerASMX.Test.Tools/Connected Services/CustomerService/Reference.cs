@@ -277,14 +277,14 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerAddCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.Notifier))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.EGender))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.Notification[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.Notification))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerCommandResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult>))]
     public partial class CommandResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -299,7 +299,7 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
         private object DataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private POC.ServerASMX.Test.Tools.CustomerService.Notification[] ErrorsField;
+        private System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification> ErrorsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -351,7 +351,7 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public POC.ServerASMX.Test.Tools.CustomerService.Notification[] Errors {
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.Notification> Errors {
             get {
                 return this.ErrorsField;
             }
@@ -1172,12 +1172,12 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     public partial class ListResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult[] ListResult;
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult;
         
         public ListResponseBody() {
         }
         
-        public ListResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult[] ListResult) {
+        public ListResponseBody(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult) {
             this.ListResult = ListResult;
         }
     }
@@ -1339,7 +1339,7 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
             return base.Channel.List(request);
         }
         
-        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult[] List() {
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> List() {
             POC.ServerASMX.Test.Tools.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ListRequest();
             inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody();
             POC.ServerASMX.Test.Tools.CustomerService.ListResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).List(inValue);
