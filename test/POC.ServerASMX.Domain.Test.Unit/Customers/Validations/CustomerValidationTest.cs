@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
-using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
+using POC.ServerASMX.Infra.Enums;
 using POC.ServerASMX.Test.Tools.Base.Unit;
 using POC.ServerASMX.Test.Tools.Constants;
 using POC.ServerASMX.Test.Tools.Extensions;

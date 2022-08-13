@@ -1,9 +1,9 @@
 ﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Entities;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
-using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
-using POC.ServerASMX.Domain.Customers.Repositories;
 using POC.ServerASMX.Infra.Commands.Result;
+using POC.ServerASMX.Infra.Data.Customers.Interfaces.Repositories;
+using POC.ServerASMX.Infra.Data.Customers.Repositories;
 using System;
 
 namespace POC.ServerASMX.Domain.Customers.Handlers
@@ -30,7 +30,9 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            var id = _repository.Insert(customer);
+            var customerDTO = customer.MapToCustomerDTO();
+
+            var id = _repository.Insert(customerDTO);
             customer.SetId(id);
 
             var resultData = customer.MapToCustomerCommandResult();
@@ -56,7 +58,9 @@ namespace POC.ServerASMX.Domain.Customers.Handlers
             if (customer.Invalid)
                 return new CommandResult("Inconsistencies in the data", customer.Notifications);
 
-            _repository.Update(customer);
+            var customerDTO = customer.MapToCustomerDTO();
+
+            _repository.Update(customerDTO);
 
             var resultData = customer.MapToCustomerCommandResult();
 

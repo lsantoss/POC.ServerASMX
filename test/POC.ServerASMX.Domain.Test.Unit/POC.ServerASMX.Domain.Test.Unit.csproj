@@ -66,6 +66,10 @@
       <Project>{A6276646-3F59-490D-AD3E-241FBC9D4B9B}</Project>
       <Name>POC.ServerASMX.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj">
+      <Project>{314DF703-C60D-4F1D-9C46-261C09EB45FB}</Project>
+      <Name>POC.ServerASMX.Infra.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
       <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
       <Name>POC.ServerASMX.Infra</Name>

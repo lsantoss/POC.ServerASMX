@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace POC.ServerASMX.Domain.Customers.Enums
+namespace POC.ServerASMX.Infra.Enums
 {
     public enum EGender
     {

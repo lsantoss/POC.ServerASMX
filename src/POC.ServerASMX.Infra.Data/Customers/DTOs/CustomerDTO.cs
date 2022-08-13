@@ -1,9 +1,9 @@
 ﻿using POC.ServerASMX.Infra.Enums;
 using System;
 
-namespace POC.ServerASMX.Domain.Customers.Commands.Result
+namespace POC.ServerASMX.Infra.Data.Customers.DTOs
 {
-    public class CustomerCommandResult
+    public class CustomerDTO
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -14,9 +14,9 @@ namespace POC.ServerASMX.Domain.Customers.Commands.Result
         public DateTime CreationDate { get; private set; }
         public DateTime? ChangeDate { get; private set; }
 
-        public CustomerCommandResult() { }
+        public CustomerDTO() { }
 
-        public CustomerCommandResult(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? changeDate = null)
+        public CustomerDTO(long id, string name, DateTime birth, EGender gender, decimal cashBalance, bool active, DateTime creationDate, DateTime? chanceDate = null)
         {
             Id = id;
             Name = name;
@@ -25,7 +25,7 @@ namespace POC.ServerASMX.Domain.Customers.Commands.Result
             CashBalance = cashBalance;
             Active = active;
             CreationDate = creationDate;
-            ChangeDate = changeDate;
+            ChangeDate = chanceDate;
         }
     }
 }

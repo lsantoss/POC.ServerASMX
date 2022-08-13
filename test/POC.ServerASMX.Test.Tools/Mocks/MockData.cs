@@ -1,6 +1,8 @@
 ﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Entities;
+using POC.ServerASMX.Infra.Data.Customers.DTOs;
 using POC.ServerASMX.Test.Tools.Mocks.Customers.Commands.Input;
+using POC.ServerASMX.Test.Tools.Mocks.Customers.DTOs;
 using POC.ServerASMX.Test.Tools.Mocks.Customers.Entities;
 
 namespace POC.ServerASMX.Test.Tools.Mocks
@@ -9,6 +11,8 @@ namespace POC.ServerASMX.Test.Tools.Mocks
     {
         public Customer Customer { get; }
         public Customer CustomerEdited { get; }
+        public CustomerDTO CustomerDTO { get; }
+        public CustomerDTO CustomerDTOEdited { get; }
         public CustomerAddCommand CustomerAddCommand { get; }
         public CustomerUpdateCommand CustomerUpdateCommand { get; }
         public CustomerDeleteCommand CustomerDeleteCommand { get; }
@@ -18,6 +22,8 @@ namespace POC.ServerASMX.Test.Tools.Mocks
         {
             Customer = CustomerMock.GetCustomer();
             CustomerEdited = CustomerMock.GetCustomerEdited();
+            CustomerDTO = CustomerDTOMock.GetCustomerDTO();
+            CustomerDTOEdited = CustomerDTOMock.GetCustomerDTOEdited();
             CustomerAddCommand = CustomerAddCommandMock.GetCustomerAddCommand();
             CustomerUpdateCommand = CustomerUpdateCommandMock.GetCustomerUpdateCommand();
             CustomerDeleteCommand = CustomerDeleteCommandMock.GetCustomerDeleteCommand();

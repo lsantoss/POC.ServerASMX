@@ -2,10 +2,10 @@
 using POC.ServerASMX.Domain.Customers.Commands.Result;
 using POC.ServerASMX.Domain.Customers.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
-using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
-using POC.ServerASMX.Domain.Customers.Queries.Results;
-using POC.ServerASMX.Domain.Customers.Repositories;
 using POC.ServerASMX.Infra.Commands.Result;
+using POC.ServerASMX.Infra.Data.Customers.DTOs;
+using POC.ServerASMX.Infra.Data.Customers.Interfaces.Repositories;
+using POC.ServerASMX.Infra.Data.Customers.Repositories;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
@@ -43,9 +43,9 @@ namespace POC.ServerASMX.Application
         public CommandResult Delete(CustomerDeleteCommand command) => _handler.Handle(command);
 
         [WebMethod]
-        public CustomerQueryResult Get(long id) => _repository.Get(id);
+        public CustomerDTO Get(long id) => _repository.Get(id);
 
         [WebMethod]
-        public List<CustomerQueryResult> List() => _repository.List();
+        public List<CustomerDTO> List() => _repository.List();
     }
 }

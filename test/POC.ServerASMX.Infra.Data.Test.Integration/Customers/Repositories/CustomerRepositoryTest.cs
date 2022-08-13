@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Domain.Customers.Enums;
-using POC.ServerASMX.Domain.Customers.Interfaces.Repositories;
-using POC.ServerASMX.Domain.Customers.Repositories;
+using POC.ServerASMX.Infra.Data.Customers.DTOs;
+using POC.ServerASMX.Infra.Data.Customers.Interfaces.Repositories;
+using POC.ServerASMX.Infra.Data.Customers.Repositories;
+using POC.ServerASMX.Infra.Enums;
 using POC.ServerASMX.Test.Tools.Base.Integration;
 using POC.ServerASMX.Test.Tools.Constants;
 using POC.ServerASMX.Test.Tools.Extensions;
@@ -9,7 +10,7 @@ using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
-namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
+namespace POC.ServerASMX.Infra.Data.Test.Integration.Customers.Repositories
 {
     internal class CustomerRepositoryTest : IntegrationTest
     {
@@ -20,14 +21,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Insert_Success()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
             var result = _repository.Get(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(result.Id, Is.EqualTo(customer.Id));
@@ -46,8 +47,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Insert_Invalid_Name_Exception(string name)
         {
-            var customer = MockData.Customer;
-            customer.SetName(name);
+            var customer = new CustomerDTO(1, name, new DateTime(2000, 10, 5), EGender.Male, 1500.75m, true, DateTime.Now, null);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
         }
@@ -55,8 +55,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Insert_Invalid_Birth_Exception()
         {
-            var customer = MockData.Customer;
-            customer.SetBirth(DateTime.MinValue);
+            var customer = new CustomerDTO(1, "Lucas Santos", DateTime.MinValue, EGender.Male, 1500.75m, true, DateTime.Now, null);
 
             Assert.Throws<SqlTypeException>(() => _repository.Insert(customer));
         }
@@ -65,8 +64,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public void Insert_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MockData.Customer;
-            customer.SetGender(gender);
+            var customer = new CustomerDTO(1, "Lucas Santos", new DateTime(2000, 10, 5), gender, 1500.75m, true, DateTime.Now, null);
 
             Assert.Throws<SqlException>(() => _repository.Insert(customer));
         }
@@ -74,16 +72,16 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Update_Success()
         {
-            _repository.Insert(MockData.Customer);
+            _repository.Insert(MockData.CustomerDTO);
 
-            var customer = MockData.CustomerEdited;
+            var customer = MockData.CustomerDTOEdited;
 
             _repository.Update(customer);
 
             var result = _repository.Get(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(result.Id, Is.EqualTo(customer.Id));
@@ -102,11 +100,11 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Update_Invalid_Name_Exception(string name)
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
-            customer.SetName(name);
+            customer = new CustomerDTO(1, name, new DateTime(2020, 5, 20), EGender.Male, 2200.33m, true, DateTime.Now, null);
 
             Assert.Throws<SqlException>(() => _repository.Update(customer));
         }
@@ -114,11 +112,11 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Update_Invalid_Birth_Exception()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
-            customer.SetBirth(DateTime.MinValue);
+            customer = new CustomerDTO(1, "Lucas S.", DateTime.MinValue, EGender.Male, 2200.33m, true, DateTime.Now, null);
 
             Assert.Throws<SqlTypeException>(() => _repository.Update(customer));
         }
@@ -127,11 +125,11 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(-1)]
         public void Update_Invalid_Gender_Exception(EGender gender)
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
-            customer.SetGender(gender);
+            customer = new CustomerDTO(1, "Lucas S.", new DateTime(2020, 5, 20), gender, 2200.33m, true, DateTime.Now, null);
 
             Assert.Throws<SqlException>(() => _repository.Update(customer));
         }
@@ -139,7 +137,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Delete_Success()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
@@ -157,7 +155,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [TestCase(false)]
         public void ChangeActivityState_Success(bool active)
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
@@ -166,7 +164,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
             var result = _repository.Get(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(result.Id, Is.EqualTo(customer.Id));
@@ -183,14 +181,14 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void Get_Registred_Id_Success()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
             var result = _repository.Get(customer.Id);
 
             TestContext.WriteLine(result.ToJson());
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(result.Id, Is.EqualTo(customer.Id));
@@ -220,7 +218,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void List_Registred_Ids_Success()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 
@@ -255,7 +253,7 @@ namespace POC.ServerASMX.Domain.Test.Integration.Customers.Repositories
         [Test]
         public void CheckId_Registred_Id_Success()
         {
-            var customer = MockData.Customer;
+            var customer = MockData.CustomerDTO;
 
             _repository.Insert(customer);
 

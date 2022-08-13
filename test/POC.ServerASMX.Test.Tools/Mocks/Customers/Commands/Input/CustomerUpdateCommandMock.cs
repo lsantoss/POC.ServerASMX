@@ -1,5 +1,5 @@
 ﻿using POC.ServerASMX.Domain.Customers.Commands.Input;
-using POC.ServerASMX.Domain.Customers.Enums;
+using POC.ServerASMX.Infra.Enums;
 using System;
 
 namespace POC.ServerASMX.Test.Tools.Mocks.Customers.Commands.Input

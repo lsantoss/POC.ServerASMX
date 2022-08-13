@@ -283,8 +283,8 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerUpdateCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerActivityStateCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerDeleteCommand))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO>))]
     public partial class CommandResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -586,9 +586,9 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerQueryResult", Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerDTO", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
-    public partial class CustomerQueryResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CustomerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1111,12 +1111,12 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     public partial class GetResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult GetResult;
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO GetResult;
         
         public GetResponseBody() {
         }
         
-        public GetResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult GetResult) {
+        public GetResponseBody(POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO GetResult) {
             this.GetResult = GetResult;
         }
     }
@@ -1172,12 +1172,12 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
     public partial class ListResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult;
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO> ListResult;
         
         public ListResponseBody() {
         }
         
-        public ListResponseBody(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> ListResult) {
+        public ListResponseBody(System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO> ListResult) {
             this.ListResult = ListResult;
         }
     }
@@ -1314,7 +1314,7 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
             return base.Channel.Get(request);
         }
         
-        public POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult Get(long id) {
+        public POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO Get(long id) {
             POC.ServerASMX.Test.Tools.CustomerService.GetRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.GetRequest();
             inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.GetRequestBody();
             inValue.Body.id = id;
@@ -1339,7 +1339,7 @@ namespace POC.ServerASMX.Test.Tools.CustomerService {
             return base.Channel.List(request);
         }
         
-        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult> List() {
+        public System.Collections.Generic.List<POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO> List() {
             POC.ServerASMX.Test.Tools.CustomerService.ListRequest inValue = new POC.ServerASMX.Test.Tools.CustomerService.ListRequest();
             inValue.Body = new POC.ServerASMX.Test.Tools.CustomerService.ListRequestBody();
             POC.ServerASMX.Test.Tools.CustomerService.ListResponse retVal = ((POC.ServerASMX.Test.Tools.CustomerService.CustomerServiceSoap)(this)).List(inValue);

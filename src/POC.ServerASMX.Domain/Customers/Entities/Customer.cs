@@ -1,6 +1,7 @@
 ﻿using POC.ServerASMX.Domain.Customers.Commands.Result;
-using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Validations;
+using POC.ServerASMX.Infra.Data.Customers.DTOs;
+using POC.ServerASMX.Infra.Enums;
 using POC.ServerASMX.Infra.Notifications;
 using System;
 
@@ -72,6 +73,8 @@ namespace POC.ServerASMX.Domain.Customers.Entities
         }
 
         public CustomerCommandResult MapToCustomerCommandResult() => new CustomerCommandResult(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
+
+        public CustomerDTO MapToCustomerDTO() => new CustomerDTO(Id, Name, Birth, Gender, CashBalance, Active, CreationDate, ChangeDate);
 
         private void SetActive(bool active) => Active = active;
         private void SetCreationDate(DateTime creationDate) => CreationDate = creationDate;

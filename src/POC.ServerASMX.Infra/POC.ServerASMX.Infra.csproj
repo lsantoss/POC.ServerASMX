@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Commands\Interfaces\IStandardCommand.cs" />
     <Compile Include="Commands\Result\CommandResult.cs" />
+    <Compile Include="Enums\EGender.cs" />
     <Compile Include="Notifications\Notification.cs" />
     <Compile Include="Notifications\Notifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

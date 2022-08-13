@@ -148,7 +148,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="CustomerQueryResult">
+      <s:complexType name="CustomerDTO">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
@@ -163,22 +163,22 @@
       <s:element name="GetResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetResult" type="tns:CustomerQueryResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetResult" type="tns:CustomerDTO" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="List">
         <s:complexType />
       </s:element>
-      <s:complexType name="ArrayOfCustomerQueryResult">
+      <s:complexType name="ArrayOfCustomerDTO">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerQueryResult" nillable="true" type="tns:CustomerQueryResult" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
         </s:sequence>
       </s:complexType>
       <s:element name="ListResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListResult" type="tns:ArrayOfCustomerQueryResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListResult" type="tns:ArrayOfCustomerDTO" />
           </s:sequence>
         </s:complexType>
       </s:element>

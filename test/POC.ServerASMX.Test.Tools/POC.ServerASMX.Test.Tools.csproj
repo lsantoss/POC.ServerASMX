@@ -104,6 +104,7 @@
     <Compile Include="Mocks\Customers\Commands\Input\CustomerAddCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerDeleteCommandMock.cs" />
     <Compile Include="Mocks\Customers\Commands\Input\CustomerUpdateCommandMock.cs" />
+    <Compile Include="Mocks\Customers\DTOs\CustomerDTOMock.cs" />
     <Compile Include="Mocks\Customers\Entities\CustomerMock.cs" />
     <Compile Include="Mocks\MockData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,7 +120,7 @@
     <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.CommandResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.CustomerQueryResult.datasource">
+    <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.CustomerDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\CustomerService\POC.ServerASMX.Test.Tools.CustomerService.DeleteResponse.datasource">
@@ -172,6 +173,14 @@
     <ProjectReference Include="..\..\src\POC.ServerASMX.Domain\POC.ServerASMX.Domain.csproj">
       <Project>{a6276646-3f59-490d-ad3e-241fbc9d4b9b}</Project>
       <Name>POC.ServerASMX.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj">
+      <Project>{314DF703-C60D-4F1D-9C46-261C09EB45FB}</Project>
+      <Name>POC.ServerASMX.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\POC.ServerASMX.Infra\POC.ServerASMX.Infra.csproj">
+      <Project>{0721206A-0F9E-4AEE-9CE2-D98CC06E66CD}</Project>
+      <Name>POC.ServerASMX.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

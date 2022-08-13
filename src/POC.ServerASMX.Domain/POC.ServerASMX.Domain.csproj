@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,17 +48,10 @@
     <Compile Include="Customers\Commands\Input\CustomerUpdateCommand.cs" />
     <Compile Include="Customers\Commands\Result\CustomerCommandResult.cs" />
     <Compile Include="Customers\Entities\Customer.cs" />
-    <Compile Include="Customers\Enums\EGender.cs" />
     <Compile Include="Customers\Handlers\CustomerHandler.cs" />
     <Compile Include="Customers\Interfaces\Handlers\ICustomerHandler.cs" />
-    <Compile Include="Customers\Interfaces\Repositories\ICustomerRepository.cs" />
-    <Compile Include="Customers\Queries\Results\CustomerQueryResult.cs" />
-    <Compile Include="Customers\Repositories\CustomerRepository.cs" />
     <Compile Include="Customers\Validations\CustomerValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POC.ServerASMX.Infra.Data\POC.ServerASMX.Infra.Data.csproj">

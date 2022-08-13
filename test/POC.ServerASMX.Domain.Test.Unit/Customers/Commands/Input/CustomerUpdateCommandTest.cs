@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using POC.ServerASMX.Domain.Customers.Enums;
+using POC.ServerASMX.Infra.Enums;
 using POC.ServerASMX.Test.Tools.Base.Unit;
 using POC.ServerASMX.Test.Tools.Constants;
 using POC.ServerASMX.Test.Tools.Extensions;

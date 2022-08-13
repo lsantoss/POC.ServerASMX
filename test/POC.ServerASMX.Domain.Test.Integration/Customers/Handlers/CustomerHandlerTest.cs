@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using POC.ServerASMX.Domain.Customers.Commands.Input;
 using POC.ServerASMX.Domain.Customers.Commands.Result;
-using POC.ServerASMX.Domain.Customers.Enums;
 using POC.ServerASMX.Domain.Customers.Handlers;
 using POC.ServerASMX.Domain.Customers.Interfaces.Handlers;
+using POC.ServerASMX.Infra.Enums;
 using POC.ServerASMX.Test.Tools.Base.Integration;
 using POC.ServerASMX.Test.Tools.Constants;
 using POC.ServerASMX.Test.Tools.Extensions;
