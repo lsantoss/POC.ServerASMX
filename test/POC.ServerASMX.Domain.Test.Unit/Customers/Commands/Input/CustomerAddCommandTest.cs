@@ -32,7 +32,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void IsValid_Invalid_Name(string name)
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerAddCommand;
             command.Name = name;
             var valid = command.IsValid();
 
@@ -50,7 +50,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_DateTimeMin()
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
             var valid = command.IsValid();
 
@@ -68,7 +68,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_FutureDate()
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
             var valid = command.IsValid();
 
@@ -87,7 +87,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Gender(EGender gender)
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerAddCommand;
             command.Gender = gender;
             var valid = command.IsValid();
 
@@ -106,7 +106,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_CashBalance(decimal cashBalance)
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerAddCommand;
             command.CashBalance = cashBalance;
             var valid = command.IsValid();
 

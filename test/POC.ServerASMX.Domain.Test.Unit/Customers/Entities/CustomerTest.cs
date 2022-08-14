@@ -27,9 +27,9 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_1()
         {
-            var command = MockData.CustomerAddCommand;
+            var data = MockData.Customer;
 
-            var customer = new Customer(command.Name, command.Birth, command.Gender, command.CashBalance);
+            var customer = new Customer(data.Name, data.Birth, data.Gender, data.CashBalance);
 
             TestContext.WriteLine(customer.ToJson());
 
@@ -39,10 +39,10 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
                 Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
                 Assert.That(customer.Id, Is.Zero);
-                Assert.That(customer.Name, Is.EqualTo(command.Name));
-                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
-                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
-                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Name, Is.EqualTo(data.Name));
+                Assert.That(customer.Birth, Is.EqualTo(data.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(data.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(data.CashBalance));
                 Assert.That(customer.Active, Is.True);
                 Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
                 Assert.That(customer.ChangeDate, Is.Null);
@@ -52,10 +52,10 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_2()
         {
-            var command = MockData.CustomerUpdateCommand;
+            var data = MockData.Customer;
 
-            var customer = new Customer(command.Id, command.Name, command.Birth, 
-                command.Gender, command.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
+            var customer = new Customer(data.Id, data.Name, data.Birth, 
+                data.Gender, data.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
             
@@ -64,11 +64,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
                 Assert.That(customer.Valid, Is.True);
                 Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
-                Assert.That(customer.Id, Is.EqualTo(command.Id));
-                Assert.That(customer.Name, Is.EqualTo(command.Name));
-                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
-                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
-                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Id, Is.EqualTo(data.Id));
+                Assert.That(customer.Name, Is.EqualTo(data.Name));
+                Assert.That(customer.Birth, Is.EqualTo(data.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(data.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(data.CashBalance));
                 Assert.That(customer.Active, Is.True);
                 Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
                 Assert.That(customer.ChangeDate.Value.Date, Is.EqualTo(DateTime.Now.AddDays(1).Date));
@@ -78,9 +78,9 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_3()
         {
-            var command = MockData.CustomerUpdateCommand;
+            var data = MockData.Customer;
 
-            var customer = new Customer(command.Id, command.Name, command.Birth, command.Gender, command.CashBalance, true, DateTime.Now);
+            var customer = new Customer(data.Id, data.Name, data.Birth, data.Gender, data.CashBalance, true, DateTime.Now);
 
             TestContext.WriteLine(customer.ToJson());
             
@@ -89,11 +89,11 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
                 Assert.That(customer.Valid, Is.True);
                 Assert.That(customer.Invalid, Is.False);
                 Assert.That(customer.Notifications, Is.Empty);
-                Assert.That(customer.Id, Is.EqualTo(command.Id));
-                Assert.That(customer.Name, Is.EqualTo(command.Name));
-                Assert.That(customer.Birth, Is.EqualTo(command.Birth));
-                Assert.That(customer.Gender, Is.EqualTo(command.Gender));
-                Assert.That(customer.CashBalance, Is.EqualTo(command.CashBalance));
+                Assert.That(customer.Id, Is.EqualTo(data.Id));
+                Assert.That(customer.Name, Is.EqualTo(data.Name));
+                Assert.That(customer.Birth, Is.EqualTo(data.Birth));
+                Assert.That(customer.Gender, Is.EqualTo(data.Gender));
+                Assert.That(customer.CashBalance, Is.EqualTo(data.CashBalance));
                 Assert.That(customer.Active, Is.True);
                 Assert.That(customer.CreationDate.Date, Is.EqualTo(DateTime.Now.Date));
                 Assert.That(customer.ChangeDate, Is.Null);

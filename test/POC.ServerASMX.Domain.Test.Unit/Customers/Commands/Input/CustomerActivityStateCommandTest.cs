@@ -9,7 +9,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Valid()
         {
-            var command = MockData.CustomerDeleteCommand;
+            var command = MockData.CustomerActivityStateCommand;
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
@@ -28,7 +28,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerActivityStateCommand;
             command.Id = id;
             var valid = command.IsValid();
 

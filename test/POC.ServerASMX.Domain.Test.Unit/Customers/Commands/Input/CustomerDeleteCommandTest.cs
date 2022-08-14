@@ -28,7 +28,7 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
-            var command = MockData.CustomerUpdateCommand;
+            var command = MockData.CustomerDeleteCommand;
             command.Id = id;
             var valid = command.IsValid();
 
