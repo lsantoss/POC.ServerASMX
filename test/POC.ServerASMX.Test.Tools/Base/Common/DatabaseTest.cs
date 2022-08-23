@@ -11,24 +11,7 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
     [TestFixture]
     public class DatabaseTest : BaseTest
     {
-        private readonly string _connectionString;
-        private readonly string _connectionStringReal;
-        private readonly string _scriptCreateDatabasePath;
-        private readonly string _scriptCreateTablesPath;
-        private readonly string _scriptDropTablesPath;
-
-        public DatabaseTest() : base()
-        {
-            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
-            _connectionStringReal = _connectionString.Replace("ServerASMX.Test", "ServerASMX");
-            _scriptCreateDatabasePath = $@"{baseDirectory}\Sql\CreateDatabase.sql";
-            _scriptCreateTablesPath = $@"{baseDirectory}\Sql\CreateTablesAndProcedures.sql";
-            _scriptDropTablesPath = $@"{baseDirectory}\Sql\DropTablesAndProcedures.sql";
-
-            CreateDatabase();
-        }
+        public DatabaseTest() : base() => CreateDatabase();
 
         [OneTimeSetUp]
         protected override void OneTimeSetUp() => InitializeData();
@@ -59,9 +42,14 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
         {
             try
             {
-                using (var streamReader = new StreamReader(_scriptCreateDatabasePath))
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
+                var connectionStringDefaultDatabase = connectionString.Replace("ServerASMX.Test", "master");
+
+                var scriptCreateDatabasePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateDatabase.sql";
+
+                using (var streamReader = new StreamReader(scriptCreateDatabasePath))
                 {
-                    using (var connection = new SqlConnection(_connectionStringReal))
+                    using (var connection = new SqlConnection(connectionStringDefaultDatabase))
                     {
                         connection.Execute(streamReader.ReadToEnd());
                     }
@@ -77,12 +65,16 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
         {
             try
             {
-                using (var streamReader = new StreamReader(_scriptCreateTablesPath))
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
+
+                var scriptCreateTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\CreateTablesAndProcedures.sql";
+
+                using (var streamReader = new StreamReader(scriptCreateTablesPath))
                 {
                     var scripts = streamReader.ReadToEnd().Split(
                         new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    using (var connection = new SqlConnection(_connectionString))
+                    using (var connection = new SqlConnection(connectionString))
                     {
                         foreach (var script in scripts)
                             connection.Execute(script);
@@ -99,9 +91,13 @@ namespace POC.ServerASMX.Test.Tools.Base.Common
         {
             try
             {
-                using (var streamReader = new StreamReader(_scriptDropTablesPath))
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnectionStrings"].ConnectionString;
+
+                var scriptDropTablesPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Sql\DropTablesAndProcedures.sql";
+
+                using (var streamReader = new StreamReader(scriptDropTablesPath))
                 {
-                    using (var connection = new SqlConnection(_connectionString))
+                    using (var connection = new SqlConnection(connectionString))
                     {
                         connection.Execute(streamReader.ReadToEnd());
                     }
