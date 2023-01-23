@@ -9,11 +9,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Valid()
         {
+            //Arrange
             var command = MockData.CustomerDeleteCommand;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.True);
@@ -28,12 +32,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Id(long id)
         {
+            //Arrange
             var command = MockData.CustomerDeleteCommand;
             command.Id = id;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);

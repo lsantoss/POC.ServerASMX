@@ -11,10 +11,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
         [TestCase("Property", "Message")]
         public void Construtor_Success(string property, string message)
         {
+            //Act
             var notification = new Notification(property, message);
 
             TestContext.WriteLine(notification.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(notification.Property, Is.EqualTo(property));

@@ -12,11 +12,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Valid()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.True);
@@ -32,12 +36,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void IsValid_Invalid_Name(string name)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Name = name;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);
@@ -50,12 +58,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_DateTimeMin()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);
@@ -68,12 +80,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [Test]
         public void IsValid_Invalid_Birth_FutureDate()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);
@@ -87,12 +103,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_Gender(EGender gender)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Gender = gender;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);
@@ -106,12 +126,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Commands.Input
         [TestCase(-1)]
         public void IsValid_Invalid_CashBalance(decimal cashBalance)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.CashBalance = cashBalance;
+
+            //Act
             var valid = command.IsValid();
 
             TestContext.WriteLine(command.ToJson());
 
+            //Act
             Assert.Multiple(() =>
             {
                 Assert.That(valid, Is.False);

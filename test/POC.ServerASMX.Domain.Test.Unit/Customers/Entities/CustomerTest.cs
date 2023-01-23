@@ -13,9 +13,12 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void IsValid_Valid()
         {
+            //Arrange
             var customer = MockData.Customer;
 
             TestContext.WriteLine(customer.ToJson());
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
@@ -27,12 +30,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_1()
         {
+            //Arrange
             var data = MockData.Customer;
 
+            //Act
             var customer = new Customer(data.Name, data.Birth, data.Gender, data.CashBalance);
 
             TestContext.WriteLine(customer.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
@@ -52,13 +58,16 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_2()
         {
+            //Arrange
             var data = MockData.Customer;
 
+            //Act
             var customer = new Customer(data.Id, data.Name, data.Birth, 
                 data.Gender, data.CashBalance, true, DateTime.Now, DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
@@ -78,12 +87,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void Constructor_Success_3()
         {
+            //Arrange
             var data = MockData.Customer;
 
+            //Act
             var customer = new Customer(data.Id, data.Name, data.Birth, data.Gender, data.CashBalance, true, DateTime.Now);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.True);
@@ -105,11 +117,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetId_Invalid(long id)
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetId(id);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -124,11 +140,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void SetName_Invalid(string name)
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetName(name);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -140,11 +160,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void SetBirth_Invalid_DateTimeMin()
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetBirth(DateTime.MinValue);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -156,11 +180,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void SetBirth_Invalid_FutureDate()
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetBirth(DateTime.Now.AddDays(1));
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -173,11 +201,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetGender_Invalid(EGender gender)
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetGender(gender);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -190,11 +222,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [TestCase(-1)]
         public void SetCashBalance_Invalid(decimal cashBalance)
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             customer.SetCashBalance(cashBalance);
 
             TestContext.WriteLine(customer.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(customer.Valid, Is.False);
@@ -206,11 +242,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void MapToCustomerCommandResult_Success()
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             var commandResult = customer.MapToCustomerCommandResult();
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Id, Is.EqualTo(customer.Id));
@@ -227,11 +267,15 @@ namespace POC.ServerASMX.Domain.Test.Unit.Customers.Entities
         [Test]
         public void MapToCustomerDTO_Success()
         {
+            //Arrange
             var customer = MockData.Customer;
+
+            //Act
             var commandDTO = customer.MapToCustomerDTO();
 
             TestContext.WriteLine(commandDTO.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandDTO.Id, Is.EqualTo(customer.Id));

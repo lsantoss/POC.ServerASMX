@@ -18,14 +18,17 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Success()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -45,12 +48,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Invalid_Command_Null()
         {
+            //Arrange
             var command = (CustomerAddCommand)null;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -66,6 +72,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
         public void Add_Invalid_Command(string name, EGender gender, decimal cashBalance)
         {
+            //Arrange
             var command = new CustomerAddCommand
             {
                 Name = name,
@@ -74,10 +81,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
                 CashBalance = cashBalance
             };
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -93,13 +102,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Add_Invalid_Name(string name)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Name = name;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -112,13 +124,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Invalid_Birth_DateTimeMin()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.MinValue;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -131,13 +146,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Add_Invalid_Birth_FutureDate()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -151,13 +169,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_Gender(EGender gender)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.Gender = gender;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -171,13 +192,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Add_Invalid_CashBalance(decimal cashBalance)
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
             command.CashBalance = cashBalance;
 
+            //Act
             var commandResult = _customerService.Add(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -190,16 +214,19 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Success()
         {
+            //Arrange
             _customerService.Add(MockData.CustomerAddCommand);
 
             var command = MockData.CustomerUpdateCommand;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             var result = (CustomerCommandResult)commandResult.Data;
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -219,12 +246,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Command_Null()
         {
+            //Arrange
             var command = (CustomerUpdateCommand)null;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -240,6 +270,7 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(0, StringsWithPredefinedSizes.StringWith101Caracters, -1, -1)]
         public void Update_Invalid_Command(long id, string name, EGender gender, decimal cashBalance)
         {
+            //Arrange
             var command = new CustomerUpdateCommand
             {
                 Id = id,
@@ -249,10 +280,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
                 CashBalance = cashBalance
             };
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -265,12 +298,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Not_Resgistred_Id()
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -285,13 +321,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Id(long id)
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.Id = id;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -307,13 +346,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(StringsWithPredefinedSizes.StringWith101Caracters)]
         public void Update_Invalid_Name(string name)
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.Name = name;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -326,13 +368,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Birth_DateTimeMin()
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.MinValue;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -345,13 +390,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Update_Invalid_Birth_FutureDate()
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.Birth = DateTime.Now.AddDays(1);
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -365,13 +413,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_Gender(EGender gender)
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.Gender = gender;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -385,13 +436,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Update_Invalid_CashBalance(decimal cashBalance)
         {
+            //Arrange
             var command = MockData.CustomerUpdateCommand;
             command.CashBalance = cashBalance;
 
+            //Act
             var commandResult = _customerService.Update(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -404,14 +458,17 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Activity_State_Success()
         {
+            //Arrange
             _customerService.Add(MockData.CustomerAddCommand);
 
             var command = MockData.CustomerActivityStateCommand;
 
+            //Act
             var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -424,12 +481,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Activity_State_Invalid_Command_Null()
         {
+            //Arrange
             var command = (CustomerActivityStateCommand)null;
 
+            //Act
             var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -442,12 +502,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Activity_State_Invalid_Not_Resgistred_Id()
         {
+            //Arrange
             var command = MockData.CustomerActivityStateCommand;
 
+            //Act
             var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -462,13 +525,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Activity_State_Invalid_Id(long id)
         {
+            //Arrange
             var command = MockData.CustomerActivityStateCommand;
             command.Id = id;
 
+            //Act
             var commandResult = _customerService.ChangeActivityState(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -481,14 +547,17 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Delete_Success()
         {
+            //Arrange
             _customerService.Add(MockData.CustomerAddCommand);
 
             var command = MockData.CustomerDeleteCommand;
 
+            //Act
             var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -501,12 +570,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Delete_Invalid_Command_Null()
         {
+            //Arrange
             var command = (CustomerDeleteCommand)null;
 
+            //Act
             var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -519,12 +591,15 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Delete_Invalid_Not_Resgistred_Id()
         {
+            //Arrange
             var command = MockData.CustomerDeleteCommand;
 
+            //Act
             var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -539,13 +614,16 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(-1)]
         public void Delete_Invalid_Id(long id)
         {
+            //Arrange
             var command = MockData.CustomerDeleteCommand;
             command.Id = id;
 
+            //Act
             var commandResult = _customerService.Delete(command);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -558,14 +636,17 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void Get_Registred_Id_Success()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
 
             _customerService.Add(command);
 
+            //Act
             var result = _customerService.Get(1);
 
             TestContext.WriteLine(result.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.Id, Is.EqualTo(1));
@@ -585,24 +666,29 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [TestCase(long.MaxValue)]
         public void Get_Not_Registred_Id_Success(long id)
         {
+            //Act
             var result = _customerService.Get(id);
 
             TestContext.WriteLine(result.ToJson());
 
+            //Assert
             Assert.That(result, Is.Null);
         }
 
         [Test]
         public void List_Registred_Ids_Success()
         {
+            //Arrange
             var command = MockData.CustomerAddCommand;
 
             _customerService.Add(command);
 
+            //Act
             var result = _customerService.List();
 
             TestContext.WriteLine(result.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result, Has.Count.EqualTo(1));
@@ -620,10 +706,12 @@ namespace POC.ServerASMX.Application.Test.Integration.Customers.Services
         [Test]
         public void List_Not_Registred_Ids_Success()
         {
+            //Act
             var result = _customerService.List();
 
             TestContext.WriteLine(result.ToJson());
 
+            //Assert
             Assert.That(result, Is.Empty);
         }
     }

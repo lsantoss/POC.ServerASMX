@@ -10,9 +10,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
         [Test]
         public void Construtor_Success()
         {
+            //Act
             var notifier = new Notifier();
 
             TestContext.WriteLine(notifier.ToJson());
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(notifier.Valid, Is.True);
@@ -25,11 +28,15 @@ namespace POC.ServerASMX.Infra.Test.Unit.Notifications
         [TestCase("NotificationProperty", "NotificationMessage")]
         public void AddNotification_Success(string property, string message)
         {
+            //Arrange
             var notifier = new Notifier();
+
+            //Act
             notifier.AddNotification(property, message);
 
             TestContext.WriteLine(notifier.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(notifier.Valid, Is.False);

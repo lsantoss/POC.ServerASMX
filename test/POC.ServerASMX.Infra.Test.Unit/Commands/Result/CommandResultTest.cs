@@ -13,10 +13,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         [TestCase("Message")]
         public void Construtor1_Success_1(string message)
         {
+            //Act
             var commandResult = new CommandResult(message);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -30,10 +32,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         [TestCase("Message", "Data")]
         public void Construtor1_Success_2(string message, string data)
         {
+            //Act
             var commandResult = new CommandResult(message, data);
 
             TestContext.WriteLine(commandResult.ToJson());
-            
+
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.True);
@@ -47,12 +51,15 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         [TestCase("Message", "NotificationProperty", "NotificationMessage")]
         public void Construtor2_Success(string message, string notificationProperty, string notificationMessage)
         {
+            //Arrange
             var errors = new List<Notification> { new Notification(notificationProperty, notificationMessage) };
 
+            //Act
             var commandResult = new CommandResult(message, errors);
 
             TestContext.WriteLine(commandResult.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);
@@ -67,10 +74,12 @@ namespace POC.ServerASMX.Infra.Test.Unit.Commands.Result
         [TestCase("Message", "NotificationProperty", "NotificationMessage")]
         public void Construtor3_Success(string message, string notificationProperty, string notificationMessage)
         {
+            //Act
             var commandResult = new CommandResult(message, notificationProperty, notificationMessage);
 
             TestContext.WriteLine(commandResult.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandResult.Success, Is.False);

@@ -20,6 +20,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -28,6 +29,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
@@ -35,7 +37,8 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var result = (CustomerCommandResult)commandResult.Data;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.True);
@@ -61,14 +64,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = (CustomerAddCommand)null;
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -91,6 +97,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand
                 {
                     Name = name,
@@ -99,12 +106,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = cashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -127,6 +136,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = name,
@@ -135,12 +145,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -160,6 +172,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -168,12 +181,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -193,6 +208,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -201,12 +217,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerAddCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -227,6 +245,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -235,12 +254,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = cashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.AddAsync(command);
 
                 var commandResult = response?.Body?.AddResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -260,6 +281,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var commandAdd = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -280,6 +302,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
@@ -287,7 +310,8 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var result = (CustomerCommandResult)commandResult.Data;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.True);
@@ -314,14 +338,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = (CustomerUpdateCommand)null;
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -344,6 +371,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = id,
@@ -353,12 +381,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = cashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -379,6 +409,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = id,
@@ -388,12 +419,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Acr
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -415,6 +448,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = id,
@@ -424,12 +458,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -452,6 +488,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = MockData.CustomerUpdateCommand.Id,
@@ -461,12 +498,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -486,6 +525,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = MockData.CustomerUpdateCommand.Id,
@@ -495,12 +535,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -520,6 +562,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = MockData.CustomerUpdateCommand.Id,
@@ -529,12 +572,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = MockData.CustomerUpdateCommand.CashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -555,6 +600,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerUpdateCommand()
                 {
                     Id = MockData.CustomerUpdateCommand.Id,
@@ -564,12 +610,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     CashBalance = cashBalance
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.UpdateAsync(command);
 
                 var commandResult = response?.Body?.UpdateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -589,6 +637,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var commandAdd = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -606,12 +655,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                     Active = MockData.CustomerActivityStateCommand.Active
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.True);
@@ -631,14 +682,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = (CustomerActivityStateCommand)null;
 
+                //Act
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -659,18 +713,21 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerActivityStateCommand()
                 {
                     Id = id,
                     Active = MockData.CustomerActivityStateCommand.Active
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -692,18 +749,21 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerActivityStateCommand()
                 {
                     Id = id,
                     Active = MockData.CustomerActivityStateCommand.Active
                 };
 
+                //Act
                 var response = await _customerServiceSoapClient.ChangeActivityStateAsync(command);
 
                 var commandResult = response?.Body?.ChangeActivityStateResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -723,6 +783,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var commandAdd = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -736,12 +797,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
 
                 var command = new CustomerDeleteCommand() { Id = idAdd };
 
+                //Act
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.True);
@@ -761,14 +824,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = (CustomerDeleteCommand)null;
 
+                //Act
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -789,14 +855,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerDeleteCommand() { Id = id };
 
+                //Act
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -818,14 +887,17 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerDeleteCommand() { Id = id };
 
+                //Act
                 var response = await _customerServiceSoapClient.DeleteAsync(command);
 
                 var commandResult = response?.Body?.DeleteResult;
 
                 TestContext.WriteLine(commandResult.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(commandResult.Success, Is.False);
@@ -845,6 +917,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -856,12 +929,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var responseAdd = await _customerServiceSoapClient.AddAsync(command);
                 var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
 
+                //Act
                 var response = await _customerServiceSoapClient.GetAsync(idAdd);
 
                 var result = response?.Body?.GetResult;
 
                 TestContext.WriteLine(result.ToJson());
-                
+
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(result.Id, Is.EqualTo(idAdd));
@@ -888,12 +963,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Act
                 var response = await _customerServiceSoapClient.GetAsync(id);
 
                 var result = response?.Body?.GetResult;
 
                 TestContext.WriteLine(result.ToJson());
 
+                //Assert
                 Assert.That(result, Is.Null);
             }
             catch (EndpointNotFoundException e)
@@ -907,6 +984,7 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Arrange
                 var command = new CustomerAddCommand()
                 {
                     Name = MockData.CustomerAddCommand.Name,
@@ -918,12 +996,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
                 var responseAdd = await _customerServiceSoapClient.AddAsync(command);
                 var idAdd = ((CustomerCommandResult)responseAdd?.Body?.AddResult?.Data).Id;
 
+                //Act
                 var response = await _customerServiceSoapClient.ListAsync();
 
                 var result = response?.Body?.ListResult;
 
                 TestContext.WriteLine(result.ToJson());
 
+                //Assert
                 Assert.Multiple(() =>
                 {
                     Assert.That(result[0].Id, Is.EqualTo(idAdd));
@@ -947,12 +1027,14 @@ namespace POC.ServerASMX.Application.Test.Contract.Customers.Services
         {
             try
             {
+                //Act
                 var response = await _customerServiceSoapClient.ListAsync();
 
                 var result = response?.Body?.ListResult;
 
                 TestContext.WriteLine(result.ToJson());
 
+                //Assert
                 Assert.That(result, Is.Empty);
             }
             catch (EndpointNotFoundException e)

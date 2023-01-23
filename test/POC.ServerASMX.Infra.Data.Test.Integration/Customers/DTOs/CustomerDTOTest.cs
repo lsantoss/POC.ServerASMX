@@ -10,13 +10,16 @@ namespace POC.ServerASMX.Infra.Data.Test.Integration.Customers.DTOs
         [Test]
         public void Constructor_Success()
         {
+            //Arrange
             var customer = MockData.Customer;
 
+            //Act
             var commandDTO = new CustomerDTO(customer.Id, customer.Name, customer.Birth,
                 customer.Gender, customer.CashBalance, customer.Active, customer.CreationDate, customer.ChangeDate);
 
             TestContext.WriteLine(commandDTO.ToJson());
 
+            //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(commandDTO.Id, Is.EqualTo(customer.Id));
